@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "title": "Subscribe to our newsletter to revieve the latest offers, savings and advice",
+        "content": "",
+        "background": "#fbb900",
+        "text": "#2c2c2c"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "newsletter"
+  ]
+}

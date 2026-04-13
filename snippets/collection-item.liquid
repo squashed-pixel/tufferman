@@ -1,0 +1,27 @@
+
+<div class="block-list__item">
+  <div class="offer-item offer-item--inline">
+    <div class="offer-item__image-wrapper">
+      {% if collection.object.featured_image != blank %}
+        <img class="lazyload image--fade-in" data-src="{{ collection.object.featured_image | img_url: 'master' }}" alt="{{ collection.object.featured_image.alt | escape }}">
+
+        <noscript>
+          <img src="{{ collection.object.featured_image | img_url: 'master' }}" alt="{{ collection.object.featured_image.alt | escape }}">
+        </noscript>
+      {% else %}
+        {%- capture placeholder -%}{% cycle 'collection-1', 'collection-2', 'collection-3', 'collection-4', 'collection-5', 'collection-6' %}{%- endcapture -%}
+        {% render 'icon', icon: 'tuff-place' %}
+      {% endif %}
+    </div>
+
+    <div class="offer-item__inner">
+      {%- if collection.title != blank -%}
+        <p class="offer-item__title heading h4 {% if top_three %}text-white{% endif %}">{{ collection.title | escape }}</p>
+      {%- endif -%}
+
+      {% if collection != blank %}
+        <a href="{{ collection.url }}" class="button button--primary">{{ 'collection.general.more_info' | t }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

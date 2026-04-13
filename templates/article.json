@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog-post",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Join Us",
+            "content": "<p>A short sentence describing what someone will receive by subscribing<\/p>",
+            "subtext": "100% free, Unsubscribe any time!",
+            "background": "#fbb900",
+            "text": "#2c2c2c"
+          }
+        },
+        "social-media": {
+          "type": "social_media",
+          "settings": {
+            "title": "Follow us",
+            "show_rss": true
+          }
+        }
+      },
+      "block_order": [
+        "newsletter",
+        "social-media"
+      ],
+      "settings": {
+        "show_category": true,
+        "show_author": true,
+        "show_date": true,
+        "show_share_buttons": true,
+        "show_tags": true,
+        "show_gravatar": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

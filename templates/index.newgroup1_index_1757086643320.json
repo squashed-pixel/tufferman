@@ -1,0 +1,487 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "7846422a-7ccd-45d8-89eb-07e3b66ecdb7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/SM1015_TUF_HOMEPAGE_BANNER30_1_copy_Vicky.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/AS_SEEN_ON_TV_SM1015_TUF_HOMEPAGE_BANNER-MOBILE_in_use_from_13.06.2023_002.png",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "shopify:\/\/products\/3x-vrs-heavy-duty-shelving-1800mm-high-200-280kg-grey"
+          }
+        },
+        "slide-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Collection_Garage_Shelving_25ab8968-37a8-4c4b-86df-ed68ca67e84e.webp",
+            "show_overlay": true,
+            "overlay_opacity": 81,
+            "text_color": "#ffffff",
+            "title": "Industrial Shelving, Garage Shelving, Storage Solutions",
+            "content": "Tufferman are the market leaders for industrial shelving, garage shelving & storage solutions.",
+            "content_position": "bottom_center",
+            "button_background": "#3ab44b",
+            "button_text_color": "#fafafa",
+            "button_text": "All Collections",
+            "link": "shopify:\/\/collections"
+          }
+        },
+        "b1a5fcde-ca83-4ad4-87f5-e49d882f5689": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/SM1151_TUF_TUFFERMAN_JAN_SALE_BANNERS_HOMEPAGE.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/SM1151_TUF_TUFFERMAN_JAN_SALE_BANNERS_MOBILE.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "7846422a-7ccd-45d8-89eb-07e3b66ecdb7",
+        "slide-1",
+        "b1a5fcde-ca83-4ad4-87f5-e49d882f5689"
+      ],
+      "settings": {
+        "edge_to_edge": false,
+        "video": "shopify:\/\/files\/videos\/Tufferman update Final 03.04.2024.mp4",
+        "video_text": "AS SEEN ON TV",
+        "video_img": "shopify:\/\/shop_images\/video-banner.png",
+        "section_size": "preserve_ratio",
+        "carousel_effect": "fade",
+        "autoplay": true,
+        "cycle_speed": 5
+      }
+    },
+    "16547662719346de3b": {
+      "type": "offers",
+      "blocks": {
+        "3a76e902-4bfe-43a5-b035-dd8d23995750": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled-14.jpg",
+            "image_is_background": true,
+            "linked-collection": "garage-shelving",
+            "title": "test",
+            "content": "<p><strong>Garage Shelving<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "fd305e8e-7cc0-43d8-ae1f-c1207b68c7f9": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Industrial_Shelving_homepage_image_offer.jpg",
+            "image_is_background": true,
+            "linked-collection": "industrial-shelving",
+            "title": "",
+            "content": "<p><strong>Industrial Shelving<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "1f434b57-9674-468c-ab99-001f0f691c47": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/shelving_background_test_1.jpg",
+            "image_is_background": true,
+            "linked-collection": "warehouse-shelving",
+            "title": "",
+            "content": "<p><strong>Warehouse Shelving<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "e0f0d34e-f4eb-4998-8116-fd738931d270": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled-9.jpg",
+            "image_is_background": true,
+            "linked-collection": "workbenches-workstations",
+            "title": "",
+            "content": "<p><strong>Workbenches<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "5762382a-ba3e-437f-9dfc-0e300224146d": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Interlocking_floor_tiles_home_page_offer.jpg",
+            "image_is_background": true,
+            "linked-collection": "mats-flooring",
+            "title": "",
+            "content": "<p><strong>Mats & Flooring<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "16547662714c9e0f0a-1": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled-10.jpg",
+            "image_is_background": true,
+            "linked-collection": "storage-boxes-containers",
+            "title": "",
+            "content": "<p><strong>Boxes & Containers<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "aca33610-b62c-481e-9d0d-b88bdf2b7ccd": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled-11.jpg",
+            "image_is_background": true,
+            "linked-collection": "ladders-steps-platforms",
+            "title": "",
+            "content": "<p><strong>Ladders & Steps<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        },
+        "2440c5e8-f3f5-4902-a0c3-3233abb7f16f": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled-16.jpg",
+            "image_is_background": true,
+            "linked-collection": "sack-trucks-trolleys-handling",
+            "title": "",
+            "content": "<p><strong>Sack Trucks & Trolleys<\/strong><\/p>",
+            "content_color": "#4b4646"
+          }
+        }
+      },
+      "block_order": [
+        "3a76e902-4bfe-43a5-b035-dd8d23995750",
+        "fd305e8e-7cc0-43d8-ae1f-c1207b68c7f9",
+        "1f434b57-9674-468c-ab99-001f0f691c47",
+        "e0f0d34e-f4eb-4998-8116-fd738931d270",
+        "5762382a-ba3e-437f-9dfc-0e300224146d",
+        "16547662714c9e0f0a-1",
+        "aca33610-b62c-481e-9d0d-b88bdf2b7ccd",
+        "2440c5e8-f3f5-4902-a0c3-3233abb7f16f"
+      ],
+      "disabled": true,
+      "settings": {
+        "items_per_row": 4,
+        "stack_mobile": true
+      }
+    },
+    "a4b923dd-d7ad-4797-9ffa-72d4a65284f8": {
+      "type": "trade-description",
+      "settings": {}
+    },
+    "728e0efd-d03e-4329-8c00-cc86ab549034": {
+      "type": "trade-description",
+      "settings": {}
+    },
+    "16587449552582afdf": {
+      "type": "promotion-list",
+      "blocks": {
+        "1658744955969a3d7b-0": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/image-41.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "We're a small business too.",
+            "content": "<p>We know from running our own business that we need value for money and great service from all our suppliers. We’re passionate at what we do and always on hand to help. If you need advice choosing the right industrial shelving units for your needs, simply call our support team on 0203 764 9380.<\/p>",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#ffffff",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "1658744955969a3d7b-1": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/TS-App-logo-large-color-png-11.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": true,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "Trading Standards Approved",
+            "content": "<p>We have been vetted and approved by Trading Standards as part of the national Buy with Confidence scheme. You can be sure that when you buy industrial shelving units from Tufferman, you’re dealing with a trustworthy and customer orientated company.<\/p>",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1658744955969a3d7b-0",
+        "1658744955969a3d7b-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "expand_items": false,
+        "column": false,
+        "title": "",
+        "section_size": "medium",
+        "stack_mobile": false,
+        "background_color": "#ffffff",
+        "enable_container_shadow": true,
+        "enable_shadow": false
+      }
+    },
+    "16547848488a578982": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "special-offers",
+        "title": "BEST SELLERS",
+        "products_count": 4,
+        "layout": "vertical",
+        "stack_products": true,
+        "show_quick_buy": false,
+        "link_title": "",
+        "link_url": ""
+      }
+    },
+    "1658750378a26bec7e": {
+      "type": "promotion-list",
+      "blocks": {
+        "1658750378b761eeda-1": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Press_Logos.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "title": "Our Industrial shelving is regularly seen in",
+            "content": "<p>Plus many other magazines<\/p>",
+            "content_position": "top_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "1658750378b761eeda-0": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/trustpilot-logo-snijpunt2.png",
+            "circular_logo": false,
+            "show_overlay": true,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#2c2c2c",
+            "title": "Excellent 8,438 reviews",
+            "content": "<p>“Ordered one day, delivered the next. What a brilliant service.<br\/>The shelving unit is of a rugged construction and was easy to assemble.<br\/>I am very pleased with the product.” - Alan<\/p>",
+            "content_position": "middle_center",
+            "button_background": "#3ab44b",
+            "button_text_color": "#ffffff",
+            "button_text": "Read All Customer Reviews",
+            "button_link": "shopify:\/\/pages\/trustpilot-reviews"
+          }
+        },
+        "22eaec0f-a404-4597-89c1-7de7e2b6855b": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Company_Logos_New.jpg",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#000000",
+            "text_color": "#ffffff",
+            "title": "People who use our products",
+            "content": "<p>A small selection of our loyal customers<\/p>",
+            "content_position": "bottom_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1658750378b761eeda-1",
+        "1658750378b761eeda-0",
+        "22eaec0f-a404-4597-89c1-7de7e2b6855b"
+      ],
+      "settings": {
+        "expand_items": false,
+        "column": false,
+        "title": "",
+        "section_size": "medium",
+        "stack_mobile": true,
+        "background_color": "",
+        "enable_container_shadow": false,
+        "enable_shadow": false
+      }
+    },
+    "16547014388ee14726": {
+      "type": "logo-list",
+      "blocks": {
+        "16547014388fe9881b-0": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/McClaren_Logo_x3_c0429e2b-f0ec-407b-aea9-76926e3c8350.png",
+            "link": ""
+          }
+        },
+        "16547014388fe9881b-1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Sony_Logo_x3_7a83d7eb-d5aa-47a6-937a-dd398716249d.png",
+            "link": ""
+          }
+        },
+        "16547014388fe9881b-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/WB_Logo_x3_1.png",
+            "link": ""
+          }
+        },
+        "16547014388fe9881b-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Millets_Logo_x3_c0df5a8d-8714-426a-8b65-8814407a489b.png",
+            "link": ""
+          }
+        },
+        "16547014388fe9881b-4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/sports_Direct_Logo_x3_203eb0c2-088a-43f1-a3ad-df063fb3724d.png",
+            "link": ""
+          }
+        },
+        "16547014388fe9881b-5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Waterstones-logo_x3_d4022f66-1908-4b47-9551-54d71d15b878.png",
+            "link": ""
+          }
+        },
+        "90174654-5d55-4236-8933-49e3417242fc": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Rolls_Royce_logo_x3_701e7a86-748e-4c17-a0c6-d5126f65e479.png",
+            "link": ""
+          }
+        },
+        "d2880086-2226-479a-afdb-55fa5882fd32": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JD_Sports_logo_x3_6fa6361f-1f7e-4d37-b3a5-3cf97c3ba1f7.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "16547014388fe9881b-0",
+        "16547014388fe9881b-1",
+        "16547014388fe9881b-2",
+        "16547014388fe9881b-3",
+        "16547014388fe9881b-4",
+        "16547014388fe9881b-5",
+        "90174654-5d55-4236-8933-49e3417242fc",
+        "d2880086-2226-479a-afdb-55fa5882fd32"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Customers Who Use Our Products",
+        "link_title": "",
+        "link": ""
+      }
+    },
+    "1658754803f124b32b": {
+      "type": "text-with-icons",
+      "blocks": {
+        "1658754803e9a3e25e-0": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-delivery",
+            "title": "Free delivery worldwide",
+            "content": ""
+          }
+        },
+        "1658754803e9a3e25e-1": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-returns",
+            "title": "Satisfied or refunded",
+            "content": ""
+          }
+        },
+        "1658754803e9a3e25e-2": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-customer-support",
+            "title": "Top-notch support",
+            "content": ""
+          }
+        },
+        "1658754803e9a3e25e-3": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-secure-payment",
+            "title": "Secure payments",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "1658754803e9a3e25e-0",
+        "1658754803e9a3e25e-1",
+        "1658754803e9a3e25e-2",
+        "1658754803e9a3e25e-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "stack_mobile": false
+      }
+    },
+    "1658744818c9d7b1e8": {
+      "type": "rich-text",
+      "settings": {
+        "text_width": "wide",
+        "text_align": "left",
+        "title": "Tufferman Shelving Solutions",
+        "content": "<p>Tufferman Ltd is the only distributor of Storalex metal shelving units in the UK and as a result we're able to offer an unrivalled range of storage solutions ranging from heavy duty warehouse and industrial shelving to metal racking, garage shelving and workbenches.<br\/><\/p><p>All Storalex industrial shelving and workbenches are made from high grade, powder coated European steel and use a unique boltless ‘stud & keyhole’ design; which combine to offer excellent levels of rigidity and durability. In addition to this, all of our metal shelving has been tested to strict FEM standards to comply with ISO 9001 quality requirements and come with the much coveted ‘Storalex 5 Year Guarantee’.<br\/><\/p><p>With load capacities per shelf ranging from 200kg to 800kg and shelving units available in a variety of widths, depths and heights, we’re confident that we have a storage solution that’s right for you.<br\/><\/p>",
+        "button_text": "",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "16547662719346de3b",
+    "a4b923dd-d7ad-4797-9ffa-72d4a65284f8",
+    "728e0efd-d03e-4329-8c00-cc86ab549034",
+    "16587449552582afdf",
+    "16547848488a578982",
+    "1658750378a26bec7e",
+    "16547014388ee14726",
+    "1658754803f124b32b",
+    "1658744818c9d7b1e8"
+  ]
+}

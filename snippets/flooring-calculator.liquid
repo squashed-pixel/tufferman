@@ -1,0 +1,93 @@
+{%- assign width = value -%}
+{%- assign depth = value -%}
+{%- for option in product.options_with_values -%}
+    {%- if option.name contains 'Width' -%}
+        {%- assign width = option.selected_value -%}
+    {%- endif -%}
+    {%- if option.name contains 'Depth' -%}
+        {%- assign depth = option.selected_value -%}
+    {%- endif -%}
+{%- endfor -%}
+
+<aside class="modal modal--calculator ">
+    <div class="modal__dialog flooring-modal" role="dialog">
+        <div class="popup-calculator">
+            <h3 class="popup-calculator__title heading h3">Flooring Calculator</h3>
+
+            <button class="popup-calculator__close link">
+            {%- render 'icon', icon: 'close' -%}
+            </button>
+
+            <div class="calc-input-container">
+                <div class="form__input-wrapper">
+                    <label for="calcWidth">Width (mm)</label>
+                    <input id="calcWidth" type="number" class="form__field form__field--text calc-field" name="calcWidth">
+                </div>
+
+                <div class="form__input-wrapper">
+                    <label for="calcLength">Length (mm)</label>
+                    <input id="calcLength" type="number" class="form__field form__field--text calc-field" name="calcLength">
+                </div>
+            </div>
+
+            <p><strong>Tiles Required: <span id="requiredTabs">1</span></strong></p>
+
+            <p>Please note this tool produces an estimate only. Contact our customer service team on 0203 764 9380 for further assistance.</p>
+        </div>
+    </div>
+</aside>
+
+<script>
+var inWidth = '{{ width }}';
+const widths = document.getElementsByName('Width');
+for (const width of widths) {
+    width.addEventListener('click', function(event) {
+        inWidth = width.value.replace(' metres', '');
+    });
+}
+
+var inDepth = '{{ depth }}';
+const depths = document.getElementsByName('Depth');
+for (const depth of depths) {
+    depth.addEventListener('click', function(event) {
+        inDepth = depth.value.replace('m', '');
+    });
+}
+
+
+function calcFloor() {
+    inWidth = inWidth.replace(' metres', '');
+    inDepth = inDepth.replace('m', '');
+    var floorWidth = document.getElementById('calcWidth').value;
+    var floorLenght = document.getElementById('calcLength').value;
+    var tileWidth = parseInt(inWidth);
+    var tileLength = parseInt(inDepth);
+    var tileArea = tileWidth * tileLength;
+    var roomArea = floorWidth * floorLenght;
+    var tilesCount = Math.ceil(roomArea / tileArea);
+    if(tilesCount <= 0 || isNaN(tilesCount)){
+        tilesCount = 1;
+    }
+    document.getElementById('requiredTabs').innerText = tilesCount;
+}
+
+var popup = document.querySelector('.modal--calculator');
+var flooring = document.getElementById('flooring');
+var closeCalc = document.querySelector('.popup-calculator__close');
+const inputs = document.getElementsByClassName('calc-field');
+flooring.addEventListener('click', function(){
+    popup.classList.toggle('display-modal');
+    calcFloor();
+});
+closeCalc.addEventListener('click', function(){
+    popup.classList.toggle('display-modal');
+});
+
+for (let i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    input.addEventListener('keyup', function(){
+        calcFloor();
+    });
+}
+
+</script>

@@ -1,0 +1,24 @@
+{{ 'vg-pd-style.css' | asset_url | stylesheet_tag }}
+<style> h3#saved-banner { background: #f5f5f5;padding: 5px;text-align: center;margin: 12px 0;}
+</style>
+<div style="display:none" id="vg-money-format">{{shop.money_format}}</div>
+<div style="display:none" id="vg-saving-message">You're saving</div>
+<script type="text/javascript" defer>
+	//$.noConflict();
+    var VGTierApp = VGTierApp || {};VGTierApp.Common = VGTierApp.Common || {};VGTierApp.CartPage = VGTierApp.CartPage || {};VGTierApp.PDPage = VGTierApp.PDPage || {};
+  	VGTierApp.Common.GlobalFields = function () {
+        this.currency = '{{shop.currency}}';
+        this.formatMoney=function(b,g){if(typeof Shopify.formatMoney==="function"){return Shopify.formatMoney(b,g)}if(typeof b=="string"){b=b.replace(".","")}var f="";var e=/\{\{\s*(\w+)\s*\}\}/;var a=g||"${{amount}}";function c(h,i){return(typeof h=="undefined"?i:h)}function d(m,k,l,j){k=c(k,2);l=c(l,",");j=c(j,".");if(isNaN(m)||m==null){return 0}m=(m/100).toFixed(k);var n=m.split("."),i=n[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g,"$1"+l),h=n[1]?(j+n[1]):"";return i+h}switch(a.match(e)[1]){case"amount":f=d(b,2);break;case"amount_no_decimals":f=d(b,0);break;case"amount_with_comma_separator":f=d(b,2,".",",");break;case"amount_no_decimals_with_comma_separator":f=d(b,0,".",",");break}return a.replace(e,f)};
+      	this.currencySymbol = (document.getElementById("vg-money-format").textContent).trim();this.currencySymbol = this.currencySymbol.split("}");this.currencySymbol = this.currencySymbol[2];
+		this.amount = (document.getElementById("vg-money-format").textContent).trim();
+      	var calcTime = function(offset_) {d_ = new Date();utc_ = d_.getTime() + (d_.getTimezoneOffset() * 60000);nd_ = new Date(utc_ + (3600000 * offset_));return Date.parse(nd_.getMonth()+ 1 +"/"+nd_.getDate()+"/"+ nd_.getFullYear() +" "+nd_.getHours()+":"+nd_.getMinutes());}
+        this.StartEndDateValid = function(tieredSplit_){var isStrtDtVald_ = false;var isEndDtVald_ = false;var todayDate_ = calcTime(tieredSplit_[2]);if(tieredSplit_[3] != 'null'){var startDate_ = Date.parse(tieredSplit_[3]);isStrtDtVald_ = todayDate_ >= startDate_;}else{isStrtDtVald_ = true;}if(tieredSplit_[4] != 'null'){var endDate_ = Date.parse(tieredSplit_[4]);isEndDtVald_ = todayDate_ <= endDate_;}else{isEndDtVald_ = true;}if (isStrtDtVald_ && isEndDtVald_){return true;}else{return false;}}
+        {% assign isCartPage = false %}{% if template.name == 'cart' %}{% assign isCartPage = true %}{% endif %} this.isCartPage = {{isCartPage}};{% assign isProductPage = false %}{% if template.name == 'product' %}{% assign isProductPage = true %}{% endif %} this.isProductPage = {{isProductPage}};
+    }
+    VGTierApp.PDPage.Global = function(){this.variantsMFArray_PD = {};this.variantsPriceArray_PD = {};{% for variant in product.variants %}this.variantsMFArray_PD[{{variant.id}}] = "{{variant.metafields.tieredpricing.tieredpricing}}";this.variantsPriceArray_PD[{{variant.id}}]= {{variant.price}};{% endfor %}this.tableSetting="{{shop.metafields.tieredpricing.tablesetting}}";this.headerText1Value = "{{ shop.metafields.tieredpricing.header1value }}";this.headerText2Value = "{{ shop.metafields.tieredpricing.header2value }}";this.headerText3Value = "{{ shop.metafields.tieredpricing.header3value }}";this.headerText4Value = "{{ shop.metafields.tieredpricing.header4value }}";}
+    VGTierApp.CartPage.Global = function(){ {% if template.name == 'product' %}this.productId='{{product.id}}';{% endif %} this.cartItemsCart = [];this.variantsMFArray = {}; this.original_total_price = Number(({{cart.original_total_price}} / 100).toFixed(2));{% for item in cart.items %}var original_price = Number(({{item.original_price}} / 100).toFixed(2));var original_line_price = Number(({{item.original_line_price}} / 100).toFixed(2));var variant_id={{item.variant.id}};var product_id = '{{item.product_id}}';var tiers = '{{item.variant.metafields.tieredpricing.tieredpricing}}'; var collection_id = tiers != "" && tiers.split(',')[1].split('-')[0] === 'collection' ? tiers.split(',')[1].split('-')[1] : 0;var item = {variant_id:variant_id, tiers:tiers,original_price: original_price, original_line_price:original_line_price, quantity:{{item.quantity}},product_id:product_id, collection_id:collection_id};this.variantsMFArray[variant_id] = tiers;this.cartItemsCart.push(item);{% endfor %} }
+  	var globalFields = new VGTierApp.Common.GlobalFields();
+</script>
+{% if template.name == 'product' %}<script type="text/javascript" src="{{ 'vg-pd-product.js' | asset_url}}" defer></script>{% endif %}
+<script type="text/javascript" src="{{ 'vg-pd-cart.js' | asset_url}}" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

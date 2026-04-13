@@ -1,0 +1,81 @@
+<aside class="modal modal--upsell">
+    <div class="modal__dialog upsell-modal" role="dialog">
+        <button class="popup-upsell__close link">
+            {%- render 'icon', icon: 'close' -%}
+        </button>
+        <div class="popup-upsell">
+            <div class="upsell-info">
+                <div class="upsell-product-image">
+                    <div>
+                        {% if product.featured_image %}
+                            <img
+                                src="{{ product.featured_image | img_url: '300x' }}"
+                                width="{{ product.featured_image.width }}"
+                                height="{{ product.featured_image.height }}"
+                                loading="lazy"
+                                alt="{{ product.title }}" /> 
+                        {% else %}
+                            <img src="{{ "placeholder.png" | asset_img_url: '300x' }}" alt="{{ product.title }}">
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="upsell-info__content">
+                    <h3 class="popup-upsell__title heading h3 promo-heading">{{ product.vendor }}<br>{{ product.title }} - {{ 'product.form.after' | t }}</h3>
+                
+                    <ul class="upsell-cart__property-list" role="list">
+                        <li class="upsell-cart__property">{{ 'product.general.product_code' | t }}: <span>{{ product.selected_or_first_available_variant.sku }}</span></li>
+                        {% for option in product.options_with_values %}
+                            <li class="upsell-cart__property">{{ option.name }}: <span id="upsell-{{ forloop.index }}">{{ option.selected_value }}</span></li>
+                        {%- endfor -%}
+                        <li class="upsell-cart__property"><span testing testing class="upsell-cart__property--price-is price-js">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span> {% if product.price < product.compare_at_price %}<span class="upsell-cart__property--price-was price-js">{{- product.compare_at_price_min | money_without_trailing_zeros -}}</span>{% endif %}</li>                     
+                    </ul>
+                </div>
+            </div>
+            <div class="upsell-form">
+                <div class="mini-cart__recap-price-line">
+                    <span class="mini-cart__recap-price-line-item"><span class="basket-total">{{ 'cart.general.upsell_basket_total' | t }}</span><span>{{ 'cart.general.total' | t }}</span></span>
+                    <span class="mini-cart__recap-price-line-item mini-price-js price-js vat-watcher ex-vat" data-orig-price="{{ cart.total_price | divided_by: 1.2 }}"><span>EX. VAT</span>{{ cart.total_price | divided_by: 1.2 | money }}</span>
+                    <span class="mini-cart__recap-price-line-item mini-price-js price-js vat-watcher inc-vat" data-orig-price="{{ cart.total_price }}"><span>INC. VAT</span>{{ cart.total_price | money }}</span>
+                </div>
+                <a href="{{ shop.url }}{{ collection.url }}{{ product.url }}" class="button button--ternary">{{ 'product.form.continue' | t }}</a>
+                <a href="{{ routes.cart_url }}" class="button button--primary">{{ 'cart.general.view_cart' | t }}</a>
+            </div>
+        </div>
+
+
+
+        {%- capture section_settings -%}
+        {
+            "stackable": false,
+            "layout": "vertical",
+            "productId": {{ product.id | json }},
+            "useRecommendations": {% if product.metafields.sf_related_products.enabled == 1 %}false{% else %}true{% endif %},
+            "recommendationsCount": 4
+        }
+        {%- endcapture -%}
+
+        {%- assign upsell_grid_classes = '1/2 1/4--lap 1/4--desk 1/4--wide' -%}
+
+        <section class="section upsell-product-recs" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'> 
+            <div class="upsell-scroll">
+                <h2 class="section__title heading h3">{{ upsell_heading | escape }}</h2>
+                <div class="upsell-scroll__arrows">
+
+                <button id="scroll-left">{% render 'icon', icon:'arrow-left' %}</button>
+                <button id="scroll-right">{% render 'icon', icon:'arrow-right' %}</button>
+                </div>
+            </div> 
+            <div id="upsellRecs" class="product-recommendations prod-recommendations--auto" data-product-id="{{ product.id }}" data-limit="4"></div>
+        </section>
+    </div>
+</aside>
+
+<script>
+    var upsellPopup = document.querySelector('.modal--upsell');
+    var closeUpsell = document.querySelector('.popup-upsell__close');
+    closeUpsell.addEventListener('click', function(){
+        upsellPopup.classList.toggle('display-modal');
+        document.documentElement.style.overflow = 'auto';
+    });
+</script>

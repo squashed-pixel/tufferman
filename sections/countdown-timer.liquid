@@ -1,0 +1,79 @@
+{%- if section.settings.show_countdown -%}
+  <section data-section-id="{{ section.id }}" data-section-type="announcement-bar second-announcement-bar">
+    <countdown-timer>
+      <div class="container">
+        <div class="announcement-bar countdown-timer">
+          <div class="announcement-bar__inner">
+            <p class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">
+              {{ section.settings.text | replace: '<p>','' | replace: '</p>','' }}
+              <span id="countdown"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </countdown-timer>
+  </section>
+
+  <style>
+    .announcement-bar.countdown-timer {
+      background: {{ section.settings.background }};
+      color: {{ section.settings.text_color }};
+    }
+  </style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Countdown Timer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#1e2d7d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Free delivery available</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "info": "Text is always centered on mobile."
+    }
+  ],
+  "presets": [
+    {
+      "category": "Countdown",
+      "name": "Countdown Timer",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "16547852858c6d82c3": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "text_width": "narrow",
+        "text_align": "center",
+        "title": "Your title",
+        "content": "<p>Use this text to share information about your brand with your customers.<br\/>Describe a product, share announcements, or welcome customers to your store.<\/p>",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "main": {
+      "type": "main-collection-list-collection",
+      "settings": {
+        "show_collection_promo": true,
+        "promo_image": "shopify:\/\/shop_images\/Optional-Collections-Banner-Optional.png",
+        "promo_link": "shopify:\/\/collections\/special-offers",
+        "collapse_collection_description": false,
+        "collection_image_size": "small",
+        "products_per_row": "4",
+        "default_products_per_page": 24,
+        "default_view_layout": "grid",
+        "show_quick_buy": "list_grid",
+        "show_quick_view": "list_grid",
+        "quick_links": "",
+        "quick_links_show_products_count": true,
+        "show_filters": true,
+        "show_filter_color_swatch": true,
+        "show_lower_block": true,
+        "lower_block_image": "shopify:\/\/shop_images\/Skinny-Banner-Desktop-Example1.png",
+        "lower_block_link": "shopify:\/\/collections\/storage-boxes-containers",
+        "trustpilot_text": "Shelves and workbench are brilliant. Feet are a bit fiddly but are by no means impossible to fit. Instructions were absolutely fine and they look fantastic. Really pleased with how they fit together with no bolts as this made construction very simple! They have completely cleared the garage up of stuff that was lying on the floor and they are very sturdy. Brilliant!",
+        "trustpilot_link": "shopify:\/\/pages\/trustpilot-reviews",
+        "open_group_filters_mode": "first_open"
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    },
+    "text-with-icons": {
+      "type": "text-with-icons",
+      "blocks": {
+        "icon-1": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-delivery",
+            "title": "Free delivery worldwide",
+            "content": "<p>Short content about your store<\/p>"
+          }
+        },
+        "icon-2": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-returns",
+            "title": "Satisfied or refunded",
+            "content": "<p>Short content about your store<\/p>"
+          }
+        },
+        "icon-3": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-customer-support",
+            "title": "Top-notch support",
+            "content": "<p>Short content about your store<\/p>"
+          }
+        },
+        "icon-4": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-secure-payment",
+            "title": "Secure payments",
+            "content": "<p>Short content about your store<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon-1",
+        "icon-2",
+        "icon-3",
+        "icon-4"
+      ],
+      "settings": {
+        "stack_mobile": false
+      }
+    }
+  },
+  "order": [
+    "16547852858c6d82c3",
+    "main",
+    "recently-viewed-products",
+    "text-with-icons"
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "b0f1b5f6-0f3e-4a16-b326-2249e329528b": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": false,
+            "show_reviews_badge": true,
+            "show_share_buttons": false
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "block",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 0,
+            "show_badges": true,
+            "badge_1": "shopify:\/\/shop_images\/Storalex_Logo.png",
+            "badge_2": "shopify:\/\/shop_images\/image_21.png"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false
+          }
+        },
+        "gropulse_wishlist_gropulse_wishlist_button_BCHdyf": {
+          "type": "shopify:\/\/apps\/gropulse-wishlist\/blocks\/gropulse-wishlist-button\/d606b448-832c-4b0a-adbb-21c7fa132df1",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "display_mode": "view_more"
+          }
+        },
+        "b3cfe9bd-9e37-4b85-981e-8cb0ba1f2409": {
+          "type": "promo_block",
+          "settings": {
+            "tag": "",
+            "show_promo_block": true,
+            "promo_image": "shopify:\/\/shop_images\/image-29.png",
+            "promo_link": "shopify:\/\/collections\/garage-shelving"
+          }
+        },
+        "gropulse_wishlist_gropulse_wishlist_button_YKiwni": {
+          "type": "shopify:\/\/apps\/gropulse-wishlist\/blocks\/gropulse-wishlist-button\/d606b448-832c-4b0a-adbb-21c7fa132df1",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b0f1b5f6-0f3e-4a16-b326-2249e329528b",
+        "product_meta",
+        "variant_selector",
+        "buy_buttons",
+        "gropulse_wishlist_gropulse_wishlist_button_BCHdyf",
+        "description",
+        "b3cfe9bd-9e37-4b85-981e-8cb0ba1f2409",
+        "gropulse_wishlist_gropulse_wishlist_button_YKiwni"
+      ],
+      "settings": {
+        "upsell_popup": true,
+        "enable_sticky": false,
+        "upsell_heading": "Items You May Need",
+        "upsell_format": "manual",
+        "upsell_manual_collection": "mats-flooring",
+        "page_view": "list",
+        "show_view_toggle": true,
+        "image_size": "small",
+        "enable_video_looping": false,
+        "enable_image_zoom": true,
+        "zoom_effect": "outside",
+        "carousel_effect": "fade",
+        "flooring_calculator_text": ""
+      }
+    },
+    "1658942677b0842281": {
+      "type": "variant-table",
+      "disabled": true,
+      "settings": {}
+    },
+    "16589431607412be3a": {
+      "type": "trade-description",
+      "settings": {}
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "heading": "Items You May Need",
+        "show_quick_buy": false
+      }
+    },
+    "1654783347ee0a2d69": {
+      "type": "promotion-list",
+      "blocks": {
+        "16547833469d889686-0": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/test_logo_b.jpg",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "",
+            "content": "<p>Heavy-duty industrial shelving that's built to last for extra piece of mind, these sturdy industrial shelving units are covered by the Storalex 5 Year Guarantee. <br\/>A British brand that's synonymous with quality.<\/p>",
+            "content_position": "middle_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#6f42ef",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "16547833469d889686-1": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/trustpilot-logo-snijpunt_4.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "",
+            "content": "<p>We’re genuinely focussed on great customer service, as our Trustpilot reviews demonstrate. We are a small and friendly business based in Essex, delivering traditional help and advice as if you’d walked into your local hardware store<\/p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "16547833469d889686-2": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/TS-App-logo-large-color-png-1_2.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "",
+            "content": "<p><strong>Trading Standards Approved<\/strong><\/p><p>We have been vetted and approved by Trading Standards as part of the national Buy with Confidence scheme. You can be sure that when you buy industrial shelving units from Tufferman, you’re dealing with a trustworthy and customer orientated company.<\/p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#26c1ce",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "6690ae36-5c62-4062-be64-0c727ef31136": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/OP_Product_Group_Listing_Page_-_FSB_2.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "",
+            "content": "<p>We know from running our own business that we need value for money and great service from all our suppliers. We’re passionate at what we do and always on hand to help. If you need advice choosing the right industrial shelving units for your needs, simply call our support team on <strong>0203 764 938<\/strong><\/p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "b38b3bb1-2d83-4399-afde-1b8f535f99aa": {
+          "type": "item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Millets_Logo_Col_1.png",
+            "circular_logo": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "stretch_image": false,
+            "background": "#ffffff",
+            "text_color": "#2c2c2c",
+            "title": "",
+            "content": "<p>\"We’ve purchased Storalex shelving from Tufferman for a number of years now, specifically for stockrooms within our Millets and Ultimate Outdoors stores. As well as receiving excellent service, we find the shelving units strong and sturdy as well as being great value for money.”<br\/><strong>Lynne, JD Outdoors, part of JD Sports Fashion PLC<\/strong><\/p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "16547833469d889686-0",
+        "16547833469d889686-1",
+        "16547833469d889686-2",
+        "6690ae36-5c62-4062-be64-0c727ef31136",
+        "b38b3bb1-2d83-4399-afde-1b8f535f99aa"
+      ],
+      "settings": {
+        "expand_items": true,
+        "column": true,
+        "title": "Why Buy  From Tufferman",
+        "section_size": "medium",
+        "stack_mobile": true,
+        "background_color": "",
+        "enable_container_shadow": false,
+        "enable_shadow": false
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    },
+    "16589231105b50c9bb": {
+      "type": "logo-list",
+      "blocks": {
+        "16589231100591c8fe-0": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/71w9FVctqpL.jpg",
+            "link": ""
+          }
+        },
+        "16589231100591c8fe-1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Sony_Logo.png",
+            "link": ""
+          }
+        },
+        "16589231100591c8fe-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/WB_Logo.png",
+            "link": ""
+          }
+        },
+        "16589231100591c8fe-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Millets_Logo.png",
+            "link": ""
+          }
+        },
+        "16589231100591c8fe-4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/sports_Direct_Logo.png",
+            "link": ""
+          }
+        },
+        "16589231100591c8fe-5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Waterstones-logo.png",
+            "link": ""
+          }
+        },
+        "5769e7c0-c12a-4ca5-b70d-9f35e1f30a75": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Rolls_Royce_logo.png",
+            "link": ""
+          }
+        },
+        "e1695b6c-3aa0-4a60-93b5-3b1f279160b7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JD_Sports_logo.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "16589231100591c8fe-0",
+        "16589231100591c8fe-1",
+        "16589231100591c8fe-2",
+        "16589231100591c8fe-3",
+        "16589231100591c8fe-4",
+        "16589231100591c8fe-5",
+        "5769e7c0-c12a-4ca5-b70d-9f35e1f30a75",
+        "e1695b6c-3aa0-4a60-93b5-3b1f279160b7"
+      ],
+      "settings": {
+        "title": "Customers Who Use Our Products",
+        "link_title": "",
+        "link": ""
+      }
+    },
+    "16589231292cb7c8a8": {
+      "type": "text-with-icons",
+      "blocks": {
+        "165892312966a7d4ed-0": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-delivery",
+            "title": "Next Day Delivery Available",
+            "content": ""
+          }
+        },
+        "165892312966a7d4ed-1": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-returns",
+            "title": "Price Promise",
+            "content": ""
+          }
+        },
+        "165892312966a7d4ed-2": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-customer-support",
+            "title": "Dedicated Customer Service",
+            "content": ""
+          }
+        },
+        "165892312966a7d4ed-3": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-secure-payment",
+            "title": "Safe & Secure Payments",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "165892312966a7d4ed-0",
+        "165892312966a7d4ed-1",
+        "165892312966a7d4ed-2",
+        "165892312966a7d4ed-3"
+      ],
+      "settings": {
+        "stack_mobile": false
+      }
+    },
+    "16691459919abb113f": {
+      "type": "apps",
+      "blocks": {
+        "144d5060-da3a-43fe-8bff-6ee0d7901f09": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "144d5060-da3a-43fe-8bff-6ee0d7901f09"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1658942677b0842281",
+    "16589431607412be3a",
+    "product-recommendations",
+    "1654783347ee0a2d69",
+    "recently-viewed-products",
+    "16589231105b50c9bb",
+    "16589231292cb7c8a8",
+    "16691459919abb113f"
+  ]
+}

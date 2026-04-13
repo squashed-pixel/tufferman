@@ -1,0 +1,865 @@
+{%- comment -%}
+  Standalone Row Blocks Section
+  Fully scoped using section.id to allow multiple instances on a single template.
+  Supports background colours, background images, and customisable button rows.
+{%- endcomment -%}
+
+{%- style -%}
+  /* DYNAMIC STYLES (Scoped to this specific section instance) */
+  #RowBlocksSection-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    
+    /* Store gaps in variables so we can use them for the joined blocks hack */
+    --gap-desktop: {{ section.settings.gap_desktop }}px;
+    --gap-mobile: {{ section.settings.gap_mobile }}px;
+    
+    {%- if section.settings.background_image != blank -%}
+      background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {%- endif -%}
+
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  #RowBlocksSection-{{ section.id }} .row-blocks-grid {
+    grid-template-columns: repeat({{ section.settings.blocks_per_row_mobile }}, 1fr);
+    gap: {{ section.settings.gap_mobile }}px;
+  }
+
+  #RowBlocksSection-{{ section.id }} .row-block-item {
+    gap: {{ section.settings.inner_gap_mobile }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #RowBlocksSection-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+    
+    #RowBlocksSection-{{ section.id }} .row-blocks-grid {
+      grid-template-columns: repeat({{ section.settings.blocks_per_row_desktop }}, 1fr);
+      gap: {{ section.settings.gap_desktop }}px;
+    }
+
+    #RowBlocksSection-{{ section.id }} .row-block-item {
+      gap: {{ section.settings.inner_gap_desktop }}px;
+    }
+  }
+
+  /* STATIC STYLES (Structural CSS) */
+  .row-blocks-section {
+    width: 100%;
+  }
+
+  .row-blocks-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .row-blocks-header {
+    margin-bottom: 40px;
+  }
+
+  .row-blocks-header h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .row-blocks-header .description {
+    margin: 0;
+  }
+
+  .row-blocks-grid {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .row-block-item {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  .row-block-item--shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .row-block-item--align-top {
+    flex-direction: column;
+  }
+
+  .row-block-item--align-left {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .row-block-item--align-right {
+    flex-direction: row-reverse;
+    align-items: stretch;
+  }
+
+  .row-block-media {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .row-block-item--align-top .row-block-media {
+    width: 100%;
+  }
+
+  .row-block-item--align-left .row-block-media,
+  .row-block-item--align-right .row-block-media {
+    width: 40%;
+  }
+
+  .row-block-media img.main-block-image {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  .row-block-image--adapt { height: auto; }
+  .row-block-image--square { aspect-ratio: 1 / 1; }
+  .row-block-image--portrait { aspect-ratio: 4 / 5; }
+  .row-block-image--landscape { aspect-ratio: 16 / 9; }
+
+  .row-block-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .row-block-content > *:first-child {
+    margin-top: 0;
+  }
+
+  .row-block-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.1; /* Added line height to fix wrapping issues */
+  }
+
+  .row-block-content .description {
+    margin: 0;
+  }
+
+  /* Button Row Styles */
+  .row-block-buttons {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .row-block-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+    line-height: 1.2;
+  }
+
+  .row-block-btn:hover {
+    opacity: 0.85;
+  }
+
+  .text-bold {
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 767px) {
+    /* .row-block-item--align-left,
+    .row-block-item--align-right {
+      flex-direction: column;
+    } */
+    .row-block-item--align-left .row-block-media,
+    .row-block-item--align-right .row-block-media {
+      width: 100%;
+    }
+
+    .content-bottom-align {
+        display: flex;
+    }
+  }
+{%- endstyle -%}
+
+<section id="RowBlocksSection-{{ section.id }}" class="row-blocks-section">
+  <div class="row-blocks-container">
+    
+    {%- if section.settings.heading != blank or section.settings.description != blank -%}
+      <div class="row-blocks-header" style="text-align: {{ section.settings.text_alignment }};">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="description rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <ul class="row-blocks-grid" role="list">
+      {%- for block in section.blocks -%}
+        
+        <style>
+          {%- if block.settings.enable_image_circle_bg -%}
+            #block-{{ block.id }} .main-block-image {
+              background-color: {{ block.settings.image_circle_bg_color }};
+              border-radius: 50%;
+            }
+          {%- endif -%}
+
+          #block-{{ block.id }} .row-block-btn {
+            font-size: {{ block.settings.button_font_size }}px;
+          }
+
+          {%- if block.settings.join_with_next -%}
+            #block-{{ block.id }} {
+              position: relative;
+              overflow: visible !important;
+            }
+            
+            @media screen and (min-width: 768px) {
+              #block-{{ block.id }} {
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+              }
+              
+              /* 1. The Shadow Patch */
+              {%- if block.settings.box_shadow -%}
+                #block-{{ block.id }}::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  right: calc(-1 * var(--gap-desktop));
+                  width: var(--gap-desktop);
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                  z-index: -1;
+                  clip-path: inset(-50px 0 -50px 0);
+                }
+              {%- endif -%}
+
+              /* 2. The Visual Bridge & Padded Separator Line */
+              #block-{{ block.id }}::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: calc(-1 * var(--gap-desktop));
+                width: var(--gap-desktop);
+                background-color: {{ block.settings.background_color }};
+                z-index: 10;
+                background-image: linear-gradient(to bottom, #d1d1d1, #d1d1d1);
+                background-size: 1px calc(100% - 60px); /* Creates 30px padding top and bottom */
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+              
+              /* 3. Strip border radius and clip the left shadow from the adjacent block */
+              #block-{{ block.id }} + .row-block-item {
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
+                clip-path: inset(-50px -50px -50px 0); /* Stops the next block's shadow from bleeding into the joint */
+              }
+            }
+
+            @media screen and (max-width: 767px) {
+              {%- if section.settings.blocks_per_row_mobile == "1" -%}
+                /* Stacked vertically on mobile */
+                #block-{{ block.id }} {
+                  border-bottom-left-radius: 0 !important;
+                  border-bottom-right-radius: 0 !important;
+                }
+                {%- if block.settings.box_shadow -%}
+                  #block-{{ block.id }}::before {
+                    content: '';
+                    position: absolute;
+                    bottom: calc(-1 * var(--gap-mobile));
+                    left: 0;
+                    right: 0;
+                    height: var(--gap-mobile);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    z-index: -1;
+                    clip-path: inset(0 -50px 0 -50px);
+                  }
+                {%- endif -%}
+                #block-{{ block.id }}::after {
+                  content: '';
+                  position: absolute;
+                  bottom: calc(-1 * var(--gap-mobile));
+                  left: 0;
+                  right: 0;
+                  height: var(--gap-mobile);
+                  background-color: {{ block.settings.background_color }};
+                  z-index: 10;
+                  background-image: linear-gradient(to right, #d1d1d1, #d1d1d1);
+                  background-size: calc(100% - 60px) 1px;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+                #block-{{ block.id }} + .row-block-item {
+                  border-top-left-radius: 0 !important;
+                  border-top-right-radius: 0 !important;
+                  clip-path: inset(0 -50px -50px -50px); /* Clips the top shadow of the block below */
+                }
+              {%- else -%}
+                /* Side by side horizontal on mobile */
+                #block-{{ block.id }} {
+                  border-top-right-radius: 0 !important;
+                  border-bottom-right-radius: 0 !important;
+                }
+                {%- if block.settings.box_shadow -%}
+                  #block-{{ block.id }}::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: calc(-1 * var(--gap-mobile));
+                    width: var(--gap-mobile);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    z-index: -1;
+                    clip-path: inset(-50px 0 -50px 0);
+                  }
+                {%- endif -%}
+                #block-{{ block.id }}::after {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  right: calc(-1 * var(--gap-mobile));
+                  width: var(--gap-mobile);
+                  background-color: {{ block.settings.background_color }};
+                  z-index: 10;
+                  background-image: linear-gradient(to bottom, #d1d1d1, #d1d1d1);
+                  background-size: 1px calc(100% - 40px);
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+                #block-{{ block.id }} + .row-block-item {
+                  border-top-left-radius: 0 !important;
+                  border-bottom-left-radius: 0 !important;
+                  clip-path: inset(-50px -50px -50px 0);
+                }
+              {%- endif -%}
+            }
+          {%- endif -%}
+        </style>
+
+        <li 
+          id="block-{{ block.id }}"
+          class="row-block-item row-block-item--align-{{ block.settings.image_alignment }} {% if block.settings.box_shadow %}row-block-item--shadow{% endif %}" 
+          style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};"
+          {{ block.shopify_attributes }}
+        >
+          
+          {%- assign img_margin = '0 auto 0 0' -%}
+          {%- if block.settings.text_alignment == 'center' -%}
+            {%- assign img_margin = '0 auto' -%}
+          {%- elsif block.settings.text_alignment == 'right' -%}
+            {%- assign img_margin = '0 0 0 auto' -%}
+          {%- endif -%}
+
+          <div class="row-block-media" style="max-width: {{ block.settings.image_max_width }}; margin: {{ img_margin }};">
+            <div class="media-top-align">
+              {%- if block.settings.image != blank -%}
+                {%- assign image_alt = block.settings.image.alt | default: block.settings.heading | escape -%}
+                {%- capture image_class -%}row-block-image--{{ block.settings.image_size }} main-block-image{%- endcapture -%}
+                
+                {{ block.settings.image | image_url: width: 800 | image_tag: 
+                  loading: 'lazy', 
+                  sizes: '(min-width: 768px) 50vw, 100vw', 
+                  widths: '400, 600, 800', 
+                  alt: image_alt,
+                  class: image_class
+                }}
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.arrow_image != blank -%}
+              <div class="media-bottom-align">
+                {%- capture arrow_style -%}width: {{ block.settings.arrow_width }}px; height: auto;{%- endcapture -%}
+                {{ block.settings.arrow_image | image_url: width: 150 | image_tag: class: 'arrow-block-image', style: arrow_style }}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="row-block-content" style="text-align: {{ block.settings.text_alignment }};">
+            <div class="content-top-align">
+              {%- if block.settings.heading != blank -%}
+                <h3 class="{{ block.settings.heading_size }} {% if block.settings.heading_bold %}text-bold{% endif %}">
+                  {{ block.settings.heading | escape }}
+                </h3>
+              {%- endif -%}
+            </div>
+            
+            <div class="content-bottom-align" {% if block.settings.text_alignment == 'center' %}style="justify-content: center;"{% endif %}>
+              {%- assign btn_justify = 'flex-start' -%}
+              {%- if block.settings.text_alignment == 'center' -%}
+                {%- assign btn_justify = 'center' -%}
+              {%- elsif block.settings.text_alignment == 'right' -%}
+                {%- assign btn_justify = 'flex-end' -%}
+              {%- endif -%}
+
+              {%- capture block_buttons -%}
+                {%- if block.settings.button_1_label != blank or block.settings.button_2_label != blank -%}
+                  <div class="row-block-buttons" style="justify-content: {{ btn_justify }};">
+                    {%- if block.settings.button_1_label != blank and block.settings.button_1_link != blank -%}
+                      <a href="{{ block.settings.button_1_link }}" class="row-block-btn" style="background-color: {{ block.settings.button_1_bg_color }}; color: {{ block.settings.button_1_text_color }};">
+                        {{ block.settings.button_1_label | escape }}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.button_2_label != blank and block.settings.button_2_link != blank -%}
+                      <a href="{{ block.settings.button_2_link }}" class="row-block-btn" style="background-color: {{ block.settings.button_2_bg_color }}; color: {{ block.settings.button_2_text_color }};">
+                        {{ block.settings.button_2_label | escape }}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- endcapture -%}
+
+              {%- if block.settings.button_position == 'above' -%}
+                {{ block_buttons }}
+              {%- endif -%}
+
+              {%- if block.settings.description != blank -%}
+                <div class="description rte {% if block.settings.description_bold %}text-bold{% endif %}">
+                  {{ block.settings.description }}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.button_position == 'below' -%}
+                {{ block_buttons }}
+              {%- endif -%}
+            </div>
+          </div>
+
+        </li>
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Row Blocks",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Our Features"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Section Description",
+      "default": "<p>Discover what makes our products unique.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "If selected, this will override the background colour above."
+    },
+    {
+      "type": "header",
+      "content": "Desktop Layout"
+    },
+    {
+      "type": "range",
+      "id": "blocks_per_row_desktop",
+      "label": "Blocks per row",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap between blocks",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "inner_gap_desktop",
+      "label": "Inner block gap (Image & Text)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Layout"
+    },
+    {
+      "type": "select",
+      "id": "blocks_per_row_mobile",
+      "label": "Blocks per row",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap between blocks",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "inner_gap_mobile",
+      "label": "Inner block gap (Image & Text)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row_block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Image Alignment",
+          "options": [
+            { "value": "top", "label": "Image Top" },
+            { "value": "left", "label": "Image Left" },
+            { "value": "right", "label": "Image Right" }
+          ],
+          "default": "top"
+        },
+        {
+          "type": "select",
+          "id": "image_size",
+          "label": "Image Size (Ratio)",
+          "options": [
+            { "value": "adapt", "label": "Adapt to image" },
+            { "value": "square", "label": "Square (1:1)" },
+            { "value": "portrait", "label": "Portrait (4:5)" },
+            { "value": "landscape", "label": "Landscape (16:9)" }
+          ],
+          "default": "adapt"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_image_circle_bg",
+          "label": "Enable circular background behind image",
+          "info": "Set 'Image Size (Ratio)' to Square (1:1) to ensure a perfect circle.",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "image_circle_bg_color",
+          "label": "Circular background color",
+          "default": "#f4f4f4"
+        },
+        {
+          "type": "header",
+          "content": "Arrow/Secondary Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "arrow_image",
+          "label": "Arrow Icon",
+          "info": "Displays underneath the main image."
+        },
+        {
+          "type": "range",
+          "id": "arrow_width",
+          "label": "Arrow Width",
+          "min": 10,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "select",
+          "id": "image_max_width",
+          "label": "Max Image Width",
+          "options": [
+            { "value": "25%", "label": "25%" },
+            { "value": "33%", "label": "33%" },
+            { "value": "50%", "label": "50%" },
+            { "value": "100%", "label": "100%" }
+          ],
+          "default": "100%"
+        },
+        {
+          "type": "header",
+          "content": "Text Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Block Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading Size",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ],
+          "default": "h3"
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_bold",
+          "label": "Make heading bold",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Add some detail about this block here.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "description_bold",
+          "label": "Make description bold",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "select",
+          "id": "button_position",
+          "label": "Button Position",
+          "options": [
+            { "value": "above", "label": "Above Description" },
+            { "value": "below", "label": "Below Description" }
+          ],
+          "default": "below"
+        },
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "label": "Button Font Size",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "Button 1 Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "color",
+          "id": "button_1_bg_color",
+          "label": "Button 1 Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_1_text_color",
+          "label": "Button 1 Text Colour",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "button_2_label",
+          "label": "Button 2 Label"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Button 2 Link"
+        },
+        {
+          "type": "color",
+          "id": "button_2_bg_color",
+          "label": "Button 2 Background",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "color",
+          "id": "button_2_text_color",
+          "label": "Button 2 Text Colour",
+          "default": "#333333"
+        },
+        {
+          "type": "header",
+          "content": "Block Styling"
+        },
+        {
+          "type": "checkbox",
+          "id": "join_with_next",
+          "label": "Join with next block",
+          "info": "Visually merges this block's background with the next block and adds a separator line.",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Colour",
+          "default": "#f4f4f4"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Colour",
+          "default": "#333333"
+        },
+        {
+          "type": "checkbox",
+          "id": "box_shadow",
+          "label": "Enable Box Shadow",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Row Blocks",
+      "blocks": [
+        { "type": "row_block" },
+        { "type": "row_block" },
+        { "type": "row_block" }
+      ]
+    }
+  ]
+}
+{% endschema %}

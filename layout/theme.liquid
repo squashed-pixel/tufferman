@@ -1,0 +1,370 @@
+<!doctype html>
+
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+      <!-- Google tag (gtag.js) -->
+    {% comment %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-993295948"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-993295948');
+    </script>
+{% endcomment %}
+      
+    {% comment %}
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PPXL8TB');</script>
+      <!-- End Google Tag Manager -->
+      <script src="https://www.googleoptimize.com/optimize.js?id=OPT-TZRSFJD"></script>
+   
+    
+    <script type="text/javascript">
+      (function(clientId) {
+        if(window["__adal_disable_" + clientId]) { return; }
+        (function(windowAlias, documentAlias, trackerName) {
+          if (!windowAlias[trackerName]) {
+            windowAlias.GlobalAdalyserNamespace = windowAlias.GlobalAdalyserNamespace
+                || [];
+            windowAlias.GlobalAdalyserNamespace.push(trackerName);
+            windowAlias[trackerName] = function() {
+              (windowAlias[trackerName].q = windowAlias[trackerName].q || []).push(arguments)
+            };
+            windowAlias[trackerName].q = windowAlias[trackerName].q || [];
+            var nel = documentAlias.createElement("script"),
+              fel = documentAlias.getElementsByTagName("script")[0];
+            nel.async = 1;
+            nel.src = "//c5.adalyser.com/adalyser.js?cid=" + clientId;
+            fel.parentNode.insertBefore(nel, fel)
+          }
+        }(window, document, "adalyserTracker"));
+        window.adalyserTracker("create", {
+          campaignCookieTimeout: 15552000,
+          conversionCookieTimeout: 604800,
+          clientId: clientId,
+          trafficSourceInternalReferrers: [
+            "^(.*\\.)?tufferman\\.co\\.uk$"
+          ]
+        });
+        window.adalyserTracker("trackSession", "lce1");
+      })("tufferman");
+    </script>
+
+     {% endcomment %}
+      
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="{{ settings.accent_color }}">
+
+    {%- capture seo_page_title -%}
+      {%- if request.page_type == 'search' and search.terms != blank -%}
+        {{ search.terms | split: ' AND ' | last | split: 'product_type:' | last }} - {{ shop.name }}
+      {%- else -%}
+        {{ page_title }}{% if current_tags %}
+          {% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}
+        {% if current_page != 1 %}
+          &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <title>{{- seo_page_title -}}</title>
+
+    {% render 'datalayer' %}
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon -%}
+      <link
+        rel="shortcut icon"
+        href="{{ settings.favicon | img_url: '96x96' }}"
+        type="image/png">
+    {%- endif -%}
+
+    {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
+    <script>
+      localStorage.setItem('DefaultUpgradeText','{{ settings.default_upgrade_text }}');
+    </script>
+    {% comment %} <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}"> {% endcomment %}
+    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com">
+    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://maps.gstatic.com">
+
+    {% render 'social-meta-tags' %}
+    {% render 'css-variables' %}
+
+    {{ content_for_header }}
+
+    {% if template == 'cart' %}
+    <link href="{{ 'mobiscroll.javascript.min.css' | asset_url }}" rel="stylesheet" />
+    <script src="{{ 'mobiscroll.javascript.min.js' | asset_url }}"></script>
+    {% endif %}
+
+    {% render 'microdata-schema' %}
+
+    <script>
+      // This allows to expose several variables to the global scope, to be used in scripts
+      window.theme = {
+        pageType: {{ request.page_type | json }},
+        cartCount: {{ cart.item_count | json }},
+        moneyFormat: {{ shop.money_format | json }},
+        moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+        currencyCodeEnabled: {{ settings.currency_code_enabled | json }},
+        showDiscount: {{ settings.show_discount | json }},
+        discountMode: {{ settings.discount_mode | json }},
+        searchMode: {{ settings.search_mode | json }},
+        searchUnavailableProducts: {{ settings.search_unavailable_products | json }},
+        cartType: {{ settings.cart_type | json }},
+        accepted_postcodes: {{ settings.accepted_postcodes | downcase | split: ', ' | json }},
+        non_uk_mainland_postcodes: {{ settings.non_uk_mainland_postcodes | downcase | split: ', ' | json }},
+        postcode_price: {{ settings.postcode_price | downcase | split: ', ' | json }},
+        non_uk_mainland_postcode_prices: {{ settings.non_uk_mainland_postcode_prices | downcase | split: ', ' | json }},
+        date_picker_holidays: [
+          {%- assign bank_holidays = settings.bank_holidays | split: ', ' -%}
+          {% for holiday in bank_holidays %}
+            {% assign holiday_array = holiday | split: '-' %}
+            new Date({% for holiday_part in holiday_array %}{% if forloop.index0 == 1 %}{{ holiday_part | minus: 1 }}{% else %}{{ holiday_part }}{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}){% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+        date_picker_cutoff: {{ settings.cutoff | json }}
+      };
+
+      window.routes = {
+        rootUrl: {{ routes.root_url | json }},
+        rootUrlWithoutSlash:{% if routes.root_url == '/' %}
+          '' {% else %}{{ routes.root_url | json }}{% endif %},
+        cartUrl: {{ routes.cart_url | json }},
+        cartAddUrl: {{ routes.cart_add_url | json }},
+        cartChangeUrl: {{ routes.cart_change_url | json }},
+        searchUrl: {{ routes.search_url | json }},
+        productRecommendationsUrl: {{ routes.product_recommendations_url | json }}
+      };
+
+      window.languages = {
+        productRegularPrice: {{ 'product.general.regular_price' | t | json }},
+        productSalePrice: {{ 'product.general.sale_price' | t | json }},
+        collectionOnSaleLabel: {{ 'collection.product.discount_html' | t | json }},
+        collectionOnSaleBadgeLabel: {{ 'collection.product.discount_block_html' | t | json }},
+        productFormUnavailable: {{ 'product.form.unavailable' | t | json }},
+        productFormAddToCart:{% if product.template_suffix == 'pre-order' %}
+          {{ 'product.form.pre_order' | t | json }}
+        {% else %}
+          {{ 'product.form.add_to_cart' | t | json }}{% endif %},
+        productFormSoldOut: {{ 'product.form.sold_out' | t | json }},
+        productAdded: {{ 'product.form.added' | t | json }},
+        productAddedShort: {{ 'product.form.added_short' | t | json }},
+        shippingEstimatorNoResults: {{ 'cart.shipping_estimator.no_results_title' | t | json }},
+        shippingEstimatorOneResult: {{ 'cart.shipping_estimator.one_result_title' | t | json }},
+        shippingEstimatorMultipleResults: {{ 'cart.shipping_estimator.multiple_results_title' | t | json }},
+        shippingEstimatorErrors: {{ 'cart.shipping_estimator.errors' | t | json }},
+        product: {
+          product_code: {{ 'product.general.product_code' | t | json }}
+        },
+        postcode_check: {
+          enter_postcode: {{ 'cart.general.enter_postcode' | t | json }},
+          select_delivery: {{ 'cart.general.select_delivery' | t | json }},
+          additional_questions: {{ 'cart.general.additional_questions' | t | json }},
+          checkout: {{ 'cart.general.checkout' | t | json }}
+        }
+      };
+
+      window.lazySizesConfig = {
+        loadHidden: false,
+        hFac: 0.8,
+        expFactor: 3,
+        customMedia: {
+          '--phone': '(max-width: 640px)',
+          '--tablet': '(min-width: 641px) and (max-width: 1023px)',
+          '--lap': '(min-width: 1024px)'
+        }
+      };
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    </script>
+
+    {%- if request.page_type == 'customers/addresses' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+      <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
+    {%- endif -%}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script>
+      window.vat_check = {
+        inc_vat: '{{ "general.vat.inc_vat" | t }}',
+        inc_vat_text: '{{ "general.vat.inc_vat_text" | t }}',
+        exc_vat: '{{ "general.vat.exc_vat" | t }}',
+        exc_vat_text: '{{ "general.vat.exc_vat_text" | t }}',
+        save_value: '{{ "product.general.save" | t }}',
+        was: '{{ "product.general.was" | t }}'
+      }
+      const template = "{{ template.name }}";
+      const currencyCode = "{{ shop.currency }}";
+      const currencySymbol = "{{ cart.currency.symbol }}";
+    </script>
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+    {% comment %}
+    {% if template.name == "product" %}
+      <script src="https://unpkg.com/flickity-as-nav-for@3/as-nav-for.js" defer></script>
+    {% endif %}
+    {% endcomment %}
+    {%- if request.page_type != 'cart' -%}
+      <script>
+        (function() {
+          window.onpageshow = function() {
+
+            // We force re-freshing the cart content onpageshow, as most browsers will serve a cache copy when hitting the
+            // back button, which cause staled data
+            document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+              bubbles: true,
+              detail: {
+                scrollToTop: false
+              }
+            }));
+          };
+        })();
+      </script>
+    {%- endif -%}
+
+    {% comment %} Microsoft UET Tracking 
+    <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"17525531", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+    <script>window.uetq = window.uetq || [];window.uetq.push('event', '', {"revenue_value":1,"currency":"{{ shop.currency }}"});</script>
+    {% endcomment %}
+
+  </head>
+
+  {% if template.suffix contains 'grid-ab' %}
+      {% assign selected_view = 'grid' %}
+    {% else %}
+        {% if product.tags contains 'view_override[list]' %}
+          {% assign selected_view = 'list' %}
+        {% elsif product.tags contains 'view_override[grid]' %}
+          {% assign selected_view = 'grid' %}
+        {% elsif customer and customer.tags contains 'tradeXX' %}
+          {% assign selected_view = 'grid' %}
+        {% else %}
+          {% assign selected_view = settings.page_view %}
+        {% endif %}
+  {% endif %}
+  <body class="warehouse--v1 suffix-{{ template.suffix }} {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %} {% if request.page_type == 'product' %}template-{{ request.page_type | split: '/' | last | handle }}--{{ selected_view }}{% endif %}" data-instant-intensity="viewport">
+  {% comment %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPXL8TB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) --> 
+  {% endcomment %}
+  {%- comment -%}Common SVG definitions that we are re-using in several places{%- endcomment -%}
+    <svg class="visually-hidden">
+      <linearGradient id="rating-star-gradient-half">
+        <stop offset="50%" stop-color="var(--product-review-star-color)" />
+        <stop
+          offset="50%"
+          stop-color="rgba(var(--text-color-rgb), .4)"
+          stop-opacity="0.4" />
+      </linearGradient>
+    </svg>
+
+    <a href="#main" class="visually-hidden skip-to-content">{{ 'general.accessibility.skip_to_content' | t }}</a>
+    <span class="loading-bar"></span>
+
+    {% section 'announcement-bar' %}
+
+    {%- unless request.page_type == 'cart' -%}
+      {%- comment -%}As required by Shopify rules, popup must be removed on cart page to remove distraction{%- endcomment -%}
+      {% section 'popups' %}
+    {%- endunless -%}
+
+    {% section 'header' %}
+
+    {% section 'announcement-bar-2' %}
+    {% section 'announcement-bar-3' %}
+
+    {%- if request.page_type == 'product' or request.page_type == 'cart' -%}
+      {% section 'countdown-timer' %}
+    {%- endif -%}
+
+    <main id="main" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'static-text-with-icons' %}
+    {% section 'newsletter' %}
+    {% section 'footer' %}
+
+    <ul hidden>
+      <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
+    </ul>
+
+    <button id="video-modal-trigger" hidden class="button button--small button--primary" data-action="open-modal" aria-controls="video-modal">View Modal</button>
+    <div id="video-modal" class="modal" aria-hidden="true">
+      <div class="modal__dialog modal__dialog--stretch" role="dialog">
+        <button class="modal__close link" data-action="close-modal" title="{{ 'general.accessibility.close' | t | escape }}">
+          {%- render 'icon', icon: 'close' -%}
+        </button>
+
+        <div class="modal__loader">
+          {%- render 'icon', icon: 'search-loader' -%}
+        </div>
+
+        <div class="modal__inner modal__inner--padding">
+          <div class="video-wrapper">
+            <iframe
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %}
+      <!-- Google Tag Manager (noscript) -->
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-TVW8Z6X"
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"></iframe>
+      </noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    {% endcomment %}
+
+    <script>
+      window.addEventListener('DCART:config.initialized', function() {
+        if (window.DCART && window.DCART.discountbox) {
+          window.DCART.discountbox.customConfig = {
+            disableCartRefresh: true,
+          };
+        }
+      });
+      window.scThemeConfig = {
+        cartDiscountSelector: {
+         path: '#cart-form div.cart-recap__scroller div.card div.card__section div.cart-recap__price-line:has(.cart-recap__price-line-label--offer)',
+         type: 1
+        },
+        cartTotalSelector:{
+         path: '#cart-form div.cart-recap__scroller div.card div.card__section div.cart-recap__price-line span span.cart-recap__price-line-price span.money',
+         type: 0
+        }
+      };
+    </script>
+  </body>
+</html>
+{% render 'vg-pd-common' %}

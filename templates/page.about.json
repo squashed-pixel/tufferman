@@ -1,0 +1,75 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "title": "Subscribe to our newsletter to revieve the latest offers, savings and advice",
+        "content": "",
+        "background": "#fbb900",
+        "text": "#2c2c2c"
+      }
+    },
+    "cba866ae-d862-4c90-b0d7-448e97e720c2": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/1652283955699.jpg",
+        "image_position": "right",
+        "image_width": 50,
+        "title": "Our Beginnings",
+        "content": "<p>Tufferman was founded in 2012 by Richard Gundle as a family-run business with a simple but clear objective: to challenge the overpriced and outdated model that had long dominated the shelving and racking industry.<\/p><p>Built on family values of honesty, fairness, and hard work, Tufferman was created to simplify the buying process and remove unnecessary mark-ups within the supply chain. From day one, the focus has been on delivering genuine value — high-quality shelving at sensible prices, backed by personal service you can rely on.<\/p><p>What began as a small family venture has grown into a trusted name across the UK. We have earned a strong reputation as a reliable and competitively priced supplier of high-quality storage solutions, including garage shelving, industrial shelving, workbenches, plastic storage boxes, and a wide range of storage systems for both commercial and domestic customers.<\/p><p>At Tufferman, we are proud to remain rooted in our family-business foundations — combining personal service with professional expertise.<\/p>",
+        "button_text": "",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "a9a4c54f-c731-4622-a7e0-3b8434548174": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/DSC3060.jpg",
+        "image_position": "left",
+        "image_width": 50,
+        "title": "Our Mission",
+        "content": "<p>As a family-founded business, Tufferman is built on the belief that high-quality shelving and storage solutions should be affordable, accessible, and built to last.<\/p><p>From the outset, our goal has been simple: to remove unnecessary middlemen and deliver dependable shelving directly to our customers at fair and realistic prices. By streamlining the supply chain, we are able to offer genuine value without compromising on quality or service.<\/p><p>First and foremost, our mission is to provide:<\/p><ul><li>High-quality, durable products<br\/><\/li><li>Competitive and transparent pricing<br\/><\/li><li>Exceptional, personal customer service and ongoing support<br\/><\/li><\/ul><p>As a family business, we take pride in doing things properly. We value long-term relationships, honest advice, and standing behind the products we supply. Every order matters to us — because our reputation is built on trust.<\/p><p>But you don’t have to take our word for it. We are proud to have received over 15,000 independent reviews on Trustpilot, reflecting the experience of customers who have chosen to work with us.<\/p><p><strong>See what our customers say about Tufferman. <\/strong><a href=\"https:\/\/www.tufferman.co.uk\/reviews.html\" target=\"_self\" title=\"Reviews\"><strong>Click Here<\/strong><\/a><\/p>",
+        "button_text": "",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "8d8a6184-64a9-4f32-beff-3ef8f8fad61e": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/IMG_4553.jpg",
+        "image_position": "right",
+        "image_width": 50,
+        "title": "Products & Brands",
+        "content": "<p>Today, we are proud to be the exclusive UK distributor of the Storalex brand of industrial shelving and workbenches — a range engineered to set the benchmark for strength, precision, and durability.<\/p><p>Manufactured using high-grade, powder-coated steel and incorporating an advanced boltless design, Storalex systems deliver exceptional rigidity, structural integrity, and long-term performance. The intelligent design not only enhances load capacity and stability but also ensures efficient assembly without compromising strength.<\/p><p>Storalex is trusted in demanding environments where reliability matters. From premium garage shelving to heavy-duty industrial storage systems, every product is built to perform under pressure.<\/p><p>Our confidence in the brand is reflected in the comprehensive five-year guarantee provided across the entire Storalex range — offering complete peace of mind alongside outstanding performance.<\/p>",
+        "button_text": "",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "9374c338-5d52-41bb-bf1c-d171330f8c0f": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/warehouse_landscape.png",
+        "image_position": "left",
+        "image_width": 50,
+        "title": "Our Warehouse",
+        "content": "<p>Our storage and dispatch facilities are located just outside Chelmsford, Essex, and hold the full range of products featured on our website.<\/p><p>With weekly deliveries received directly from the manufacturer, we consistently maintain strong stock levels. This enables us to offer prompt order processing, immediate dispatch, and next-day delivery on a wide selection of products.<\/p>",
+        "button_text": "",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "newsletter",
+    "cba866ae-d862-4c90-b0d7-448e97e720c2",
+    "a9a4c54f-c731-4622-a7e0-3b8434548174",
+    "8d8a6184-64a9-4f32-beff-3ef8f8fad61e",
+    "9374c338-5d52-41bb-bf1c-d171330f8c0f"
+  ]
+}

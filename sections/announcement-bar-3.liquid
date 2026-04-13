@@ -1,0 +1,102 @@
+{%- if section.settings.show_announcement -%}
+    {%- capture section_settings -%}
+    {
+      "showNewsletter": {{ section.settings.show_newsletter | json }}
+    }
+    {%- endcapture -%}
+  
+    <section data-section-id="{{ section.id }}" data-section-type="announcement-bar third-announcement-bar" data-section-settings='{{ section_settings }}'>
+      <div class="container">
+        <div class="announcement-bar third-announcement">
+          <div class="announcement-bar__inner">
+            {%- if section.settings.link != blank -%}
+              <a href="{{ section.settings.link }}" class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">{{ section.settings.text | replace: '<p>','' | replace: '</p>','' }}</a>
+            {%- else -%}
+              <p class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">{{ section.settings.text | replace: '<p>','' | replace: '</p>','' }}</p>
+            {%- endif -%}
+  
+            {%- if section.settings.show_newsletter -%}
+              <button type="button" class="announcement-bar__button hidden-phone" data-action="toggle-newsletter" aria-expanded="false" aria-controls="announcement-bar-newsletter">
+                {%- render 'icon', icon: 'newsletter' -%}
+                {{- section.settings.newsletter_button | escape -}}
+              </button>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <style>
+      .announcement-bar.third-announcement {
+        background: {{ section.settings.background }};
+        color: {{ section.settings.text_color }};
+        font-size: 110%;
+        padding: 10px;
+        margin-top: calc(var(--desktop-container-gutter) / 4)
+      }
+    </style>
+  
+    <script>
+      {%- if section.settings.show_newsletter -%}
+        document.documentElement.style.setProperty('--announcement-bar-button-width', document.querySelector('.announcement-bar__button').clientWidth + 'px');
+      {%- else -%}
+        document.documentElement.style.removeProperty('--announcement-bar-button-width');
+      {%- endif -%}
+  
+      document.documentElement.style.setProperty('--announcement-bar-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
+    </script>
+  {%- endif -%}
+  
+  {% schema %}
+  {
+    "name": "Third Announcement bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Show announcement",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text",
+        "default": "#000000"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Announce something here</p>"
+      },
+      {
+        "type": "select",
+        "id": "text_position",
+        "label": "Text position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left",
+        "info": "Text is always centered on mobile."
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      }
+    ]
+  }
+  {% endschema %}

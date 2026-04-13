@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "enable_order_notes": false,
+        "discount_toggle": true,
+        "show_payment_icons": true,
+        "where_to_find": "",
+        "gift_wrap_product": "",
+        "gift_wrap_text": "Do you want a gift wrap?",
+        "gift_wrap_button": "Add a gift wrap",
+        "show_shipping_estimator": false,
+        "shipping_estimator_default_country": "United Kingdom",
+        "trust_heading": "Our guarantees",
+        "upsell_heading": "Complete your basket",
+        "upsell_collection": "",
+        "upsell_products_count": 4,
+        "top_content_1": "FREE",
+        "top_content_2": "Usually ready in 24 hours",
+        "content_area": "<p><strong>Call to arrange a collection time. Open 9.00am to 4.30pm Monday to Friday (excluding bank holidays) <\/strong>Unit 2A. Boyton Hall Farm, Roxwell, Chelmsford, CM1 4LN<\/p>"
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recently-viewed-products"
+  ]
+}

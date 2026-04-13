@@ -1,0 +1,43 @@
+<section data-section-id="{{ section.id }}" data-section-type="page">
+  <div class="container container--narrow">
+    <header class="page__header page__header--centered page__header--stack">
+      <h1 class="page__title heading h1">{{ page.title }}</h1>
+
+      {%- if page.template_suffix == 'sitemap' -%}
+        <div class="page__description rte">
+          {% for link in linklists %}
+            {% unless link.title contains 'child' %}
+              <div class="sitemap--list">
+                <h3>{{ link.title }}</h3>
+                <ul>
+                  {% for sub_link in link.links %}
+                    <li><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endunless %}
+            <hr />
+          {% endfor %}
+        </div>
+      {%- endif -%}
+
+      {%- if page.content != blank and page.template_suffix == 'contact' or page.template_suffix == 'team' -%}
+        <div class="page__description rte">
+          {{ page.content }}
+        </div>
+      {%- endif -%}
+    </header>
+
+    {%- if page.content != blank and page.template_suffix != 'contact' and page.template_suffix != 'team' and page.template_suffix != 'sitemap' -%}
+      <div class="page__content rte">
+        {{ page.content }}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page"
+}
+{% endschema %}

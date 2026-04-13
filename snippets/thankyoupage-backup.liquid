@@ -1,0 +1,71 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-993295948"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-993295948');
+</script>
+
+
+
+
+{% if first_time_accessed %}
+<!-- Event snippet for Order conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-993295948/NdsxCITX1eEYEMz80dkD',
+      'value': {{ checkout.total_price | money_without_currency }},
+      'currency': 'GBP',
+      'transaction_id': '{{ order_number }}'
+  });
+</script>
+{% endif %}
+
+
+{% if first_time_accessed %}
+<!-- Event snippet for Purchase conversion page -->
+<script>
+  gtag('event', 'conversion', {
+    'send_to': 'AW-993295948/l4e1CL_P57cZEMz80dkD',
+    'value': {{ checkout.subtotal_price | divided_by: 100.0 }},
+    'currency': '{{ currency }}',
+    'transaction_id': '{{ order_id }}'
+  });
+</script>
+{% endif %}
+
+
+
+<script type="text/javascript">
+window.adalyserTracker("trackEvent", "lce3", {value: '{{ order.total_price | money_without_currency }}'}, true);
+</script>
+
+<!-- Start of the Sales tracker code (place after LiveChat tracking code) -->
+<script type="text/javascript">
+var order_id = {{order.order_number}};
+var order_sum = {{order.total_price | money_without_currency }};
+
+  var LC_API = LC_API || {on_after_load: function(){}};
+  (function(cb){
+    LC_API.on_after_load = function(){
+      cb();
+      try {
+        var custom_variables = [
+          {name: '__order_id', value: order_id},
+          {name: '__order_price', value: order_sum}
+        ];
+        LC_API.trigger_sales_tracker('TObLrCss2bdhVivFslVnVBAyWVzyWTlp', custom_variables);
+      } catch (error) {
+        if (window.console){ console.log('LiveChat sales tracker error:', error); }
+      }
+    };
+  })(LC_API.on_after_load);
+</script>
+<!-- End of the Sales tracker code -->
+
+
+{% comment %} Microsoft UET Tracking {% endcomment %}
+<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"17525531", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+<script>window.uetq = window.uetq || [];window.uetq.push('event', '', {"revenue_value":{{ checkout.total_price | money_without_currency }},"currency":"{{ shop.currency }}"});</script>
+

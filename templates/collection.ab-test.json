@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "16547852858c6d82c3": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "text_width": "narrow",
+        "text_align": "center",
+        "title": "Your title",
+        "content": "<p>Use this text to share information about your brand with your customers.<br\/>Describe a product, share announcements, or welcome customers to your store.<\/p>",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_collection_promo": false,
+        "banner_hidden_mobile": false,
+        "banner_hide_mobile": false,
+        "promo_image": "shopify:\/\/shop_images\/WEBSITE_BANNER_2_sale.png",
+        "promo_link": "",
+        "collapse_collection_description": false,
+        "collection_image_size": "small",
+        "products_per_row": "3",
+        "default_products_per_page": 24,
+        "default_view_layout": "grid",
+        "show_quick_buy": "list_grid",
+        "show_quick_view": "list_grid",
+        "quick_links": "",
+        "quick_links_show_products_count": true,
+        "show_filters": true,
+        "show_filter_color_swatch": true,
+        "show_lower_block": false,
+        "lower_block_color": "#fbb900",
+        "lower_block_link": "shopify:\/\/collections\/storage-boxes-containers",
+        "lower_block_text": "Looking For Storage Boxes?",
+        "lower_block_button_text": "Click Here to view the range",
+        "open_group_filters_mode": "first_open",
+        "metafield_ov_1": "",
+        "metafield_ov_2": "",
+        "metafield_ov_3": ""
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    }
+  },
+  "order": [
+    "16547852858c6d82c3",
+    "main",
+    "recently-viewed-products"
+  ]
+}

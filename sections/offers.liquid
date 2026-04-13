@@ -1,0 +1,171 @@
+<section class="section" data-section-id="{{ section.id }}" data-section-type="offers">
+  <div class="container">
+    {%- capture block_list -%}
+      <div class="block-list">
+        {%- for block in section.blocks -%}
+        {%- unless block.settings.linked-collection.url == blank -%}
+        <a href="{{ block.settings.linked-collection.url }}">
+        {% endunless %}
+          <div class="block-list__item 1/{{ section.settings.items_per_row }}--tablet-and-up" {{ block.shopify_attributes }}>
+            <div class="offer-item {% if block.settings.image_is_background %}offer-item--inline background{% endif %}" 
+            
+            {% if block.settings.image_is_background %}
+              {% if block.settings.collection != blank %}
+                style="background-image: url({{ block.settings.image | img_url: 'master'}});background-position:center; width: 100%;"
+              {% else %}
+                style="background-image: url({{ block.settings.image | img_url: 'master'}});background-position:center; width: 100%;"
+              {% endif %}
+            {% endif %}>
+
+            {%- unless block.settings.image_is_background -%}
+              {%- if block.settings.image -%}
+                <div class="offer-item__image-wrapper">
+                  <div class="aspect-ratio" style="padding-bottom: 100%">
+                    {% unless block.settings.image_is_background %}
+                      <img class="lazyload image--fade-in" data-src="{{ block.settings.image | img_url: '250x' }}" alt="{{ block.settings.image.alt | escape }}">
+
+                      <noscript>
+                        <img src="{{ block.settings.image | img_url: '250x' }}" alt="{{ block.settings.image.alt | escape }}">
+                      </noscript>
+                    {% endunless %}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endunless -%}
+
+
+            {% unless block.settings.image_is_background %}
+              <div class="offer-item__inner">
+                {%- if block.settings.title != blank -%}
+                  <p class="offer-item__title heading h4 {% if block.settings.image_is_background %}text-white{% endif %}">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div class="offer-item__content rte {% if block.settings.image_is_background %}text-white{% endif %}">
+                    {{ block.settings.content }}
+                  </div>
+                {%- endif -%}
+                {% if block.settings.collection != blank %}
+                  <a href="{{ block.settings.collection.url }}" class="button button--primary">{{ 'collection.general.more_info' | t }}</a>
+                {% endif %}
+              </div>
+
+            {% endunless %}
+            </div>
+
+            {% if block.settings.image_is_background %}
+
+              <div class="offer-item__inner">
+                {%- if block.settings.title != blank -%}
+                  <p class="offer-item__title heading h4" style="color: {{ block.settings.content_color }};">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div class="offer-item__content rte" style="color: {{ block.settings.content_color }};">
+                    {{ block.settings.content }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {% endif %}
+          </div>
+          {%- unless block.settings.linked-collection.url == blank -%}
+            </a>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- endcapture -%}
+
+    {%- if section.settings.stack_mobile -%}
+      {{ block_list }}
+    {%- else -%}
+      <div class="scroller">
+        <div class="scroller__inner">
+          {{ block_list }}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Offers",
+  "settings": [
+    {
+      "type": "range",
+      "id": "items_per_row",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Items per row on desktop",
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_mobile",
+      "label": "Stack on mobile",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Offer",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "250 x 250px .jpg recommended for small image 500 x 200px for background"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_is_background",
+          "label": "Background Image?",
+          "default": false,
+          "info":"Check this to make the chosen image a background."
+        },
+        {
+          "type": "collection",
+          "id": "linked-collection",
+          "label": "Collection",
+          "info": "Collection to link to"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Your text"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Write a few words about your offers or your shop.</p>"
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Text Colour",
+          "default": "#000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Offers",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "offer"
+        },
+        {
+          "type": "offer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

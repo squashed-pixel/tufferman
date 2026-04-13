@@ -1,0 +1,98 @@
+{%- if product.description != blank -%}
+  <style>
+    @media screen and (min-width: 1000px) {
+      #shopify-section-{{ section.id }} {
+        grid-column: auto;
+      }
+      #shopify-section-{{ section.id }} .section {
+        margin-top: 0;
+      }
+      .loose-container-first.container {
+        padding-left: 40px;
+        padding-right: 10px;
+        margin-top: 0;
+      }
+    }
+  </style>
+
+  <div class="product-block-list__item product-block-list__item--description loose-container-first" {{ block.shopify_attributes }}>
+    <div class="card description description--smaller">
+      {%- if block.settings.display_mode == 'collapse' -%}
+        <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="block-{{ section.id }}-{{ block.id }}">
+          <span class="card__title heading h3">{{ 'product.general.description' | t }}</span>
+          <span class="plus-button plus-button--large"></span>
+        </button>
+
+        <div id="block-{{ section.id }}-{{ block.id }}" class="card__collapsible">
+          <div class="card__collapsible-content">
+            <div class="rte text--pull">
+              {{ product.description | remove: 'data-section-type="product"' }}
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        {% assign description = product.description %}
+        <div class="description" id="tabs" itemprop="description">
+          <div class="product__description-tab-holder">
+            <ul class="tabs">
+              {% assign first_paragraph = description | split: "<h5" | first %}{% assign fp = first_paragraph %}
+              {% assign first_paragraph = first_paragraph | strip_html | replace: "&nbsp;", "" | replace: " ", "" | strip_newlines %}
+              {% if first_paragraph != "" or fp contains "<img " %}
+                {% assign ind = 1 %}
+                <li class="tab-link heading current" data-tab="tab-1"><span>Description</span><br></li>
+              {% else %}
+                {% assign ind = 0 %}
+              {% endif %}
+              {% assign description_parts = description | split: "<h5" %}
+              {% for part in description_parts %}
+                {% if part contains "</h5>" %}
+                  {% assign remove = part | split: ">" | first | append: ">" %}
+                  {% assign heading = part | split: "</h5>" | first | strip_html | replace: remove, "" %}
+                  {% assign heading_handle = heading | handleize %}
+                  {% if heading_handle != 'delivery-amp-returns' and heading_handle != 'delivery-returns' %}
+                    <li class="tab-link heading" data-tab="tab-{{ forloop.index }}"><span>{{ heading }}</span></li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              <li class="tab-link heading" data-tab="tab-delivery"><span>Delivery & Returns</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="product__description-content-holder">
+          {% assign description_one = description | split: "[Description 2]" | first %}
+          {% assign description_parts = description_one | split: "<h5" %}
+          {% for part in description_parts %}
+            {% assign fp = part | append: " " | split: "</h5>" | last %}
+            {% if forloop.index == 4 and part contains "Delivery" %}
+              {% assign p = "delivery" %}
+            {% else %}
+              {% assign p = part | append: " " | split: "</h5>" | last | strip_html | replace: "&nbsp;", "" | replace: " ", "" | strip_newlines %}
+            {% endif %}
+            {% if p != "" or fp contains "<img " or fp contains "<iframe " %}
+              <div id="tab-{{ forloop.index }}" class="tab-content {% if forloop.index == 1 %}current{% endif %}" >{{ part | split: "</h5>" | last | replace: "<div", "<span" | replace: "</div", "</span" }}</div>
+            {% endif %}
+          {% endfor %}
+          <div id="tab-delivery" class="tab-content">
+            {{ pages['delivery-information'].content }}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Trade Description",
+  "settings": [
+  ],
+  "presets": [
+    {
+      "category": "Trade",
+      "name": "Trade Description",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,19 @@
+
+{% if product.tags contains 'view_override[list]' %}
+  {% assign selected_view = 'list' %}
+{% elsif product.tags contains 'view_override[grid]' %}
+  {% assign selected_view = 'grid' %}
+{% elsif customer and customer.tags contains 'tradeXX' %}
+  {% assign selected_view = 'grid' %}
+{% else %}
+  {% assign selected_view = settings.page_view %}
+{% endif %}
+
+<view-toggle {{  }} class="view_toggle{% if spacing %} view_toggle--spacing{% endif %}">
+    <button type="button" class="view_toggle__option view_toggle__option--list{% if selected_view == 'list' and template.suffix != 'grid-ab' %} selected{% endif %}"> 
+        List
+    </button>
+    <button type="button" class="view_toggle__option view_toggle__option--grid {% if template.suffix == 'grid-ab' %}selected{% else %}{% if selected_view == 'grid' %} selected{% endif %}{% endif %}">
+        Grid
+    </button>
+</view-toggle>

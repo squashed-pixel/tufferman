@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collections-list",
+      "settings": {
+        "collections_to_show": "all",
+        "collection_linklist": "main-menu",
+        "show_collection_title": true,
+        "show_collection_overlay": true,
+        "collection_overlay_opacity": 34
+      }
+    },
+    "165477424312702074": {
+      "type": "collection-with-image",
+      "settings": {
+        "collection": "shelving-racking",
+        "products_count": 12,
+        "show_quick_buy": false,
+        "image": "shopify:\/\/shop_images\/Collection_Industrial_Shelving.jpg",
+        "background": "#ffffff",
+        "text_color": "#2c2c2c",
+        "title": "Featured collection",
+        "content": "Tell more about your product, collection...",
+        "button_background": "#ffffff",
+        "button_text_color": "#0774d7",
+        "button_text": "Learn more",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "165477424312702074"
+  ]
+}

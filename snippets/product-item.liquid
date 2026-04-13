@@ -1,0 +1,614 @@
+{%- comment -%}Color labels used to detect what is a color swatch{%- endcomment -%}
+{%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: ',' -%}
+{% assign product_tags = product.tags | join: ', ' | downcase %}
+{% assign businessBundle = false %}
+{% assign Border = false %}
+{% assign banner_product = false %}
+{% for tag in product_tags %}
+  {% if tag contains 'business bundle' %}
+    {% assign businessBundle = true %}
+  {% endif %}
+  {% if tag contains '_border' %}
+    {% assign border = true %}
+  {% endif %}
+  {% if tag contains 'banner_product' %}
+    {% assign banner_product = true %}
+  {% endif %}
+{% endfor %}
+<div class="product-item {% if horizontal %}product-item--horizontal{% elsif list %}product-item--list{% else %}product-item--vertical{% endif %} {% if section.id == 'blog-sidebar' %}product-item--compact{% endif %} {% if businessBundle %}product-item--business{% endif %} {% if border %}product-item--border product-item--border--{{ product.id }}{% endif %} {{ grid_classes }} {% if banner_product %}product-item--banner_product{% endif %}">
+  <a class="product-item__link" {% if banner_product %}href="{{ product.metafields.custom.banner_product_link }}"{% else %}href="{{ product.url }}"{% endif %}></a>
+  {%- capture product_labels -%}
+    {%- unless hide_labels or banner_product -%}
+      {% assign product_tags = product.tags | join: ', ' | downcase %}
+      {% if product_tags contains 'banner[business bundle]' %}
+        <span class="product-label product-label--custom3">Business Bundle</span>
+      {% else %}
+        {% assign has_color = false %}
+        {% for tag in product.tags %}
+          {% if tag contains 'banner[' %}
+            {% assign banner = tag | remove: '_border' %}
+            {% assign banner = tag | split: '-' %}
+            {% assign banner_text = banner | first | remove: 'banner[' | remove: ']' %}
+            {% assign banner_color_pos = banner | last %}
+            {% assign banner_color = banner_color_pos | split: '_' | first %}
+            {% assign banner_pos = banner_color_pos | last %}
+            <span style="background:#{{ banner_color }};order: {{ banner_pos }}" class="product-label product-label--custom{{ forloop.index }}">{{ banner_text }}</span>
+          {% endif %}
+          {% if border and has_color == false %}
+            {% assign has_color = true %}
+            <style>
+              .product-item--border--{{ product.id }} {
+                border-color: #{{ banner_color }}
+              }
+            </style>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {%- if settings.show_discount and product.price < product.compare_at_price -%}
+        {%- if settings.discount_mode == 'percentage' -%}
+          {%- assign savings = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round | append: '%' -%}
+        {%- else -%}
+          {%- capture savings -%}
+            <span>{{ product.compare_at_price | minus: product.price | money }}</span>
+          {%- endcapture -%}
+        {%- endif -%}
+        {%- comment -%}
+        <span class="product-label product-label--on-sale">{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+        {%- endcomment -%}
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endcapture -%}
+
+  {%- if product_labels != blank -%}
+    <div class="product-item__label-list">
+      {{- product_labels -}}
+    </div>
+  {%- endif -%}
+
+  {%- if settings.show_secondary_image and product.media.size > 1 -%}
+    {%- assign show_secondary_media = true -%}
+  {%- else -%}
+    {%- assign show_secondary_media = false -%}
+  {%- endif -%}
+
+  {%- assign filtered_variant = '' -%}
+
+  {%- if product.media.size > 0 -%}
+    {%- assign primary_media = product.featured_media -%}
+
+    <a {% if banner_product %}href="{{ product.metafields.custom.banner_product_link }}"{% else %}href="{{ product.url }}"{% endif %} class="product-item__image-wrapper {% if show_secondary_media %}product-item__image-wrapper--with-secondary{% endif %}">
+      {%- liquid
+        assign supported_sizes = '315,385'
+        assign responsive_sizes = '(min-width: 750px) 315px, 385px'
+        assign image_url = primary_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+      -%}
+
+      <div class="aspect-ratio {% if settings.product_image_size != 'natural' %}aspect-ratio--{{ settings.product_image_size }}{% endif %}" style="padding-bottom: {{ 100.0 | divided_by: primary_media.preview_image.aspect_ratio }}%">
+        {% if is_lcp %}
+        {%- liquid
+          assign widths = supported_sizes | split: ','
+          assign last_width = widths | last
+          assign lcp_src = image_url | replace: '{width}', last_width
+          capture lcp_srcset
+            for w in widths
+              echo image_url | replace: '{width}', w
+              echo ' '
+              echo w
+              echo 'w'
+              unless forloop.last
+                echo ', '
+              endunless
+            endfor
+          endcapture
+        -%}
+        <img
+          class="product-item__primary-image lazyloaded image--fade-in"
+          src="{{ lcp_src }}"
+          srcset="{{ lcp_srcset }}"
+          sizes="{{ responsive_sizes }}"
+          loading="eager"
+          fetchpriority="high"
+          alt="{{ primary_media.alt | escape }}">
+        {% else %}
+        <img
+          class="product-item__primary-image lazyload image--fade-in"
+          data-media-id="{{ primary_media.id }}"
+          data-src="{{ image_url }}"
+          data-sizes="auto"
+          data-widths="[{{ supported_sizes }}]"
+          alt="{{ primary_media.alt | escape }}">
+        {% endif %}
+
+        {%- if show_secondary_media -%}
+          {%- assign image_url = product.media[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+          <img
+            class="product-item__secondary-image lazyload image--fade-in"
+            data-src="{{ image_url }}"
+            data-sizes="auto"
+            loading="lazy"
+            data-widths="[{{ supported_sizes }}]"
+            alt="{{ product.media[1].alt | escape }}">
+        {%- endif -%}
+
+        <noscript>
+          <img src="{{ primary_media | img_url: '385x' }}" alt="{{ primary_media.alt | escape }}">
+        </noscript>
+      </div>
+    </a>
+  {% else %}
+    <a href="{{ product.url }}" class="product-item__image-wrapper {% if show_secondary_media %}product-item__image-wrapper--with-secondary{% endif %}">
+      <img
+        src="{{ "placeholder.png" | asset_url }}"
+        alt="placeholder product"
+        class="product-item__primary-image lazyload">
+    </a>
+  {%- endif -%}
+
+  
+  <div class="product-item__info" {% if banner_product %}style="display: none;"{% endif %}>
+    <div class="product-item__info-inner">
+
+      <div class='jdgm-widget jdgm-preview-badge'>
+        {% if product.metafields.custom.reviews_override != blank %}
+          <span class="hide-count">{{ product.metafields.judgeme.badge }}</span>
+          <span class="over-badge__text"> {{ product.metafields.reviews.rating_count | minus: product.metafields.custom.reviews_override }} reviews</span>
+        {% else %}
+          {{ product.metafields.judgeme.badge }}
+        {% endif %}
+      </div>
+
+      {%- if product.metafields.custom.additional_variant_title_1.value contains "colour" or product.metafields.custom.additional_variant_title_1.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_1 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_2.value contains "colour" or product.metafields.custom.additional_variant_title_2.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_2 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_3.value contains "colour" or product.metafields.custom.additional_variant_title_3.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_3 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_4.value contains "colour" or product.metafields.custom.additional_variant_title_4.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_4 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_5.value contains "colour" or product.metafields.custom.additional_variant_title_5.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_5 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_6.value contains "colour" or product.metafields.custom.additional_variant_title_6.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_6 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_7.value contains "colour" or product.metafields.custom.additional_variant_title_7.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_7 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_8.value contains "colour" or product.metafields.custom.additional_variant_title_8.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_8 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_9.value contains "colour" or product.metafields.custom.additional_variant_title_9.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_9 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+      {%- endif -%}
+      {%- if product.metafields.custom.additional_variant_title_10.value contains "colour" or product.metafields.custom.additional_variant_title_10.value contains "Colour" -%}
+        {% assign product_colours = product.metafields.custom.additional_variant_data_10 | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: "," %}
+å      {%- endif -%}
+
+      <div class="product-item__colour-swatches">
+
+        {% assign product_colours_size = product_colours | strip_html | size %}
+        {%- if product_colours_size > 0 -%}
+          {%- for colour_name in product_colours -%}
+            {% assign option_url = "" %}
+            {% assign colour_name = colour_name | replace: ' & ', '/' %}
+            {% for option in product.metafields.custom.additional_variant_products_1.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_2.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_3.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_4.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_5.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_6.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_7.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_8.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_9.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+            {% for option in product.metafields.custom.additional_variant_products_10.value %}
+              {% assign option_title = option.title | replace: ' & ', '/' %}
+              {% if option_title contains colour_name %}
+                {% assign option_url = option.url %}
+              {% endif %}
+            {% endfor %}
+
+            <a href="{{ option_url }}" class="color-swatch {% if colour_name == 'white' or colour_name == 'blanc' %}color-swatch--white{% endif %}">
+              <span
+                class="color-swatch__item"
+                style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: colour_name %}">
+                <span class="visually-hidden">{{ value }}</span>
+                {%- render 'icon', icon: 'cross-sold-out' -%}
+              </span>
+            </a>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      
+      {%- capture price_list -%}
+        {% assign variant = product.first_available_variant %}
+        <div class="price-list-container-wrapper">
+          {%- unless variant.price < variant.compare_at_price -%}
+            {% comment %} <span class="price--from">{{ 'product.general.from_only' | t }}</span> {% endcomment %}
+          {%- endunless -%}
+          <div class="price-list-container">
+            <div class="product-item__price-list price-list vat-watcher inc-vat">
+              
+              {% assign variant = product.first_available_variant %}
+              {%- if variant.price < variant.compare_at_price -%}
+                <div class="product-item__price-list-container">
+                {%- if settings.currency_code_enabled -%}
+                  {% assign price = variant.price | money_with_currency %}
+                {%- else -%}
+                  {% assign price = variant.price | money %}
+                {%- endif -%}
+                <div class="product-card__reduced-data">
+                  <span class="price price--compare">
+                    <span style="display: none;">{{ 'product.general.was' | t }} </span>
+                    {%- if settings.currency_code_enabled -%}
+                      <span class="price-js">{{- variant.compare_at_price | money_with_currency -}}</span>
+                    {%- else -%}
+                      <span class="price-js">{{- variant.compare_at_price | money -}}</span>
+                    {%- endif -%}
+                  </span>
+                </div>
+                <span class="price price--highlight">
+                  <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                  <span class="price-js">{{ price }}</span>
+                  
+                </span>
+                </div>
+                <span class="js-price-text vat-text">INC.VAT</span>
+              {%- else -%}
+              <div class="product-item__price-list-container">
+                <span class="price">
+                  {%- if settings.currency_code_enabled -%}
+                    <span class="price-js">{{- product.price | money_with_currency -}}</span>
+                  {%- else -%}
+                    <span class="price-js">{{- product.price | money -}}</span>
+                  {%- endif -%}
+                  
+                </span>
+                </div>
+                <span class="js-price-text vat-text">INC.VAT</span>
+              {%- endif -%}
+            </div>
+            <div class="vat-divider"></div>
+            <div class="product-item__price-list price-list vat-watcher ex-vat">
+              {% assign variant = product.first_available_variant %}
+              {%- if variant.price < variant.compare_at_price -%}
+                <div class="product-item__price-list-container">
+                {%- if settings.currency_code_enabled -%}
+                  {% assign price = variant.price | divided_by: 1.2 | money_with_currency %}
+                {%- else -%}
+                  {% assign price = variant.price | divided_by: 1.2 | money %}
+                {%- endif -%}
+                <div class="product-card__reduced-data">
+                  <span class="price price--compare">
+                    <span style="display: none;">{{ 'product.general.was' | t }} </span>
+                    {%- if settings.currency_code_enabled -%}
+                      <span class="price-js">{{- variant.compare_at_price | divided_by: 1.2 | money_with_currency -}}</span>
+                    {%- else -%}
+                      <span class="price-js">{{- variant.compare_at_price | divided_by: 1.2 | money -}}</span>
+                    {%- endif -%}
+                  </span>
+                </div>
+                <span class="price price--highlight">
+                  <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                  <span class="price-js">{{ price }}</span>
+                </span>
+                </div>
+                <span class="js-price-text vat-text">EX.VAT</span>
+              {%- else -%}
+              <div class="product-item__price-list-container">
+                <span class="price">
+                  {%- if settings.currency_code_enabled -%}
+                    <span class="price-js">{{- product.price | divided_by: 1.2 | money_with_currency -}}</span>
+                  {%- else -%}
+                    <span class="price-js">{{- product.price | divided_by: 1.2 | money -}}</span>
+                  {%- endif -%}
+                  
+                </span>
+                </div>
+                <span class="js-price-text vat-text">EX.VAT</span>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-item__info-wrapper">
+        {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
+          <div class="product-item__price-info">
+            <div class="unit-price-measurement">
+              <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | money }}</span>
+              <span class="unit-price-measurement__separator">/
+              </span>
+
+              {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+                <span class="unit-price-measurement__reference-value">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}</span>
+              {%- endif -%}
+
+              <span class="unit-price-measurement__reference-unit">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- capture vendor -%}
+        {%- if settings.show_vendor -%}
+          {%- assign vendor_handle = product.vendor | handle -%}
+          {%- assign collection_for_vendor = collections[vendor_handle] -%}
+
+          {%- unless collection_for_vendor.empty? -%}
+            <span class="product-item__vendor link">{{ product.vendor }}</span>
+          {%- else -%}
+            <span class="product-item__vendor link">{{ product.vendor }}</span>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- if settings.product_price_position == 'before_title' -%}
+        {{ price_list }}
+      {%- endif -%}
+
+      {%- if settings.product_price_position == 'after_title' -%}
+        {{ vendor }}
+      {%- endif -%}
+
+      {%- if settings.show_reviews_badge -%}
+        <a class="product-item__reviews-badge link" href="{{ product.url }}#product-reviews">
+          {%- render 'product-rating', product: product -%}
+        </a>
+      {%- endif -%}
+
+      <a href="{{ filtered_variant.url | default: product.url }}" class="product-item__title text--strong link">{{ product.title }}</a>
+
+    </div>
+    <div class="product-item__prices-wrapper">
+      {% if product.metafields.custom.udl or product.metafields.custom.height %}
+        <div class="product-item__details">
+          {% if product.metafields.custom.udl %}
+            <span>UDL:
+              <strong>{{ product.metafields.custom.udl }}</strong>
+            </span>
+          {% endif %}
+          {% if product.metafields.custom.height %}
+            <span>Height:
+              <strong>{{ product.metafields.custom.height }}</strong>
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {%- comment -%}
+      {% if product.metafields.custom.height != empty or product.metafields.custom.load != empty %}
+      <div class="meta-container">
+      {% if product.metafields.custom.height != empty %}
+      <div class="height-meta">
+      <p><span>{{ 'product.general.height' | t }}:</span> {{ product.metafields.custom.height }}</p>
+      </div>
+      {% endif %}
+      {% if product.metafields.custom.load != empty %}
+      <div class="load-meta">
+      <p><span>{{ 'product.general.load' | t }}:</span> {{ product.metafields.custom.load }}</p>
+      </div>
+      {% endif %}
+      </div>
+      {% endif %}
+      {%- endcomment -%}
+
+      {%- if settings.product_price_position == 'before_title' -%}
+        {{ vendor }}
+      {%- endif -%}
+
+      {%- if settings.show_color_swatch and template != 'blog' -%}
+        {%- capture color_swatch -%}
+          {%- capture color_name -%}
+            {{ section.id }}-{{ product.id }}{%- endcapture -%}
+
+          {%- for option in product.options_with_values -%}
+            {%- assign downcased_option = option.name | downcase -%}
+
+            {%- if color_label contains downcased_option -%}
+              {%- assign variant_option = 'option' | append: forloop.index -%}
+              {%- assign value_to_match = filtered_variant[variant_option] | default: option.selected_value -%}
+
+              {%- assign color_swatch_config = settings.color_swatch_config | newline_to_br | replace: '"', '' | replace: '[', '' | replace: ']', '' | split: '<br />' -%}
+
+              {%- for value in option.values -%}
+                {%- assign downcased_value = value | downcase -%}
+                {%- capture color_id -%}
+                  {{ color_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                {%- for variant in product.variants -%}
+                  {%- if variant[variant_option] == value -%}
+                    {%- assign variant_for_value = variant -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                  {%- if variant_for_value.featured_media -%}
+                    {%- capture supported_sizes -%}
+                      {%- render 'image-size', sizes: '200,300,400,500,600,700,800', image: variant_for_value.featured_media.preview_image -%}{%- endcapture -%}
+                    {%- assign image_url = variant_for_value.featured_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                  {%- endif -%}
+
+                  <input
+                    class="color-swatch__radio"
+                    type="radio"
+                    name="{{ color_name }}"
+                    id="{{ color_id }}"
+                    value="{{ value | escape }}"
+                    {% if value_to_match == value %}checked="checked"{% endif %}data-variant-url="{{ variant_for_value.url }}"{% if variant_for_value.featured_media %}data-media-id="{{ variant_for_value.featured_media.id }}"data-image-url="{{ image_url }}"data-image-widths="[{{ supported_sizes }}]"data-image-aspect-ratio="{{ variant_for_value.featured_media.preview_image.aspect_ratio }}"{% endif %}aria-label="{{ value | escape }}">
+                  <label
+                    class="color-swatch__item"
+                    for="{{ color_id }}"
+                    style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: downcased_value %}"
+                    title="{{ value | escape }}">
+                    <span class="visually-hidden">{{ value }}</span>
+                  </label>
+                  <a href="{{ product.url }}" class="color-swatch__item-link">+{{ option.values.size | minus: forloop.index0 }}</a>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+
+        {%- if color_swatch != blank -%}
+          <div class="product-item__swatch-list">
+            <div class="color-swatch-list">
+              {{ color_swatch }}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if settings.product_price_position == 'after_title' -%}
+        {{ price_list }}
+      {%- endif -%}
+
+      {%- if settings.show_inventory_quantity and product.variants.first.inventory_management != blank and product.template_suffix != 'pre-order' -%}
+        {%- if product.available -%}
+          {%- assign should_calculate_inventory = true -%}
+
+            {%- for variant in product.variants -%}
+            {%- comment -%}
+            If we have one variant that is set to "continue" or that do not have any inventory management, then we skip the calculation of inventory as this
+            means at least one of the variant is always purchasable
+            {%- endcomment -%}
+
+            {%- if variant.inventory_policy == 'continue' or variant.inventory_management == null -%}
+              {%- assign should_calculate_inventory = false -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if should_calculate_inventory and settings.low_inventory_threshold > 0 -%}
+            {%- assign all_inventory = 0 -%}
+
+            {%- for variant in product.variants -%}
+              {%- if variant.inventory_management -%}
+                {%- assign all_inventory = variant.inventory_quantity | at_least: 0 | plus: all_inventory -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if all_inventory <= settings.low_inventory_threshold -%}
+              <span class="product-item__inventory inventory inventory--low">{{ 'collection.product.low_stock_with_quantity_count' | t: count: all_inventory }}</span>
+            {%- else -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.in_stock_with_quantity_count' | t: count: all_inventory }}</span>
+            {%- endif -%}
+          {%- else -%}
+            {%- if product.variants.first.inventory_policy == 'continue' and product.variants.first.inventory_quantity <= 0 and product.variants.first.requires_shipping -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.oversell_stock' | t }}</span>
+            {%- else -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.in_stock' | t }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- else -%}
+          <span class="product-item__inventory inventory">{{ 'collection.product.sold_out' | t }}</span>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}
+    {%- if request.page_type == 'collection' or request.page_type == 'search' or show_add_to_cart -%}
+    {%- if section.settings.show_quick_view == 'list_grid' or section.settings.show_quick_buy == 'list_grid' or show_add_to_cart -%}
+    {%- assign product_form_classes = 'product-item__action-list button-stack' -%}
+    {%- else -%}
+    {%- assign product_form_classes = 'product-item__action-list product-item__action-list--list-view-only button-stack' -%}
+    {%- endif -%}
+
+    {%- assign form_id = 'product_form_id_' | append: product.id | append: '_' | append: section.id -%}
+
+    {%- if product.template_suffix == 'contact' -%}
+    <div class="{{ product_form_classes }}">
+    <a href="mailto:{{ shop.email }}" class="product-item__action-button button button--small button--primary">
+    {{- 'product.form.contact_us' | t -}}
+    </a>
+    </div>
+    {%- else -%}
+    {%- form 'product', product, id: form_id, class: product_form_classes -%}
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+    {%- if section.settings.show_quick_buy == 'list_grid' or show_add_to_cart -%}
+    {%- assign quick_buy_classes = 'product-item__action-button button button--small button--primary' -%}
+    {%- else -%}
+    {%- assign quick_buy_classes = 'product-item__action-button product-item__action-button--list-view-only button button--small button--primary' -%}
+    {%- endif -%}
+
+    {%- if product.available -%}
+    {%- if product.variants.size == 1 -%}
+    <button type="submit" class="{{ quick_buy_classes }}" data-action="add-to-cart">
+    {%- if product.template_suffix == 'pre-order' -%}
+    {{- 'collection.product.pre_order' | t -}}
+    {%- else -%}
+    {{- 'collection.product.add_to_cart' | t -}}
+    {%- endif -%}
+    </button>
+    {%- else -%}
+    <a href="{{ product.url }}" class="{{ quick_buy_classes }}">{{ 'collection.product.choose_options' | t }}</a>
+    {%- endif -%}
+    {%- else -%}
+    <button class="{{ quick_buy_classes | replace: 'button--primary', 'button--disabled' }}" disabled>{{ 'collection.product.sold_out' | t }}</button>
+    {%- endif -%}
+
+    {%- if section.settings.show_quick_view == 'list_grid' -%}
+    {%- assign quick_view_classes = 'product-item__action-button button button--small button--ternary hidden-phone' -%}
+    {%- else -%}
+    {%- assign quick_view_classes = 'product-item__action-button product-item__action-button--list-view-only button button--small button--ternary hidden-phone' -%}
+    {%- endif -%}
+
+    <button type="button" class="{{ quick_view_classes }}" data-action="open-modal" data-secondary-action="open-quick-view" aria-controls="modal-quick-view-{{ section.id }}" data-product-url="{{ product.url }}">{{ 'collection.product.quick_view' | t }}</button>
+    {%- endform -%}
+    {%- endif -%}
+    {%- endif -%}
+    {%- endcomment -%}</div>
+</div>

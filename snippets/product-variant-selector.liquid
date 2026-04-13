@@ -1,0 +1,816 @@
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
+{%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
+
+{% assign currentVariant = product.metafields.custom.additional_variants_current_product_data.value %}
+
+{% if product.metafields.custom.additional_variant_data_1 != blank and product.metafields.custom.additional_variant_products_1 != blank %}
+  <div class="metafield-variants__container">
+{% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_1 != blank and product.metafields.custom.additional_variant_products_1 != blank %}
+    <!-- Metafield Options - 1 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_1 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_1 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_1 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_1 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_1.value %}
+          {% if product.metafields.custom.additional_variant_data_1.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_1.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_1.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_1.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_1.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_1.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_1.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_1.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_2 != blank and product.metafields.custom.additional_variant_products_2 != blank %}
+    <!-- Metafield Options - 2 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_2 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_2 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_2 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_2 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_2.value %}
+          {% if product.metafields.custom.additional_variant_data_2.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_2.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_2.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_2.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_2.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_2.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_2.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_2.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_3 != blank and product.metafields.custom.additional_variant_products_3 != blank %}
+    <!-- Metafield Options - 3 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_3 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_3 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_3 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_3 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_3.value %}
+          {% if product.metafields.custom.additional_variant_data_3.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_3.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_3.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_3.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_3.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_3.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_3.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_3.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_4 != blank and product.metafields.custom.additional_variant_products_4 != blank %}
+    <!-- Metafield Options - 4 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_4 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_4 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_4 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_4 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_4.value %}
+          {% if product.metafields.custom.additional_variant_data_4.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_4.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_4.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_4.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_4.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_4.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_4.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_4.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_5 != blank and product.metafields.custom.additional_variant_products_5 != blank %}
+    <!-- Metafield Options - 5 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_5 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_5 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_5 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_5 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_5.value %}
+          {% if product.metafields.custom.additional_variant_data_5.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_5.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_5.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_5.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_5.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_5.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_5.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_5.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_6 != blank and product.metafields.custom.additional_variant_products_6 != blank %}
+    <!-- Metafield Options - 6 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_6 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_6 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_6 }}</span>
+      </div>
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_6 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_6.value %}
+          {% if product.metafields.custom.additional_variant_data_6.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_6.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_6.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_6.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_6.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_6.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_6.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_6.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_7 != blank and product.metafields.custom.additional_variant_products_7 != blank %}
+    <!-- Metafield Options - 7 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_7 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_7 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_7 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_7 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_7.value %}
+          {% if product.metafields.custom.additional_variant_data_7.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_7.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_7.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_7.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_7.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_7.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_7.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_7.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_8 != blank and product.metafields.custom.additional_variant_products_8 != blank %}
+    <!-- Metafield Options - 8 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_8 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_8 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_8 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_8 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_8.value %}
+          {% if product.metafields.custom.additional_variant_data_8.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_8.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_8.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_8.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_8.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_8.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_8.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_8.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_9 != blank and product.metafields.custom.additional_variant_products_9 != blank %}
+    <!-- Metafield Options - 9 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_9 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_9 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_9 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_9 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_9.value %}
+          {% if product.metafields.custom.additional_variant_data_9.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_9.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_9.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_9.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_9.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_9.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_9.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_9.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.additional_variant_data_10 != blank and product.metafields.custom.additional_variant_products_10 != blank %}
+    <!-- Metafield Options - 10 -->
+    <div class="metafield_variant_selector {% if product.metafields.custom.additional_variant_title_10 contains "!" %}primary{%- else -%} secondary{%- endif -%}">
+      <div class="product-form__option-name__container">
+        <span class="product-form__option-name metafield-variant_title" >{{ product.metafields.custom.additional_variant_title_10 | replace: "!", "" }}</span>
+        <span class="product-form__option-text">{{ product.metafields.custom.additional_variant_text_10 }}</span>
+      </div>
+
+      {% assign cleanTitle = product.metafields.custom.additional_variant_title_10 | downcase %}
+      {% if cleanTitle contains "colour" %} {%- assign is_color = true -%}{% else %}{%- assign is_color = false -%}{% endif %}  
+
+      <div class="metafield_variant_items">
+        {% for option in product.metafields.custom.additional_variant_products_10.value %}
+          {% if product.metafields.custom.additional_variant_data_10.value[forloop.index0] != blank %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_10.value[forloop.index0] %}
+              <a href="{{ option.url }}">
+            {% endunless %}
+            {% if is_color %}
+              <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if currentVariant contains product.metafields.custom.additional_variant_data_10.value[forloop.index0] %}checked{% endif %} data-option-position="{{ option.position }}">
+                <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: product.metafields.custom.additional_variant_data_10.value[forloop.index0] %}" title="{{ product.metafields.custom.additional_variant_data_10.value[forloop.index0] | escape }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                  {%- render 'icon', icon: 'cross-sold-out' -%}
+                </label>
+              </div>
+            {% else %}
+              <div class="block-swatch__item {%- if currentVariant contains product.metafields.custom.additional_variant_data_10.value[forloop.index0] %} block-swatch__item--selected {%- endif -%}">
+                <span class="metafield_variant">
+                  {{ product.metafields.custom.additional_variant_data_10.value[forloop.index0] }}
+                </span>
+              </div>
+            {% endif %}
+            {%- unless currentVariant contains product.metafields.custom.additional_variant_data_10.value[forloop.index0] %}
+            </a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% comment %}
+    Shopify Variant Options
+  {% endcomment %}
+  {%- unless product.has_only_default_variant -%}
+    <div class="product-form__variants" {{ block.shopify_attributes }}>
+      {%- for option in product.options_with_values -%}
+        {%- assign downcase_option = option.name | downcase -%}
+        {%- capture option_name -%}{{ section.id }}-{{ product.id }}-{{ forloop.index }}{%- endcapture -%}
+
+        {%- assign option_selector_type = 'select' -%}
+
+        {%- if block.settings.color_mode != 'block' and block.settings.color_mode != 'dropdown' and color_label contains downcase_option -%}
+          {%- comment -%}NOTE: even if the merchant is using the mode to display variant images, if ALL variant do not have an associated image, we fallback to color{%- endcomment -%}
+
+          {%- assign has_image_attached_to_all_variants = true -%}
+
+          {%- for variant in product.variants -%}
+            {%- unless variant.image -%}
+              {%- assign has_image_attached_to_all_variants = false -%}
+              {%- break -%}
+            {%- endunless -%}
+          {%- endfor -%}
+
+          {%- if block.settings.color_mode == 'color' or has_image_attached_to_all_variants == false -%}
+            {%- assign option_selector_type = 'color' -%}
+          {%- else -%}
+            {%- assign option_selector_type = 'variant' -%}
+          {%- endif -%}
+        {%- else -%}
+          {%- if color_label contains downcase_option -%}
+            {%- if block.settings.color_mode == 'block' -%}
+              {%- assign option_selector_type = 'block' -%}
+            {%- endif -%}
+          {%- elsif block.settings.selector_mode == 'block' -%}
+            {%- assign option_selector_type = 'block' -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        <div class="product-form__option" data-selector-type="{{ option_selector_type }}">
+          {%- case option_selector_type -%}
+            {%- when 'color' -%}
+              <span class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span>
+
+              <div class="color-swatch-list color-swatch-list--large">
+                {%- assign color_swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
+
+                {%- for value in option.values -%}
+                  {%- assign downcased_value = value | downcase -%}
+                  {%- capture color_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                  <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                    <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-position="{{ option.position }}">
+                    <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: downcased_value %}" title="{{ value | escape }}">
+                      <span class="visually-hidden">{{ value }}</span>
+                      {%- render 'icon', icon: 'cross-sold-out' -%}
+                    </label>
+                  </div>
+                {%- endfor -%}
+              </div>
+
+            {%- when 'variant' -%}
+              <span class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span>
+
+              <div class="variant-swatch-list">
+                {%- capture option_name -%}option{{ option.position }}{%- endcapture -%}
+
+                {%- for value in option.values -%}
+                  {%- capture variant_swatch_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                  {%- for variant in product.variants -%}
+                    {%- if variant[option_name] == value and variant.image -%}
+                      <div class="variant-swatch">
+                        <input class="variant-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ variant_swatch_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-position="{{ option.position }}">
+
+                        <label class="variant-swatch__item" for="{{ variant_swatch_id }}" title="{{ value | escape }}">
+                          <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: variant.image.aspect_ratio }}%">
+                            <img src="{{ variant.image | img_url: '120x' }}" alt="{{ variant.image.alt | escape }}">
+                          </div>
+
+                          {% render 'icon', icon: 'cross-sold-out' %}
+                        </label>
+                      </div>
+
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+              </div>
+
+            {%- when 'block' -%}
+              <span class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span> 
+                {% if forloop.index == 1 %}
+                  {% for variant in product.variants %}
+                    {% if variant.metafields.custom.variant_option_1_text != blank %}
+                      {%- assign optionColour = variant.metafields.custom.variant_option_1_text | split: '|' | last -%}
+                      {%- assign optionText = variant.metafields.custom.variant_option_1_text | split: '|' | first -%}
+                      <span style="color:#{{ optionColour }}" data-id="{{ variant.id }}" class="option-text option-text-1-{{ variant.id }} {% unless product.selected_or_first_available_variant.id == variant.id %}hidden{% endunless %}">{{ optionText }}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% if forloop.index == 2 %}
+                  {% for variant in product.variants %}
+                    {% if variant.metafields.custom.variant_option_2_text != blank %}
+                      {%- assign optionColour = variant.metafields.custom.variant_option_2_text | split: '|' | last -%}
+                      {%- assign optionText = variant.metafields.custom.variant_option_2_text | split: '|' | first -%}
+                      <span style="color:#{{ optionColour }}" data-id="{{ variant.id }}" class="option-text option-text-2-{{ variant.id }} {% unless product.selected_or_first_available_variant.id == variant.id %}hidden{% endunless %}">{{ optionText }}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% if forloop.index == 3 %}
+                  {% for variant in product.variants %}
+                    {% if variant.metafields.custom.variant_option_3_text != blank %}
+                      {%- assign optionColour = variant.metafields.custom.variant_option_3_text | split: '|' | last -%}
+                      {%- assign optionText = variant.metafields.custom.variant_option_3_text | split: '|' | first -%}
+                      <span style="color:#{{ optionColour }}" data-id="{{ variant.id }}" class="option-text option-text-3-{{ variant.id }} {% unless product.selected_or_first_available_variant.id == variant.id %}hidden{% endunless %}">{{ optionText }}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </span>
+
+              {%- assign option_name_handle = option.name | handleize -%}
+
+              <div class="block-swatch-list">
+                {%- for value in option.values -%}
+                  {%- capture block_swatch_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                  {%- comment -%} --- DYNAMIC SORTING LOGIC START --- {%- endcomment -%}
+                  {%- assign current_val_number = value | plus: 0 -%}
+                  {%- assign visual_order = 1 -%}
+
+                  {%- if option_name_handle contains 'depth' -%}
+                    {%- for other_value in option.values -%}
+                      {%- assign other_val_number = other_value | plus: 0 -%}
+                      {%- if other_val_number < current_val_number -%}
+                        {%- assign visual_order = visual_order | plus: 1 -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- else -%}
+                    {%- comment -%}For non-numeric options, just use natural order{%- endcomment -%}
+                    {%- assign visual_order = forloop.index -%}
+                  {%- endif -%}
+                  {%- comment -%} --- DYNAMIC SORTING LOGIC END --- {%- endcomment -%}
+
+                  <div class="block-swatch" style="order: {{ visual_order }};">
+                    <input class="block-swatch__radio product-form__single-selector" type="radio" name="{{ option.name }}" id="{{ block_swatch_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-position="{{ option.position }}">
+                    <label class="block-swatch__item" for="{{ block_swatch_id }}" title="{{ value | escape }}">
+                      <span class="block-swatch__item-text">{{ value }}</span>
+                    </label>
+                  </div>
+                {%- endfor -%}
+                {%- if option.name == 'Load Per Shelf (UDL)' -%}
+                  {% if product.metafields.custom.additional_variant_title_5 %}
+                    <p>{{ product.metafields.custom.additional_variant_title_5 }}</p>
+                  {% endif %}
+                {%- endif -%}
+              </div>
+            {%- when 'select' -%}
+              <label for="{{ option_name }}" class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></label>
+
+              <div class="select-wrapper select-wrapper--primary">
+                {%- render 'icon', icon: 'arrow-bottom' -%}
+
+                <select class="product-form__single-selector" name="{{ option_name }}" id="{{ option_name }}" data-option-position="{{ option.position }}">
+                  {%- for value in option.values -%}
+                    <option value="{{ value | escape }}" {% if value == option.selected_value %}selected="selected"{% endif %}>{{ value }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+
+      <div class="no-js product-form__option">
+        <label class="product-form__option-name text--strong" for="product-select-{{ product.id }}">{{ 'product.form.variant' | t }}</label>
+
+        <div class="select-wrapper select-wrapper--primary">
+          <select id="product-select-{{ product.id }}" name="id">
+            {%- for variant in product.variants -%}
+              <option {% if variant == selected_variant %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }} - {{ variant.price | money }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    <input type="hidden" name="id" data-sku="{{ selected_variant.sku }}" value="{{ selected_variant.id }}">
+  {%- endunless -%}
+
+  {%- for variant in product.variants -%}
+    {%- if variant.metafields.custom.has_upgrades and variant.metafields.custom.upgrade_products_1 -%}
+      {%- assign upgrade_text_options_1 = variant.metafields.custom.upgrade_product_text_1.value | split: ',' -%}
+      
+      {% if upgrade_text_options_1 != blank %}
+        <div class="upgrade_products upgrade_{{ variant.id }} {% if variant.metafields.custom.upgrade_product_title_1 contains "!" %}primary{% endif %}" {% if product.selected_or_first_available_variant != variant %}hidden="hidden"{% endif %}>
+          <span class="product-form__option-text text--strong" {%- if variant.metafields.custom.upgrade_product_colour_1 -%} style="color: {{ variant.metafields.custom.upgrade_product_colour_1 }};" {% endif %}> {{ variant.metafields.custom.upgrade_product_title_1  | remove: "!" }} </span>
+
+          {% assign split_products = variant.metafields.custom.upgrade_products_1.value | split: ',' %}
+          {%- for options in variant.metafields.custom.upgrade_products_1.value -%}
+            <a {% if upgrade_text_options_1[forloop.index0] contains "(no-link)" %}class="non-linkable-options"{% endif %} {% unless upgrade_text_options_1[forloop.index0] contains "(no-link)" %}href="{{ options.url }}"{% endunless %}>
+              <div class="block-swatch__item">
+                <span class="metafield_variant" id="upgrade_{{ variant.id }}">
+                  {{ upgrade_text_options_1[forloop.index0] | replace: '"', '' | replace: '[', '' | replace: ']', '' | replace: '(no-link)', '' | strip_html }}
+                </span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {%- endif -%}
+
+    {%- if variant.metafields.custom.has_upgrades and variant.metafields.custom.upgrade_products_2 -%}
+      {%- assign upgrade_text_options_2 = variant.metafields.custom.upgrade_product_text_2.value | split: ',' -%}
+
+      {% if upgrade_text_options_2 != blank %}
+        <div class="upgrade_products upgrade_{{ variant.id }} {% if variant.metafields.custom.upgrade_product_title_2 contains "!" %}primary{% endif %}" {% if product.selected_or_first_available_variant != variant %}hidden="hidden"{% endif %}>
+          <span class="product-form__option-text text--strong"  {%- if variant.metafields.custom.upgrade_product_colour_2 -%} style="color: {{ variant.metafields.custom.upgrade_product_colour_2 }};" {% endif %} > {{ variant.metafields.custom.upgrade_product_title_2 | remove: "!" }} </span>
+
+          {% assign split_products = variant.metafields.custom.upgrade_products_2.value | split: ',' %}
+          {%- for options in variant.metafields.custom.upgrade_products_2.value -%}
+            <a {% if upgrade_text_options_2[forloop.index0] contains "(no-link)" %}class="non-linkable-options"{% endif %} {% unless upgrade_text_options_2[forloop.index0] contains "(no-link)" %}href="{{ options.url }}"{% endunless %}>
+              <div class="block-swatch__item">
+                <span class="metafield_variant" id="upgrade_{{ variant.id }}">
+                {{ upgrade_text_options_2[forloop.index0] | replace: '"', '' | replace: '[', '' | replace: ']', '' | replace: '(no-link)', '' | strip_html }}
+                </span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {%- endif -%}
+
+    {%- if variant.metafields.custom.has_upgrades and variant.metafields.custom.upgrade_products_3 -%}
+      {%- assign upgrade_text_options_3 = variant.metafields.custom.upgrade_product_text_3.value | split: ',' -%}
+      
+      {% if upgrade_text_options_3 != blank %}
+        <div class="upgrade_products upgrade_{{ variant.id }} {% if variant.metafields.custom.upgrade_product_title_3 contains "!" %}primary{% endif %}" {% if product.selected_or_first_available_variant != variant %}hidden="hidden"{% endif %}>
+          <span class="product-form__option-text text--strong" {%- if variant.metafields.custom.upgrade_product_colour_3 -%} style="color: {{ variant.metafields.custom.upgrade_product_colour_3 }};" {% endif %}> {{ variant.metafields.custom.upgrade_product_title_3 | remove: "!" }} </span>
+
+          {% assign split_products = variant.metafields.custom.upgrade_products_3.value | split: ',' %}
+          {%- for options in variant.metafields.custom.upgrade_products_3.value -%}
+            <a {% if upgrade_text_options_3[forloop.index0] contains "(no-link)" %}class="non-linkable-options"{% endif %} {% unless upgrade_text_options_3[forloop.index0] contains "(no-link)" %}href="{{ options.url }}"{% endunless %}>
+              <div class="block-swatch__item">
+                <span class="metafield_variant"  id="upgrade_{{ variant.id }}">
+                {{ upgrade_text_options_3[forloop.index0] | replace: '"', '' | replace: '[', '' | replace: ']', '' | replace: '(no-link)', '' | strip_html }}
+                </span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {%- endif -%}
+  {%- endfor -%}
+
+{% if product.metafields.custom.additional_variant_data_1 != blank and product.metafields.custom.additional_variant_products_1 != blank %}
+</div>
+{% endif %}
+
+{%- comment -%}
+  Upgrade product to add additional price if variant metafield:
+  variant.metafields.custom.upgrade_product
+{%- endcomment -%}
+
+{% if product.metafields.custom.product_variations != blank %}
+  {% assign option_1 = '' %}
+  {% assign option_2 = '' %}
+  {% assign option_3 = '' %}
+  {% assign option_4 = '' %}
+  {% assign option_5 = '' %}
+  {% assign option_6 = '' %}
+  {% assign product_variations = product.metafields.custom.product_variations.value %}
+  {% for product_variant in product_variations %}
+    {%- assign options = product_variant | split: '_' -%}
+    {% for option in options %}
+      {% if forloop.index == 2 %}
+        {% assign option_1 = option_1 | append: ', ' | append: option %}
+      {% endif %}
+      {% if forloop.index == 3 %}
+        {% assign option_2 = option_2 | append: ', ' | append: option %}
+      {% endif %}
+      {% if forloop.index == 4 %}
+        {% assign option_3 = option_3 | append: ', ' | append: option %}
+      {% endif %}
+      {% if forloop.index == 5 %}
+        {% assign option_4 = option_4 | append: ', ' | append: option %}
+      {% endif %}
+      {% if forloop.index == 6 %}
+        {% assign option_5 = option_5 | append: ', ' | append: option %}
+      {% endif %}
+      {% if forloop.index == 7 %}
+        {% assign option_6 = option_6 | append: ', ' | append: option %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  {% assign option_1 = option_1 | remove_first: ', ' | split: ', ' | uniq %}
+  {% assign option_2 = option_2 | remove_first: ', ' | split: ', ' | uniq %}
+  {% assign option_3 = option_3 | remove_first: ', ' | split: ', ' | uniq %}
+  {% assign option_4 = option_4 | remove_first: ', ' | split: ', ' | uniq %}
+  {% assign option_5 = option_5 | remove_first: ', ' | split: ', ' | uniq %}
+  {% assign option_6 = option_6 | remove_first: ', ' | split: ', ' | uniq %}
+
+  <div class="product-form__option">
+    {% if option_1 != blank %}
+      <span class="product-form__option-name text--strong">Weight:</span>
+      <div class="block-swatch-list block-swatch-list--meta">
+        {% for option in option_1 %}
+          {% assign option_handle = option | handleize %}
+          <div class="block-swatch">
+            <input class="block-swatch__radio product-form__single-selector url-swatch" type="radio" name="{{ option_1 }}" id="{{ option_handle }}-{{ forloop.index }}" value="{{ option | escape }}" data-handle="{{ option | handleize }}" {% if product.handle contains option_handle %}checked{% endif %} data-option-position="{{ option }}-{{ forloop.index }}">
+            <label class="block-swatch__item" for="{{ option_handle }}-{{ forloop.index }}" title="{{ option | escape }}">
+              <span class="block-swatch__item-text">{{ option }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-form__option">
+    {% if option_2 != blank %}
+      <span class="product-form__option-name text--strong">Colour:</span>
+      <div class="block-swatch-list block-swatch-list--meta">
+        {% for option in option_1 %}
+          {% assign option_handle = option | handleize %}
+          <div class="block-swatch">
+            <input class="block-swatch__radio product-form__single-selector url-swatch" type="radio" name="{{ option_1 }}" id="{{ option_handle }}-{{ forloop.index }}" value="{{ option | escape }}" data-handle="{{ option | handleize }}" {% if product.handle contains option_handle %}checked{% endif %} data-option-position="{{ option }}-{{ forloop.index }}">
+            <label class="block-swatch__item" for="{{ option_handle }}-{{ forloop.index }}" title="{{ option | escape }}">
+              <span class="block-swatch__item-text">{{ option }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-form__option">
+    {% if option_3 != blank %}
+      <div class="block-swatch-list block-swatch-list--meta">
+        {% for option in option_3 %}
+          {% assign option_handle = option | handleize %}
+          <div class="block-swatch">
+            <input class="block-swatch__radio product-form__single-selector url-swatch" type="radio" name="{{ option_3 }}" id="{{ option_handle }}-{{ forloop.index }}" value="{{ option | escape }}" data-handle="{{ option | handleize }}" {% if product.handle contains option_handle %}checked{% endif %} data-option-position="{{ option }}-{{ forloop.index }}">
+            <label class="block-swatch__item" for="{{ option_handle }}-{{ forloop.index }}" title="{{ option | escape }}">
+              <span class="block-swatch__item-text">{{ option }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-form__option">
+    {% if option_4 != blank %}
+      <div class="block-swatch-list block-swatch-list--meta">
+        {% for option in option_4 %}
+          {% assign option_handle = option | handleize %}
+          <div class="block-swatch">
+            <input class="block-swatch__radio product-form__single-selector url-swatch" type="radio" name="{{ option_4 }}" id="{{ option_handle }}-{{ forloop.index }}" value="{{ option | escape }}" data-handle="{{ option | handleize }}" {% if product.handle contains option_handle %}checked{% endif %} data-option-position="{{ option }}-{{ forloop.index }}">
+            <label class="block-swatch__item" for="{{ option_handle }}-{{ forloop.index }}" title="{{ option | escape }}">
+              <span class="block-swatch__item-text">{{ option }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-form__option">
+    {% if option_5 != blank %}
+      <div class="block-swatch-list block-swatch-list--meta">
+        {% for option in option_5 %}
+          {% assign option_handle = option | handleize %}
+          <div class="block-swatch">
+            <input class="block-swatch__radio product-form__single-selector url-swatch" type="radio" name="{{ option_5 }}" id="{{ option_handle }}-{{ forloop.index }}" value="{{ option | escape }}" data-handle="{{ option | handleize }}" {% if product.handle contains option_handle %}checked{% endif %} data-option-position="{{ option }}-{{ forloop.index }}">
+            <label class="block-swatch__item" for="{{ option_handle }}-{{ forloop.index }}" title="{{ option | escape }}">
+              <span class="block-swatch__item-text">{{ option }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-form__option">
+    {% if option_6 != blank %}
+      <div class="block-swatch-list block-swatch-list--meta">
+        {% for option in option_6 %}
+          {% assign option_handle = option | handleize %}
+          <div class="block-swatch">
+            <input class="block-swatch__radio product-form__single-selector url-swatch" type="radio" name="{{ option_6 }}" id="{{ option_handle }}-{{ forloop.index }}" value="{{ option | escape }}" data-handle="{{ option | handleize }}" {% if product.handle contains option_handle %}checked{% endif %} data-option-position="{{ option }}-{{ forloop.index }}">
+            <label class="block-swatch__item" for="{{ option_handle }}-{{ forloop.index }}" title="{{ option | escape }}">
+              <span class="block-swatch__item-text">{{ option }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

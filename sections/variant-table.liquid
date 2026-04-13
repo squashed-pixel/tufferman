@@ -1,0 +1,243 @@
+{%- assign showGrid = false -%}
+{%- assign gridFirst = false -%}
+{%- assign showDimensions = false -%}
+{%- for variant in product.variants -%}
+    {% if variant.metafields.custom.show_in_grid == true %}
+        {%- assign showGrid = true -%}
+    {% endif %}
+    {% if variant.metafields.custom.grid_column_1 != blank and variant.metafields.custom.grid_column_2 != blank and variant.metafields.custom.grid_column_3 != blank %}
+        {%- assign showDimensions = true -%}
+    {% endif %}
+{% endfor %}
+{% if settings.page_view == 'grid' or product.tags contains 'grid' %}
+    {%- assign gridFirst = true -%}
+{% endif %}
+
+{%- if showGrid == true -%}
+    <section data-section-id="{{ section.id }}" data-section-type="variant-table" data-section-settings='{{ section_settings }}'>
+        <div id="variantContainer" class="table-container">
+            {% render 'view-toggle', spacing: true %}
+            <div class="table-container__content hidden-phone">
+                <table id="variantTable" class="table variant-table table--loose">
+                    <thead>
+                        <tr>
+                            {% assign baseVariant = product.variants | first %}
+                            {% assign titles = baseVariant.metafields.custom.grid_titles %}
+                            <th>{{ 'product.general.code' | t }}</th>
+                            <th>{{ 'product.general.description' | t }}</th>
+                            {% if baseVariant.metafields.custom.grid_column_1 != blank or baseVariant.metafields.custom.grid_column_2 != blank or baseVariant.metafields.custom.grid_column_3 != blank %}
+                                <th>{{ 'product.general.dimensions' | t }}</th>
+                            {% endif %}
+                            {% if titles.value[3] != blank %}
+                                <th>{{ titles.value[3] }} </th>
+                            {% endif %}
+                            {% if titles.value[3] != blank %}
+                                <th>{{ titles.value[4] }} </th>
+                            {% endif %}
+                            <th class="variant-tier-heading">{{ 'product.general.price' | t }}</th>
+                            <th>{{ 'product.general.quant' | t }}</th>
+                            <th></th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for variant in product.variants -%}
+                            {% if variant.metafields.custom.show_in_grid == true %}
+                                {%- assign product_form_id_variant = 'product_form_' | append: section.id | append: product.id | append: variant.id -%}
+                                <tr>
+                                    <td>{{ variant.sku }}</td>
+                                    <td>{{ variant.metafields.custom.description }}</td>
+                                    {% if variant.metafields.custom.grid_column_1 != blank or variant.metafields.custom.grid_column_2 != blank or variant.metafields.custom.grid_column_3 != blank %}
+                                        <td>{{ variant.metafields.custom.grid_column_1 }} x {{ variant.metafields.custom.grid_column_2 }} x {{ variant.metafields.custom.grid_column_3 }}</td>
+                                    {% endif %}
+                                    {% if variant.metafields.custom.grid_column_4 != blank %}
+                                        <td>{{ variant.metafields.custom.grid_column_4 }}</td>
+                                    {% endif %}
+                                    {% if variant.metafields.custom.grid_column_5 != blank %}
+                                        <td>{{ variant.metafields.custom.grid_column_5 }}</td>
+                                    {% endif %}
+                                    <td class="variant-prices" data-id="{{ variant.id }}">
+                                        {% if variant.compare_at_price > variant.price %}
+                                            <span class="was-price price-js">
+                                                {%- if settings.currency_code_enabled -%}
+                                                    {{- variant.compare_at_price | money_with_currency -}}
+                                                {%- else -%}
+                                                    {{- variant.compare_at_price | money -}}
+                                                {%- endif -%}
+                                            </span>
+                                        {% endif %}
+                            
+                                        <span class="price-js">{{ variant.price | money }}</span>
+                                    </td>
+                                    <td class="quantity-selector-td">
+                                        <quantity-selector class="quantity-selector quantity-selector--product">
+                                            <button type="button" class="quantity-selector__button quantity-selector__button--decrease" aria-label="{{ 'cart.items.decrease_quantity' | t }}" title="{{ 'cart.items.decrease_quantity' | t }}">{% render 'icon', icon: 'minus' %}</button>
+                                            <input name="quantity"
+                                                aria-label="{{ 'product.form.quantity' | t }}"
+                                                class="quantity-selector__value"
+                                                inputmode="numeric"
+                                                value="1"
+                                                size="3"
+                                                {% if variant.inventory_policy == 'deny' and variant.inventory_management == 'shopify' %}
+                                                    max="{{ variant.inventory_quantity }}"
+                                                {% endif %}
+                                                form="{{ product_form_id_variant }}">
+                                            <button type="button" class="quantity-selector__button quantity-selector__button--increase" aria-label="{{ 'cart.items.increase_quantity' | t }}" title="{{ 'cart.items.increase_quantity' | t }}">{% render 'icon', icon: 'plus' %}</button>
+                                        </quantity-selector>
+                                    </td>
+                                    <td class="table__cell--right">
+                                        {%- form 'product', product, id: product_form_id_variant, class: 'product-form--variant' -%}
+                                            <input type="text" name="id" value="{{ variant.id }}" hidden>
+
+                                            {% assign contained = false %}
+                                            {% assign line_quant = '' %}
+                                            {% for line_item in cart.items %}
+                                                {% if line_item.variant.title == variant.title and line_item.quantity == variant.inventory_quantity %}
+                                                    {% assign contained = true %}
+                                                    {% assign line_quant = line_item.quantity %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <button 
+                                                type="submit" {% unless variant.available %}disabled{% endunless %}
+                                                {{ variant.available }}
+                                                class="product-form__add-button button button--primary {% unless variant.available %}button--disabled{% endunless %}"
+                                                data-action="add-to-cart">
+                                                {% if variant.available %}
+                                                    {{ 'product.form.add_to_cart' | t }}
+                                                {% else %}
+                                                    {{ 'product.form.out' | t }}
+                                                {% endif %}
+                                            </button>
+                                            <p class="table-alert alert alert--error">Not enough in stock. Only {{ variant.inventory_quantity }} instock!</p>
+                                        {%- endform -%}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {%- endfor -%}
+                    </tbody>
+                </table>
+            </div>
+            <div class="hidden-tablet-and-up mobile-table-variants">
+                {%- for variant in product.variants -%}
+                    {% if variant.metafields.custom.show_in_grid == true %}
+                        {%- assign product_form_id_variant = 'product_form_mobile_' | append: section.id | append: product.id | append: variant.id -%}
+                        <div class="mobile-variant">
+                            <div class="variant-grid">
+                                <div class="variant-grid-names">
+                                    <p>{{ variant.metafields.custom.description }}</p>
+                                    {% if variant.metafields.custom.grid_column_1 != blank and variant.metafields.custom.grid_column_2 != blank and variant.metafields.custom.grid_column_3 != blank %}
+                                        <p>{{ variant.metafields.custom.grid_column_1 }} x {{ variant.metafields.custom.grid_column_2 }} x {{ variant.metafields.custom.grid_column_3 }}</p>
+                                    {% endif %}
+
+                                    {% assign titles = baseVariant.metafields.custom.grid_titles %}
+
+                                    {% if titles.value[3] != blank and variant.metafields.custom.grid_column_4 != blank %}
+                                        <p>{{ titles.value[3] }}: {{ variant.metafields.custom.grid_column_4 }}</p>
+                                    {% endif %}
+
+                                    {% if titles.value[3] != blank and variant.metafields.custom.grid_column_5 != blank %}
+                                        <p>{{ titles.value[4] }}: {{ variant.metafields.custom.grid_column_5 }}</p>
+                                    {% endif %}
+
+                                </div>
+                                <div class="variant-grid-pricing">
+                                    <p>Code: {{ variant.sku }}</p>
+                                    <p class="variant-grid-pricing__first">
+                                        {% if variant.compare_at_price > variant.price %}
+                                            <span class="was-price price-js">
+                                                {%- if settings.currency_code_enabled -%}
+                                                    {{- variant.compare_at_price | money_with_currency -}}
+                                                {%- else -%}
+                                                    {{- variant.compare_at_price | money -}}
+                                                {%- endif -%}
+                                            </span>
+                                        {% endif %}
+                                        <span class="price-js">{{ variant.price | money }}</span>
+                                        <div class="extra-price" data-variant-price="{{ variant.id }}"></div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="variant-mini-form variant-mini-form--mobile">
+                                <quantity-selector class="quantity-selector quantity-selector--product">
+                                    <button type="button" class="quantity-selector__button quantity-selector__button--decrease" aria-label="{{ 'cart.items.decrease_quantity' | t }}" title="{{ 'cart.items.decrease_quantity' | t }}">{% render 'icon', icon: 'minus' %}</button>
+                                    <input name="quantity-{{ forloop.index }}"
+                                        aria-label="{{ 'product.form.quantity' | t }}"
+                                        class="quantity-selector__value"
+                                        inputmode="numeric"
+                                        value="1"
+                                        size="3"
+                                        form="{{ product_form_id_variant }}"
+                                        {% if variant.inventory_policy == 'deny' and variant.inventory_management == 'shopify' %}
+                                            max="{{ variant.inventory_quantity }}"
+                                        {% endif %}>
+                                    <button type="button" class="quantity-selector__button quantity-selector__button--increase" aria-label="{{ 'cart.items.increase_quantity' | t }}" title="{{ 'cart.items.increase_quantity' | t }}">{% render 'icon', icon: 'plus' %}</button>
+                                </quantity-selector>
+                                <div>
+                                    {%- form 'product', product, id: product_form_id_variant, class: 'product-form--variant' -%}
+                                        <input type="text" name="id" value="{{ variant.id }}" hidden>
+                                        {% assign contained = false %}
+                                        {% assign line_quant = '' %}
+                                        {% for line_item in cart.items %}
+                                            {% if line_item.variant.title == variant.title and line_item.quantity == variant.inventory_quantity %}
+                                                {% assign contained = true %}
+                                                {% assign line_quant = line_item.quantity %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        <button 
+                                            type="submit" {% if variant.inventory_quantity == 0 %}disabled{% endif %} 
+                                            class="product-form__add-button variant-add variant-add--mobile variant-add-{{ forloop.index }} button button--primary" 
+                                            data-id="{{ variant.id }}" 
+                                            data-inventory="{{ variant.inventory_quantity }}"
+                                            data-width="{{ variant.metafields.custom.grid_column_2 }}" 
+                                            data-depth="{{ variant.metafields.custom.grid_column_3 }}"
+                                            data-lps="{{ variant.metafields.custom.grid_column_5 }}" 
+                                            data-line-quant="{{ line_quant }}"
+                                            data-quant="1">{% unless variant.inventory_quantity > 0 %}{{ 'product.form.out' | t }}{% else %}{{ 'product.form.add_to_cart' | t }}{% endunless %}
+                                        </button>
+                                        <p class="table-alert alert alert--error">Not enough in stock. Only {{ variant.inventory_quantity }} instock!</p>
+                                    {%- endform -%}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {%- if titles.value[3] == 'Levels' -%}
+            <script>
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("variantTable");
+                switching = true;
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[3];
+                        y = rows[i + 1].getElementsByTagName("TD")[3];
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                };
+            </script> 
+        {%- endif -%}
+    </section>
+{%- endif -%}
+
+{% schema %}
+    {
+        "name": "Variant Table",
+        "presets": [
+            {
+                "category": "Table",
+                "name": "Variant Table",
+                "settings": {}
+            }
+        ]
+    }
+{% endschema %}
