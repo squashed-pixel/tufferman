@@ -90,7 +90,11 @@
           </div>
 
           <div class="product-block-list__item product-block-list__item--info">
-            {%- render 'product-info', flooring_calculator_text: section.settings.flooring_calculator_text -%}
+            {% if template.suffix == 'custom-template' %}
+              {%- render 'custom-product-info', flooring_calculator_text: section.settings.flooring_calculator_text -%}
+            {% else %}
+              {%- render 'product-info', flooring_calculator_text: section.settings.flooring_calculator_text -%}
+            {% endif %}
           </div>
 
           {%- for block in section.blocks -%}
