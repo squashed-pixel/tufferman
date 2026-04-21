@@ -92,9 +92,9 @@
             <span class="discount-price-js vat-watcher ex-vat">{{ selected_variant.compare_at_price | minus: selected_variant.price  | divided_by: 1.2 | money }}</span>
           {%- endcapture -%}
         {%- endif -%}
-        <span class="product-label product-label--on-sale display-desktop" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+        <span class="product-label product-label--on-sale display-desktop" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none !important"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
         <div class="reviews-sale-container">
-          <span class="product-label product-label--on-sale" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+          <span class="product-label product-label--on-sale" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none !important"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
           {%- for block in section.blocks -%}
           {%- if block.settings.show_reviews_badge -%}
             <a href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#judgeme_product_reviews" class="product-meta__reviews-badge link" data-offset="250" data-no-instant>
