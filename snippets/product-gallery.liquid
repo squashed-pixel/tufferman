@@ -7,6 +7,16 @@
         {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
 
         <div class="product-gallery__carousel-wrapper">
+          {% if product.template_suffix == 'custom-template' and product.metafields.custom.product_details_banner != blank %}
+            <div class="product-gallery-banner">
+              <img
+                src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
+                alt="{{ product.metafields.custom.product_details_banner.alt }}"
+                width="{{ product.metafields.custom.product_details_banner.width }}"
+                height="{{ product.metafields.custom.product_details_banner.height }}"
+                loading="lazy">
+            </div>
+          {% endif %}
           <div class="product-gallery__carousel {% if template != 'product.quick-view' and section.settings.enable_image_zoom %}product-gallery__carousel--zoomable{% endif %}" data-media-count="{{ product.media.size }}" data-initial-media-id="{{ selected_media.id }}">
             {%- if product.media.size > 0 -%}
               {%- for media in product.media -%}
@@ -224,14 +234,41 @@
                 {% assign product_gallery_text_2 = 'product.form.24_del' | t %}
               {% endif %}
 
-              <div class="product-indicators">
-                <div class="stock-available-indicator">
-                  <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_1 }}</span>
+              
+              {% if product.template_suffix == 'custom-template' %}
+                <div class="desktop-logo-only">
+                  <div class="included-items {{ settings.main_text_type }}">
+                    <span class=" {{ settings.main_text_type }}">{% if product.metafields.custom.what_s_included_text != blank %} {{ product.metafields.custom.what_s_included_text.value }} {% else %}{{settings.included_text }} {% endif %}</span>
+                    <ul class="included-items-list {{ settings.sub_text_type }}">
+                      {% if product.metafields.custom.select_product_include_option != blank %}
+                          {% for benefit in product.metafields.custom.select_product_include_option.value %}
+                            
+                            <div class="product-details-section">
+                              {% if benefit.icon != blank %}
+                                <img src="{{ benefit.icon | image_url }}" alt="{{ benefit.title }}" width="15px" height="15px">
+                              {% endif %}
+                              {% if benefit.text != blank %}
+                                <p>{{ benefit.text }}</p>
+                              {% endif %}
+                            </div>
+
+                          {% endfor %}
+                      {% endif %}
+                    </ul>
+                  </div>
                 </div>
-                <div class="delivery-available-indicator">
-                  <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_2 }}</span>
+              {% else %}
+                <div class="{% if product.template_suffix == 'custom-template' %} mobile-logo-only {% endif %}">
+                  <div class="product-indicators">
+                    <div class="stock-available-indicator">
+                      <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_1 }}</span>
+                    </div>
+                    <div class="delivery-available-indicator">
+                      <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_2 }}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              {% endif %}
             {%- endunless -%}
           {%- endif -%}
         {%- endif -%}

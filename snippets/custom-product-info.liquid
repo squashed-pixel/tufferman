@@ -1,0 +1,713 @@
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
+{%- assign product_form_id = 'product_form_' | append: section.id | append: product.id -%}
+
+<div class="card {% if product.media.size > 0 %}card--collapsed{% endif %} {% if template.name == 'product' %}card--sticky{% endif %}">
+  {%- if section.settings.enable_image_zoom -%}
+    <div id="product-zoom-{{ section.id }}" class="product__zoom-wrapper"></div>
+  {%- endif -%}
+
+  <div class="card__section">
+    {%- form 'product', product, id: product_form_id, class: 'product-form' -%}
+      {%- assign selected_variant = product.selected_or_first_available_variant -%}
+
+      {%- if block.settings.show_share_buttons -%}
+        {%- capture share_buttons -%}
+          {%- assign share_url = shop.url | append: product.url | url_param_escape -%}
+          {%- assign twitter_text = product.title | url_param_escape -%}
+          {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
+          {%- assign pinterest_image = product.featured_media | img_url: '1024x' | prepend: 'https:' -%}
+
+          <ul class="social-media__item-list list--unstyled" role="list">
+            <li class="social-media__item social-media__item--facebook">
+              <a href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook_share' | t }}">{%- render 'icon', icon: 'facebook' -%}</a>
+            </li>
+
+            <li class="social-media__item social-media__item--pibnterest">
+              <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.pinterest_pin' | t }}">{%- render 'icon', icon: 'pinterest' -%}</a>
+            </li>
+
+            <li class="social-media__item social-media__item--twitter">
+              <a href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.twitter_tweet' | t }}">{%- render 'icon', icon: 'twitter' -%}</a>
+            </li>
+
+            <li class="social-media__item">
+              <a href="mailto:?&subject={{ product.title | escape }}&body={{ share_url }}" aria-label="{{ 'general.social.email_share' | t }}">{% render 'icon', icon: 'email' %}</a>
+            </li>
+          </ul>
+        {%- endcapture -%}
+      {%- endif -%}
+
+    <div class="product-meta product-meta--border">
+      {%- if template.name == 'product' and template != 'product.quick-view' -%}
+        {% comment %}<p class="product-meta__vendor h1">{{ product.vendor }}</p>{% endcomment %}
+        <h1 class="product-meta__title heading h1">{{ product.title }}</h1>
+      {%- else -%}
+        <h3 class="product-meta__title heading h2">
+          <a href="{{ product.url }}">{{ product.title }}</a>
+        </h3>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+      {%- if block.settings.show_reviews_badge -%}
+        <div>
+        <a class="" href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#judgeme_product_reviews" class="product-meta__reviews-badge link" data-offset="250" data-no-instant>
+          {%- render 'product-rating', product: product -%}
+        </a>
+        </div>
+      {%- endif -%}
+      {% endfor %}
+
+      {%- if block.settings.show_vendor or block.settings.show_sku -%}
+        <div class="product-meta__reference">
+          {%- if block.settings.show_vendor -%}
+            {%- assign vendor_handle = product.vendor | handle -%}
+            {%- assign collection_for_vendor = collections[vendor_handle] -%}
+
+            {%- unless collection_for_vendor.empty? -%}
+              <a class="product-meta__vendor link link--accented" href="{{ collection_for_vendor.url }}">{{ product.vendor }}</a>
+            {%- else -%}
+              <a class="product-meta__vendor link link--accented" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
+            {%- endunless -%}
+          {%- endif -%}
+
+          {%- if block.settings.show_sku -%}
+            <span class="product-meta__sku" {% if selected_variant.sku == blank %}style="display: none"{% endif %}>
+              {{- 'product.general.sku' | t -}} <span class="product-meta__sku-number">{{ selected_variant.sku }}</span>
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}   
+    </div>
+
+    {%- capture product_labels -%}
+
+      {%- if settings.show_discount -%}
+        {%- assign savings = 0 -%}
+
+        {%- if settings.discount_mode == 'percentage' -%}
+          {%- assign savings = selected_variant.compare_at_price | minus: selected_variant.price | times: 100.0 | divided_by: selected_variant.compare_at_price | round | append: '%' -%}
+        {%- else -%}
+          {%- capture savings -%}
+            <span class="discount-price-js vat-watcher inc-vat">{{ selected_variant.compare_at_price | minus: selected_variant.price | money }}</span>
+            <span class="discount-price-js vat-watcher ex-vat">{{ selected_variant.compare_at_price | minus: selected_variant.price  | divided_by: 1.2 | money }}</span>
+          {%- endcapture -%}
+        {%- endif -%}
+        <span class="product-label product-label--on-sale display-desktop" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+        <div class="reviews-sale-container">
+          <span class="product-label product-label--on-sale" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+          {% comment %} {%- for block in section.blocks -%}
+          {%- if block.settings.show_reviews_badge -%}
+            <a href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#judgeme_product_reviews" class="product-meta__reviews-badge link" data-offset="250" data-no-instant>
+              {%- render 'product-rating', product: product -%}
+            </a>
+          {%- endif -%}
+          {% endfor %} {% endcomment %}
+        </div>
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <div class="price-label-container product-form__info-content product-form__info-content--top">
+
+        <div class="price-lists-vat">
+            <div class="price-list vat-watcher inc-vat">
+            {%- if selected_variant.compare_at_price > selected_variant.price -%}
+            <span class="price price--compare">
+                <span class="was-price">{{ 'product.general.sale_price' | t }} </span>
+
+                <span class="price-js">
+                {%- if settings.currency_code_enabled -%}
+                    {{- selected_variant.compare_at_price | money_with_currency -}}
+                {%- else -%}
+                    {{- selected_variant.compare_at_price | money -}}
+                {%- endif -%}
+                </span>
+            </span>
+            {% endif %}
+            <span class="grid-price-from">{{ 'product.general.grid_price_from' | t }}</span>
+            {%- if selected_variant.compare_at_price > selected_variant.price -%}
+                <div class="price_mobile--grouping">
+                <span class="price price--highlight">
+                <span class="visually-hidden">{{ 'product.general.price' | t }}</span>
+                <span class="price-js">
+                    {%- if settings.currency_code_enabled -%}
+                    {{- selected_variant.price | money_with_currency -}}
+                    {%- else -%}
+                    {{- selected_variant.price | money -}}
+                    {%- endif -%}
+                </span>
+                <span class="js-price-text">INC VAT</span>  
+                </span>
+                </div>
+            {%- else -%}
+                <span class="price price--highlight">
+                <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                <span class="price-js">
+                {%- if settings.currency_code_enabled -%}
+                    {{- selected_variant.price | money_with_currency -}}
+                {%- else -%}
+                    {{- selected_variant.price | money -}}
+                {%- endif -%}
+                </span>
+                <span class="js-price-text">INC VAT</span>
+                </span>
+            {%- endif -%}
+            </div>
+            <div class="price-list vat-watcher ex-vat">
+                <span class="grid-price-from">{{ 'product.general.grid_price_from' | t }}</span>
+                {%- if selected_variant.compare_at_price > selected_variant.price -%}
+                    <span class="price price--compare">
+                    <span class="was-price">{{ 'product.general.sale_price' | t }} </span>
+
+                    <span class="price-js">
+                        {%- if settings.currency_code_enabled -%}
+                        {{- selected_variant.compare_at_price | divided_by: 1.2 | money_with_currency -}}
+                        {%- else -%}
+                        {{- selected_variant.compare_at_price | divided_by: 1.2 | money -}}
+                        {%- endif -%}
+                    </span>
+                    </span>
+                    <div class="price_mobile--grouping">
+                    <span class="price price--highlight">
+                    <span class="visually-hidden">{{ 'product.general.price' | t }}</span>
+                    <span class="price-js">
+                        {%- if settings.currency_code_enabled -%}
+                        {{- selected_variant.price | divided_by: 1.2 | money_with_currency -}}
+                        {%- else -%}
+                        {{- selected_variant.price | divided_by: 1.2 | money -}}
+                        {%- endif -%}
+                    </span>
+                    <span class="js-price-text">EX VAT</span>
+                    </span>
+                    </div>
+                {%- else -%}
+                <div class="price_mobile--grouping">
+                    <span class="price price--highlight">
+                    <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                    <span class="price-js">
+                    {%- if settings.currency_code_enabled -%}
+                        {{- selected_variant.price | divided_by: 1.2 | money_with_currency -}}
+                    {%- else -%}
+                        {{- selected_variant.price | divided_by: 1.2 | money -}}
+                    {%- endif -%}
+                    </span>
+                    </span>
+                    <span class="js-price-text">EX VAT</span>
+                    </div>
+                {%- endif -%}
+                </div>
+            </div>
+
+        {%- if product_labels != blank -%}
+        <div class="product-meta__label-list">
+            {{- product_labels -}}
+        </div>
+        {%- endif -%}
+
+    </div>
+
+    <div class="product__options-wrapper product-details">
+      <div class="product-details__left">
+        <div class="product-meta">
+
+        {% if product.description contains '[Description 2]' %}
+          <div class="product-meta__second-description">
+          {% assign features = product.description | split: "[Description 2]" | last  %}
+          {% assign features = features | remove: ' data-mce-fragment="1"'  | remove: '<br>'  %}
+          <details id="featurebox">
+            <summary>{{ features | split: "</strong></p>" | first |  strip_html }} <span class="open">+</span><span class="close">-</span></summary>
+            <div class="details-content">{{ features | split: "</strong></p>" |  last }}</div>
+          </details>
+          </div>
+        {% endif %}
+
+
+        </div>
+
+
+      {%- for block in section.blocks -%}
+ 
+      {%- if block.settings.show_share_buttons -%}
+        <div class="product-meta__share-buttons hidden-phone">
+          {{ share_buttons }}
+        </div>
+      {%- endif -%}
+
+        {%- case block.type -%}
+          {%- when 'variant_selector' -%}
+            {% render 'product-variant-selector', product: product, form: form, block: block  %}
+
+            <p class="code-display">{{ 'product.general.code' | t }}: <span id="variantCode">{{ product.selected_or_first_available_variant.sku }}</span></p>
+            
+          {%- when 'text' -%}
+            {%- if block.settings.content != blank -%}
+              <div class="product-meta__text rte" {{ block.shopify_attributes }}>
+                {{- block.settings.content -}}
+              </div>
+            {%- endif -%}
+
+          {%- when 'button' -%}
+            {%- if block.settings.text != blank -%}
+              <a href="{{ block.settings.link }}" class="product-meta__button button button--primary" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</a>
+            {%- endif -%}
+
+          {%- when 'store_pickup' -%}
+            {%- comment -%}The availability container will be added automatically if there is store pickup available{%- endcomment -%}
+            <div class="product-meta__store-availability-container" {{ block.shopify_attributes }}>
+              {%- render 'store-availability', product_variant: product.selected_or_first_available_variant -%}
+            </div>
+
+          {%- when 'featured_description' -%}
+            {%- comment -%}This is only shown on the featured product section{%- endcomment -%}
+            {%- if product.description != blank -%}
+              <div class="product-meta__description rte" {{ block.shopify_attributes }}>
+                {{ product.description | remove: 'data-section-type="product"' }}
+              </div>
+            {%- endif -%}
+
+          {%- when '@app' -%}
+            {%- render block -%}
+        {%- endcase -%}
+      {%- endfor -%}
+      {% if product.tags contains 'floor-tile' %}
+        <div class="flooring">
+          <a href="#" class="flooring-link" id="flooring">Flooring Calculator</a>
+        </div>
+        {% if flooring_calculator_text != blank %}
+            <p>{{ flooring_calculator_text }}</p>
+        {% endif %}
+      {% endif %}
+      </div>
+
+      <div class="product-details__right">
+        {% comment %} {%- if product.metafields.custom.product_details_banner -%}
+          <div class="product-details__right__banner">
+            <img
+              src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
+              alt="{{ product.metafields.custom.product_details_banner.alt }}"
+              width="{{ product.metafields.custom.product_details_banner.width }}"
+              height="{{ product.metafields.custom.product_details_banner.height }}"
+              loading="lazy">
+          </div>
+        {%- endif -%} {% endcomment %}
+        <div id="buyblock" class="product-details__right__content" style="background-color: {{ settings.product_detail_background }}">
+          {%- assign product_meta_block = section.blocks | where: 'type', 'product_meta' | first -%}
+
+          {%- if product_meta_block != blank and product_meta_block.settings.show_share_buttons -%}
+            <div class="product-meta__share-buttons hidden-tablet-and-up">
+              <span class="text--strong">{{ 'product.general.share' | t }}</span>
+
+              {%- assign share_url = shop.url | append: product.url | url_param_escape -%}
+              {%- assign twitter_text = product.title | url_param_escape -%}
+              {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
+              {%- assign pinterest_image = product.featured_media | img_url: '1024x' | prepend: 'https:' -%}
+
+              <ul class="social-media__item-list list--unstyled" role="list">
+                <li class="social-media__item social-media__item--facebook">
+                  <a href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook_share' | t }}">{%- render 'icon', icon: 'facebook' -%}</a>
+                </li>
+
+                <li class="social-media__item social-media__item--pinterest">
+                  <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.pinterest_pin' | t }}">{%- render 'icon', icon: 'pinterest' -%}</a>
+                </li>
+
+                <li class="social-media__item social-media__item--twitter">
+                  <a href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.twitter_tweet' | t }}">{%- render 'icon', icon: 'twitter' -%}</a>
+                </li>
+
+                <li class="social-media__item">
+                  <a href="mailto:?&subject={{ product.title | escape }}&body={{ share_url }}" aria-label="{{ 'general.social.email_share' | t }}">{% render 'icon', icon: 'email' %}</a>
+                </li>
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <div class="product-form__info-list">
+            {%- if product.template_suffix != 'contact' -%}
+              <div class="product-form__info-item product-form__info-item--quantity">
+
+                <div class="product-form__info-content">
+                  <div class="quantity-selector quantity-selector--product">
+                    <button type="button" class="quantity-selector__button" data-action="decrease-picker-quantity" aria-label="{{ 'cart.items.decrease_quantity' | t }}" title="{{ 'cart.items.decrease_quantity' | t }}">{% render 'icon', icon: 'minus' %}</button>
+                    <input
+                      name="quantity"
+                      aria-label="{{ 'product.form.quantity' | t }}"
+                      class="quantity-selector__value"
+                      inputmode="numeric"
+                      value="1"
+                      size="3"
+                      {% if product.selected_or_first_available_variant.inventory_policy == 'deny' and product.selected_or_first_available_variant.inventory_management == 'shopify' %}
+                        max="{{ product.selected_or_first_available_variant.inventory_quantity }}"
+                      {% endif %}>
+                    <button type="button" class="quantity-selector__button" data-action="increase-picker-quantity" aria-label="{{ 'cart.items.increase_quantity' | t }}" title="{{ 'cart.items.increase_quantity' | t }}">{% render 'icon', icon: 'plus' %}</button>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+            <div class="product-form__info-item">
+
+              <div class="product-form__info-content product-form__info-content--bottom" role="region" aria-live="polite">
+                <div class="price-lists-vat">
+                    <div class="price-list vat-watcher inc-vat">
+                    {%- if selected_variant.compare_at_price > selected_variant.price -%}
+                    <span class="price price--compare">
+                        <span class="was-price">{{ 'product.general.sale_price' | t }} </span>
+
+                        <span class="price-js">
+                        {%- if settings.currency_code_enabled -%}
+                            {{- selected_variant.compare_at_price | money_with_currency -}}
+                        {%- else -%}
+                            {{- selected_variant.compare_at_price | money -}}
+                        {%- endif -%}
+                        </span>
+                    </span>
+                    {% endif %}
+                    <span class="grid-price-from">{{ 'product.general.grid_price_from' | t }}</span>
+                    {%- if selected_variant.compare_at_price > selected_variant.price -%}
+                        <div class="price_mobile--grouping">
+                        <span class="price price--highlight">
+                        <span class="visually-hidden">{{ 'product.general.price' | t }}</span>
+                        <span class="price-js">
+                            {%- if settings.currency_code_enabled -%}
+                            {{- selected_variant.price | money_with_currency -}}
+                            {%- else -%}
+                            {{- selected_variant.price | money -}}
+                            {%- endif -%}
+                        </span>
+                        <span class="js-price-text">INC VAT</span>  
+                        </span>
+                        </div>
+                    {%- else -%}
+                        <span class="price price--highlight">
+                        <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                        <span class="price-js">
+                        {%- if settings.currency_code_enabled -%}
+                            {{- selected_variant.price | money_with_currency -}}
+                        {%- else -%}
+                            {{- selected_variant.price | money -}}
+                        {%- endif -%}
+                        </span>
+                        <span class="js-price-text">INC VAT</span>
+                        </span>
+                    {%- endif -%}
+                    </div>
+                    <div class="price-list vat-watcher ex-vat">
+                        <span class="grid-price-from">{{ 'product.general.grid_price_from' | t }}</span>
+                        {%- if selected_variant.compare_at_price > selected_variant.price -%}
+                            <span class="price price--compare">
+                            <span class="was-price">{{ 'product.general.sale_price' | t }} </span>
+                            <span class="price-js">
+                                {%- if settings.currency_code_enabled -%}
+                                {{- selected_variant.compare_at_price | divided_by: 1.2 | money_with_currency -}}
+                                {%- else -%}
+                                {{- selected_variant.compare_at_price | divided_by: 1.2 | money -}}
+                                {%- endif -%}
+                            </span>
+                            </span>
+                            <div class="price_mobile--grouping">
+                            <span class="price price--highlight">
+                            <span class="visually-hidden">{{ 'product.general.price' | t }}</span>
+                            <span class="price-js">
+                                {%- if settings.currency_code_enabled -%}
+                                {{- selected_variant.price | divided_by: 1.2 | money_with_currency -}}
+                                {%- else -%}
+                                {{- selected_variant.price | divided_by: 1.2 | money -}}
+                                {%- endif -%}
+                            </span>
+                            <span class="js-price-text">EX VAT</span>
+                            </span>
+                            </div>
+                        {%- else -%}
+                        <div class="price_mobile--grouping">
+                            <span class="price price--highlight">
+                            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                            <span class="price-js">
+                            {%- if settings.currency_code_enabled -%}
+                                {{- selected_variant.price | divided_by: 1.2 | money_with_currency -}}
+                            {%- else -%}
+                                {{- selected_variant.price | divided_by: 1.2 | money -}}
+                            {%- endif -%}
+                            </span>
+                            </span>
+                            <span class="js-price-text">EX VAT</span>
+                            </div>
+                        {%- endif -%}
+                        </div>
+                    </div>
+{% assign variant = product.selected_or_first_available_variant %}
+
+{%- comment -%} ---------------- UPGRADE LOGIC ---------------- {%- endcomment -%}
+
+{% if variant.metafields.custom.has_upgrades and variant.metafields.custom.upgrade_products_1 %}
+  
+  <span class="product-form__upgrade"
+        data-upgrade="{% if variant.metafields.custom.upgrade_text != blank %}{{ variant.metafields.custom.upgrade_text }}{% else %}{{ 'product.general.upgrade_available' | t }}{% endif %}">
+    
+    {% if variant.metafields.custom.upgrade_text != blank %}
+      {{ variant.metafields.custom.upgrade_text }}
+    {% else %}
+      {{ 'product.general.upgrade_available' | t }}
+    {% endif %}
+  
+  </span>
+
+{% elsif variant.metafields.custom.has_upgrades and variant.metafields.custom.upgrade_products_2 %}
+
+  <span class="product-form__upgrade"
+        data-upgrade="{% if variant.metafields.custom.upgrade_text != blank %}{{ variant.metafields.custom.upgrade_text }}{% else %}{{ 'product.general.upgrade_available' | t }}{% endif %}">
+    
+    {% if variant.metafields.custom.upgrade_text != blank %}
+      {{ variant.metafields.custom.upgrade_text }}
+    {% else %}
+      {{ 'product.general.upgrade_available' | t }}
+    {% endif %}
+  
+  </span>
+
+{% elsif variant.metafields.custom.has_upgrades and variant.metafields.custom.upgrade_products_3 %}
+
+  <span class="product-form__upgrade"
+        data-upgrade="{% if variant.metafields.custom.upgrade_text != blank %}{{ variant.metafields.custom.upgrade_text }}{% else %}{{ 'product.general.upgrade_available' | t }}{% endif %}">
+    
+    {% if variant.metafields.custom.upgrade_text != blank %}
+      {{ variant.metafields.custom.upgrade_text }}
+    {% else %}
+      {{ 'product.general.upgrade_available' | t }}
+    {% endif %}
+  
+  </span>
+
+{% else %}
+
+  <span class="product-form__upgrade"
+        data-upgrade="{% if variant.metafields.custom.upgrade_text != blank %}{{ 'product.general.upgrade_available' | t }}{% else %}{{ 'product.general.no_upgrade' | t }}{% endif %}">
+    
+    {% if variant.metafields.custom.upgrade_text != blank %}
+      {{ variant.metafields.custom.upgrade_text }}
+    {% else %}
+      {{ settings.default_upgrade_text }}
+    {% endif %}
+  
+  </span>
+
+{% endif %}
+
+
+{%- comment -%} ---------------- DISCOUNT LOGIC ---------------- {%- endcomment -%}
+
+{% if product.metafields.custom.discount_display != null 
+  and product.metafields.custom.discount_display != 'Default' 
+  and variant.compare_at_price > variant.price %}
+
+  {% if product.metafields.custom.discount_display == 'Percentage' %}
+    
+    {% assign savings = variant.compare_at_price 
+      | minus: variant.price 
+      | times: 100.0 
+      | divided_by: variant.compare_at_price 
+      | round 
+      | append: '%' %}
+  
+  {% else %}
+
+    {% capture savings %}
+        <span class="discount-price-js vat-watcher inc-vat">
+            {{ variant.compare_at_price | minus: variant.price | money }}
+        </span>
+        <span class="discount-price-js vat-watcher ex-vat">
+            {{ variant.compare_at_price | minus: variant.price | divided_by: 1.2 | money }}
+        </span>
+    {% endcapture %}
+    
+    {% endif %}
+
+    <div class="product-form__footer">
+
+        <span class="product-form__upgrade-sale product-form__upgrade-sale--desktop 
+            {% if product.metafields.custom.discount_display == 'Percentage' %}
+            product-form__upgrade-sale-perc
+            {% else %}
+            product-form__upgrade-sale-pounds
+            {% endif %}">
+
+            {% if product.metafields.custom.discount_display == 'Percentage' %}
+            {{ 'collection.product.discount_block_html' | t: savings: savings }}
+            {% else %}
+            {{ 'collection.product.discount_html' | t: savings: savings }}
+            {% endif %}
+
+        </span>
+
+        <span class="product-form__indicators">
+
+            {%- if product.template_suffix != 'contact' -%}
+                {%- if product.selected_or_first_available_variant.available -%}
+                {%- unless product.template_suffix == 'pre-order' -%}
+                    <div class="product-indicators">
+                    <div class="stock-available-indicator">
+                        <span>{% render 'icon', icon: 'green-tick' %} {{ 'product.form.in_stock_2' | t }}</span>
+                    </div>
+                    <div class="delivery-available-indicator">
+                        <span>{% render 'icon', icon: 'green-tick' %} {{ 'product.form.24_del_2' | t }}</span>
+                    </div>
+                    </div>
+                {%- endunless -%}
+                {%- endif -%}
+            {%- endif -%}
+        </span>
+
+    </div>
+
+{% endif %}
+
+                <div class="product-form__price-info" style="display: {% if selected_variant.unit_price_measurement %}block{% else %}none{% endif %}">
+                  <div class="unit-price-measurement">
+                    <span class="unit-price-measurement__price">{{ selected_variant.unit_price | money }}</span>
+                    <span class="unit-price-measurement__separator">/ </span>
+
+                    <span class="unit-price-measurement__reference-value" {%- if selected_variant.unit_price_measurement.reference_value == 1 -%}style="display: none"{% endif %}>
+                      {{- selected_variant.unit_price_measurement.reference_value -}}
+                    </span>
+
+                    <span class="unit-price-measurement__reference-unit">{{ selected_variant.unit_price_measurement.reference_unit }}</span>
+                  </div>
+                </div>
+
+                {{- form | payment_terms -}}
+              </div>
+            </div>
+
+            <span class="loader" style="display: none"></span>
+
+          </div>
+
+        <div class="product-form__buttons">
+
+            <div class="product-form__payment-container {% if customer.tags contains 'tradeXX' %}trade-buttons{% endif %}" {{ block.shopify_attributes }}>
+                {%- if product.template_suffix != 'contact' -%}
+                    <a href="#variantContainer" data-offset="250" data-no-instant="" class="product-form__view_options button button button--primary">{{ 'product.form.view_options' | t }}</a>
+                    {%- if product.selected_or_first_available_variant.available -%}
+                    {%- if product.template_suffix == 'pre-order' -%}
+                        <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart">{{ 'product.form.pre_order' | t }}</button>
+                    {%- else -%}
+                        <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart">{{ 'product.form.add_to_cart' | t }}</button>
+                    {%- endif -%}
+                    {%- else -%}
+                    <button type="submit" class="product-form__add-button button button--disabled" disabled>{{ 'product.form.sold_out' | t }}</button>
+                    {%- endif -%}
+                {%- else -%}
+                    <a href="mailto:{{ shop.email }}" class="button button--primary">{{ 'product.form.contact_us' | t }}</a>
+                {%- endif -%}
+                <div id="backInStock"></div>
+            </div>
+            
+            
+            <p class="back-in-stock-message {% if product.selected_or_first_available_variant.available %}hidden{% endif %}">{{ product.metafields.custom.back_in_stock }}</p>
+        </div>
+
+        
+        
+        </div>
+          
+      </div>
+      </div>
+    {%- endform -%}
+
+    {% if product.metafields.custom.select_product_benefits_option != blank %}
+        {% for benefit in product.metafields.custom.select_product_benefits_option.value %}
+            <div class="product-benefits">
+                {% if benefit.icon != blank %}
+                <img src="{{ benefit.icon | image_url }}" alt="{{ benefit.title }}" width="15px" height="15px">
+                {% endif %}
+                {% if benefit.text != blank %}
+                <p>{{ benefit.text }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+
+  {%- if product.metafields.custom.product_gallery_banner_2 -%}
+  <div class="product-form__footer">
+      {%- if product.template_suffix != 'contact' -%}
+        {%- if product.selected_or_first_available_variant.available -%}
+          {%- unless product.template_suffix == 'pre-order' -%}
+            <div class="product-indicators">
+              <div class="stock-available-indicator">
+                <span>{% render 'icon', icon: 'green-tick' %} {{ 'product.form.in_stock_2' | t }}</span>
+              </div>
+              <div class="delivery-available-indicator">
+                <span>{% render 'icon', icon: 'green-tick' %} {{ 'product.form.24_del_2' | t }}</span>
+              </div>
+            </div>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endif -%}
+
+        <img
+          src="{{ product.metafields.custom.product_gallery_banner_2 | img_url: 'master' }}"
+          alt="{{ product.metafields.custom.product_gallery_banner_2.alt }}"
+          width="{{ product.metafields.custom.product_gallery_banner_2.width }}"
+          height="{{ product.metafields.custom.product_gallery_banner_2.height }}"
+          loading="lazy">
+    </div>
+{%- endif -%}
+
+  {% comment %}
+  ------------------------------------------------------------------------------
+  Product Data. This must be outputted for all products (including home page).
+
+  IMPORTANT: THIS CODE IS VITAL. DO NOT EDIT IT NOR REMOVE IT. MAKE SURE TO KEEP
+  THE EXACT SAME ATTRIBUTES.
+  ------------------------------------------------------------------------------
+  {% endcomment %}
+
+  {%- assign variant_selector_block = section.blocks | where: 'type', 'variant_selector' | first -%}
+
+  <script type="application/json" data-product-json>
+    {
+      "product": {{ product | json }},
+      "options_with_values": {{ product.options_with_values | json }},
+      "selected_variant_id": {{ selected_variant.id }},
+      "inventories": {
+        {%- for variant in product.variants -%}
+          {%- if variant.inventory_management -%}
+            {%- if variant.available and variant.inventory_management -%}
+              {%- if variant.inventory_quantity <= 0 and variant.requires_shipping -%}
+                {%- if variant.incoming -%}
+                  {%- capture next_incoming_date -%}{{ variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
+                  {%- capture inventory_message -%}{{ 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date }}{%- endcapture -%}
+                {%- else -%}
+                  {%- capture inventory_message -%}{{ 'product.form.oversell_stock' | t }}{%- endcapture -%}
+                {%- endif -%}
+              {%- elsif variant_selector_block.settings.low_inventory_threshold > 0 -%}
+                {%- if variant.inventory_quantity <= variant_selector_block.settings.low_inventory_threshold -%}
+                  {%- capture inventory_message -%}{{ 'product.form.low_stock_with_quantity_count' | t: count: variant.inventory_quantity }}{%- endcapture -%}
+                {%- else -%}
+                  {%- capture inventory_message -%}{{ 'product.form.in_stock_with_quantity_count' | t: count: variant.inventory_quantity }}{%- endcapture -%}
+                {%- endif -%}
+              {%- else -%}
+                {%- capture inventory_message -%}{{ 'product.form.in_stock' | t }}{%- endcapture -%}
+              {%- endif -%}
+            {%- else -%}
+              {%- if variant.incoming -%}
+                {%- capture next_incoming_date -%}{{ variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
+                {%- capture inventory_message -%}{{ 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date }}{%- endcapture -%}
+              {%- else -%}
+                {%- capture inventory_message -%}{{ 'product.form.sold_out' | t }}{%- endcapture -%}
+              {%- endif -%}
+            {%- endif -%} 
+          {%- else -%}
+            {%- capture inventory_message -%}{{ 'product.form.in_stock' | t }}{%- endcapture -%}
+          {%- endif -%}
+
+          "{{ variant.id }}": {
+            "inventory_management": {{ variant.inventory_management | json }},
+            "inventory_policy": {{ variant.inventory_policy | json }},
+            "inventory_quantity": {{ variant.inventory_quantity | json }},
+            "inventory_message": {{ inventory_message | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      }
+    }
+  </script>
+</div>

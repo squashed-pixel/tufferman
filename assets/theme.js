@@ -3309,7 +3309,7 @@ function _showAlert(message, type, afterElement) {
               const compare_at_price = localStorage.getItem('VAT') == 'Include' ? (newVariant['compare_at_price'] * 1.0) : newVariant['compare_at_price'];
               const compare_at_price_string = Currency.formatMoney(compare_at_price, currencyFormat);
               priceList.innerHTML += `<span class="price price--compare">` +
-                `<span>${window.vat_check.was} </span>` +
+                `<span class="was-price">${window.vat_check.was} </span>` +
                 `<span class="price-js ">${compare_at_price_string}</span>` +
                 `<span>`;
             }
@@ -3322,7 +3322,7 @@ function _showAlert(message, type, afterElement) {
                 `<span class="visually-hidden">${window.languages.productSalePrice} </span>` +
                 `<span class="price-js price-changed">${price_string}</span>`+
               `</span>` +
-              `<span class="js-price-text">INC. VAT</span>` +
+              `<span class="js-price-text">INC VAT</span>` +
                 `</div>`;
             } else {
               priceList.innerHTML +=
@@ -3331,7 +3331,7 @@ function _showAlert(message, type, afterElement) {
                 `<span class="price-js">${price_string}</span>` +
                 `<span class="visually-hidden">${window.languages.productSalePrice} </span>` +
                 `</span>` +
-                `<span class="js-price-text">INC. VAT</span>` +
+                `<span class="js-price-text">INC VAT</span>` +
                 `</div>`;
             }
 
@@ -3342,7 +3342,7 @@ function _showAlert(message, type, afterElement) {
               if (newVariant['compare_at_price'] > newVariant['price']) {
               priceList.innerHTML += `<div class="price_mobile--grouping">` + 
                 `<span class="price price--compare">` +
-                `<span>${window.vat_check.was} </span>` +
+                `<span class="was-price">${window.vat_check.was} </span>` +
                 `<span class="price-js ">${compare_at_price_string}</span>` +
                 `<span>` +
                 `</div>`;
@@ -3353,7 +3353,7 @@ function _showAlert(message, type, afterElement) {
                 `<span class="price-js">${ex_price_string}</span>` +
                 `<span class="visually-hidden">${window.languages.productSalePrice} </span>` +
                 `</span>` +
-                `<span class="js-price-text">EX. VAT</span>` +
+                `<span class="js-price-text">EX.VAT</span>` +
                 `</div>`;
             }
 
@@ -12828,13 +12828,26 @@ function _showAlert(message, type, afterElement) {
             cellSelector: '.product-gallery__thumbnail:not(.is-filtered)',
             initialIndex: initialIndex,
             cellAlign: 'left',
+            // on: {
+            //   ready: function ready() {
+            //     // Remove the pre-set height (that was used to pre-allocate the space) so that it can react properly to
+            //     // changes of height.
+            //     setTimeout(function () {
+            //       _this3.productThumbnailsListElement.style.height = null;
+            //     }, 1000);
+            //   }
+            // }
             on: {
               ready: function ready() {
-                // Remove the pre-set height (that was used to pre-allocate the space) so that it can react properly to
-                // changes of height.
                 setTimeout(function () {
                   _this3.productThumbnailsListElement.style.height = null;
-                }, 1000);
+
+                  if (_this3.flickityInstance) {
+                    _this3.flickityInstance.resize();
+                    _this3.flickityInstance.reposition();
+                  }
+
+                }, 1200);
               }
             }
           });
