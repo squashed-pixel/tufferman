@@ -17402,7 +17402,7 @@ span.product-form__upgrade {
 .suffix-custom-template .price-label-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   margin-top: 15px;
 }
@@ -17505,6 +17505,39 @@ span.product-form__upgrade {
   font-size: 16px;
 }
 
+@media screen and (max-width: 999px) {
+  .desktop-logo-only {
+    display: none;
+  }
+  .suffix-custom-template .product-meta__label-list {
+    display: block;
+  }
+  .suffix-custom-template .product-meta__label-list .product-label {
+    margin-bottom: 16px;
+    padding: 4px 5px;
+  }
+  .suffix-custom-template .price-label-container {
+    margin-top: 10px;
+    gap: 7px;
+    justify-content: space-between;
+  }
+  .suffix-custom-template .product-form__upgrade-sale--desktop {
+    top: 0;
+  }
+  .suffix-custom-template .product-form__info-content--top .was-price {
+    display: block !important;
+  }
+  .suffix-custom-template .product-form__info-content--top .price-list.active {
+    gap: 10px !important;
+    padding-right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .suffix-custom-template .product-form__info-content--top .price-list.vat-watcher.ex-vat span.price-js {
+    margin-bottom: 1px !important;
+  }
+}
+
 @media screen and (max-width: 767px) {
     .suffix-custom-template .buyblock--sticky .product-form__info-item.product-form__info-item--quantity {
         max-width: 100%;
@@ -17528,7 +17561,7 @@ span.product-form__upgrade {
     .suffix-custom-template .price-list.vat-watcher.inc-vat.active .price_mobile--grouping span.price.price--highlight span.price-js {
       font-size: 20px !important;
       margin-top: 0px;
-      line-height: 16px;
+      line-height: 20px;
     }
     .suffix-custom-template .product-block-list__item .product-meta .product-meta__title.heading.h1 {
       margin-top: 10px;
@@ -17559,36 +17592,10 @@ span.product-form__upgrade {
     .suffix-custom-template .product-form__info-content--top .price-list .price--compare {
       margin-bottom: 0 !important;
     }
-}
-
-@media screen and (max-width: 999px) {
-  .desktop-logo-only {
-    display: none;
-  }
-  .suffix-custom-template .product-meta__label-list {
-    display: block;
-  }
-  .suffix-custom-template .product-meta__label-list .product-label {
-    margin-bottom: 16px;
-    padding: 4px 5px;
-  }
-  .suffix-custom-template .price-label-container {
-    margin-top: 10px;
-    gap: 5px;
-  }
-  .suffix-custom-template .product-form__upgrade-sale--desktop {
-    top: 0;
-  }
-  .suffix-custom-template .product-form__info-content--top .was-price {
-    display: block !important;
-  }
-  .suffix-custom-template .product-form__info-content--top .price-list.active {
-    gap: 15px !important;
-    padding-right: 0;
-  }
-  .suffix-custom-template .product-form__info-content--top .price-list.vat-watcher.ex-vat span.price-js {
-    margin-bottom: 1px !important;
-  }
+    .suffix-custom-template .product-form__info-content--top .price-list.active {
+      gap: 10px !important;
+      padding-right: 0;
+    }
 }
 
 @media screen and (min-width: 1000px) {
@@ -17604,7 +17611,7 @@ span.product-form__upgrade {
     gap: 5px;
     flex-wrap: nowrap;
     align-items: center;
-    margin-bottom: 4.5px;
+    margin-bottom: 4px;
   }
   .suffix-custom-template .product-form__info-content .price-list .js-price-text {
     white-space: nowrap;
@@ -17665,6 +17672,10 @@ span.product-form__upgrade {
   .suffix-custom-template .product-form__info-content--bottom .price-list:not(.active) {
     margin-bottom: 2px;
     gap: 0 !important;
+  }
+  .suffix-custom-template .product-form__info-content--top.price-label-container {
+    justify-content: space-between;
+    gap: 10px
   }
 }
 
