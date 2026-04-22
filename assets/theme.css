@@ -17657,7 +17657,7 @@ span.product-form__upgrade {
     align-items: flex-end;
   }
   .suffix-custom-template .product-form__info-content--top .price-list.active .js-price-text {
-    margin-bottom: 2px;
+    margin-bottom: 1.5px;
   }
   .suffix-custom-template .product-form__info-content--top .price-list.vat-watcher.ex-vat span.price-js {
     font-size: 15px !important;
