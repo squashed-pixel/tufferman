@@ -17583,6 +17583,9 @@ span.product-form__upgrade {
       margin-top: 0px;
       line-height: 18px;
     }
+    .suffix-custom-template .product-form__info-content--bottom .price-list.vat-watcher.inc-vat.active .price_mobile--grouping span.price.price--highlight span.price-js {
+      line-height: 20px;
+    }
     .suffix-custom-template .product-block-list__item .product-meta .product-meta__title.heading.h1 {
       margin-top: 10px;
     }
