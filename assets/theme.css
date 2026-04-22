@@ -17588,7 +17588,7 @@ span.product-form__upgrade {
       margin-top: -2.5px;
     }
     .price-lists-vat .price-list.vat-watcher:not(.active) .price {
-      gap: 3px;
+      gap: 0px;
     }
     .suffix-custom-template .product-form__info-content--top .price-list .price--compare {
       margin-bottom: 0 !important;
