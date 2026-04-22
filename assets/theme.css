@@ -17620,6 +17620,9 @@ span.product-form__upgrade {
       gap: 10px !important;
       padding-right: 0;
     }
+    .suffix-custom-template .product-form__info-content--bottom .price-list:not(.active) .price--highlight .price-js {
+      font-size: 16px !important;
+    }
 }
 
 @media screen and (min-width: 1000px) {
