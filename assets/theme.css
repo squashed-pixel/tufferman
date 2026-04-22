@@ -17505,6 +17505,10 @@ span.product-form__upgrade {
   font-size: 16px;
 }
 
+.suffix-custom-template .product-meta--border {
+  flex-direction: column;
+}
+
 @media screen and (max-width: 999px) {
   .desktop-logo-only {
     display: none;
