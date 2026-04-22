@@ -17635,7 +17635,7 @@ span.product-form__upgrade {
     gap: 5px;
     flex-wrap: nowrap;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 2.5px;
   }
   .suffix-custom-template .product-form__info-content .price-list .js-price-text {
     white-space: nowrap;
