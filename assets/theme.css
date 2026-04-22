@@ -17570,8 +17570,11 @@ span.product-form__upgrade {
     .suffix-custom-template .product-form__info-content--bottom .ex-vat.active {
       gap: 25px !important;
     }
-    .product-form__info-content .price-list:not(.active) {
+    .suffix-custom-template .product-form__info-content--bottom .price-list:not(.active) {
       gap: 0 !important;
+      margin-left: 10px;
+    }
+    .suffix-custom-template .product-form__info-content--bottom .price-lists-vat .price-list.vat-watcher:not(.active) .price {
       margin-left: 10px;
     }
     .suffix-custom-template .price-list.vat-watcher.ex-vat.active .price_mobile--grouping span.price.price--highlight span.price-js,
