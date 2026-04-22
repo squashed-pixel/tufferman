@@ -17683,5 +17683,8 @@ span.product-form__upgrade {
   .suffix-custom-template .product-form__info-list {
     gap: 10px;
   }
+  .suffix-custom-template .product-form__info-content--bottom .price-list {
+    align-items: center;
+  }
 }
 
