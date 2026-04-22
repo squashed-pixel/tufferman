@@ -17679,3 +17679,9 @@ span.product-form__upgrade {
   }
 }
 
+@media screen and (max-width: 768px) and screen and (min-width: 1000px) {
+  .suffix-custom-template .product-form__info-list {
+    gap: 10px;
+  }
+}
+
