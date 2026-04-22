@@ -17510,6 +17510,10 @@ span.product-form__upgrade {
   gap: 0px;
 }
 
+.suffix-custom-template .product-meta--border > div {
+  margin-left: auto;
+}
+
 .suffix-custom-template .product-meta--border .product-meta__title {
   margin-bottom: 0;
 }
