@@ -17550,6 +17550,7 @@ span.product-form__upgrade {
       flex-direction: row-reverse;
       justify-content: center;
       padding: 5px 0 !important;
+      align-items: flex-end;
     }
     .suffix-custom-template .product-form__info-content--bottom .ex-vat.active {
       gap: 25px !important;
