@@ -17704,3 +17704,7 @@ span.product-form__upgrade {
     align-items: center;
   }
 }
+
+.suffix-custom-template .product-form__info-list .price-lists-vat {
+  align-items: flex-end;
+}
