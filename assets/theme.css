@@ -17564,12 +17564,15 @@ span.product-form__upgrade {
       justify-content: center;
       padding: 5px 0 !important;
       align-items: flex-end;
+      justify-content: center;
+      gap: 0 !important;
     }
     .suffix-custom-template .product-form__info-content--bottom .ex-vat.active {
       gap: 25px !important;
     }
     .product-form__info-content .price-list:not(.active) {
       gap: 0 !important;
+      margin-left: 10px;
     }
     .suffix-custom-template .price-list.vat-watcher.ex-vat.active .price_mobile--grouping span.price.price--highlight span.price-js,
     .suffix-custom-template .price-list.vat-watcher.inc-vat.active .price_mobile--grouping span.price.price--highlight span.price-js {
@@ -17599,6 +17602,7 @@ span.product-form__upgrade {
     }
     .suffix-custom-template .product-form__info-content--bottom .price-list {
       margin-top: -2.5px;
+      gap: 25px !important;
     }
     .price-lists-vat .price-list.vat-watcher:not(.active) .price {
       gap: 0px;
