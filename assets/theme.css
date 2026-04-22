@@ -17507,7 +17507,7 @@ span.product-form__upgrade {
 
 .suffix-custom-template .product-meta--border {
   flex-direction: column;
-  gap: 5px;
+  gap: 0px;
 }
 
 .suffix-custom-template .product-meta--border .product-meta__title {
