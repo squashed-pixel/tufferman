@@ -17681,7 +17681,7 @@ span.product-form__upgrade {
     margin-bottom: 2px;
   }
   .suffix-custom-template .product-form__info-content--bottom .price-list:not(.active) .price--highlight .price-js {
-    font-size: 20px !important;
+    font-size: 14px !important;
   }
   .suffix-custom-template .product-form__info-content--bottom .was-price {
     font-size: 12px !important;
