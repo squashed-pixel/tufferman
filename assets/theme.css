@@ -17533,6 +17533,7 @@ span.product-form__upgrade {
     margin-top: 10px;
     gap: 7px;
     justify-content: space-between;
+    align-items:flex-end;
   }
   .suffix-custom-template .product-form__upgrade-sale--desktop {
     top: 0;
