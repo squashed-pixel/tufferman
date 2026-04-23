@@ -17708,6 +17708,13 @@ span.product-form__upgrade {
     gap: 10px;
     align-items: flex-end;
   }
+  .suffix-custom-template .product-form__footer {
+    align-items: flex-end;
+  }
+  .suffix-custom-template .product-form__upgrade-sale--desktop {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 @media screen and (min-width: 769px) and (max-width: 999px) {
