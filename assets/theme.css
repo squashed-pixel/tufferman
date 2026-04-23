@@ -17572,7 +17572,6 @@ span.product-form__upgrade {
     }
     .suffix-custom-template .product-form__info-content--bottom .price-list:not(.active) {
       gap: 0 !important;
-      margin-left: 10px;
     }
     .suffix-custom-template .product-form__info-content--bottom .price-lists-vat .price-list.vat-watcher:not(.active) .price {
       margin-left: 10px;
@@ -17608,7 +17607,7 @@ span.product-form__upgrade {
     }
     .suffix-custom-template .product-form__info-content--bottom .price-list {
       margin-top: -2.5px;
-      gap: 25px !important;
+      gap: 10px !important;
     }
     .price-lists-vat .price-list.vat-watcher:not(.active) .price {
       gap: 0px;
