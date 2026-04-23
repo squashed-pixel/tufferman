@@ -17638,7 +17638,7 @@ span.product-form__upgrade {
     gap: 5px;
     flex-wrap: nowrap;
     align-items: center;
-    margin-bottom: 2.5px;
+    margin-bottom: 1px;
   }
   .suffix-custom-template .product-form__info-content .price-list .js-price-text {
     white-space: nowrap;
@@ -17648,6 +17648,9 @@ span.product-form__upgrade {
   }
   .suffix-custom-template .product-meta__label-list {
     margin-top: 0;
+  }
+  .suffix-custom-template .product-form__info-content--top .product-meta__label-list .product-label {
+    margin: 0;
   }
   .suffix-custom-template .product-form__info-content--top .was-price {
     display: block !important;
@@ -17659,14 +17662,11 @@ span.product-form__upgrade {
     display: flex;
     align-items: flex-end;
   }
-  .suffix-custom-template .product-form__info-content--top .price-list.active .js-price-text {
-    margin-bottom: 1.5px;
-  }
   .suffix-custom-template .product-form__info-content--top .price-list.vat-watcher.ex-vat span.price-js {
     font-size: 15px !important;
   }
   .suffix-custom-template .product-form__info-content--top .price-list.active .js-price-text {
-    margin-bottom: 3.5px;
+    margin-bottom: 0px;
   }
   .suffix-custom-template .was-price {
     display: block !important;
