@@ -17626,6 +17626,9 @@ span.product-form__upgrade {
 }
 
 @media screen and (min-width: 1000px) {
+  .suffix-custom-template .product-meta--border {
+    padding-bottom: 0;
+  }
   .suffix-custom-template .product-form__info-content--top .price-list .price--highlight {
     flex-direction: row;
     gap: 5px;
