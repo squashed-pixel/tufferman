@@ -17568,7 +17568,7 @@ span.product-form__upgrade {
       gap: 0 !important;
     }
     .suffix-custom-template .product-form__info-content--bottom .ex-vat.active {
-      gap: 25px !important;
+      gap: 10px !important;
     }
     .suffix-custom-template .product-form__info-content--bottom .price-list:not(.active) {
       gap: 0 !important;
