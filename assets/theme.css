@@ -17526,7 +17526,7 @@ span.product-form__upgrade {
     display: block;
   }
   .suffix-custom-template .product-meta__label-list .product-label {
-    margin-bottom: 16px;
+    margin-bottom: 0;
     padding: 4px 5px;
   }
   .suffix-custom-template .price-label-container {
