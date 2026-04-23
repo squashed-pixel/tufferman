@@ -17702,7 +17702,8 @@ span.product-form__upgrade {
   }
   .suffix-custom-template .product-form__info-content--top.price-label-container {
     justify-content: space-between;
-    gap: 10px
+    gap: 10px;
+    align-items: flex-end;
   }
 }
 
