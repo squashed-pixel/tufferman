@@ -17769,3 +17769,7 @@ span.product-form__upgrade {
     width: 35% !important;
   }
 }
+
+body:has(.header__search-bar-wrapper.is-fixed) div#shopify-section-announcement-bar {
+    display: none;
+}
