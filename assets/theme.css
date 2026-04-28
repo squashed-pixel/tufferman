@@ -17482,7 +17482,12 @@ span.product-form__upgrade {
     aspect-ratio: 1;
 }
 
+.product-gallery__carousel-wrapper .product-gallery-banner {
+  display: none;
+}
+
 .suffix-custom-template .product-gallery-banner {
+  display: block;
   position: absolute;
   top: 0;
   right: 0;

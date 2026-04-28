@@ -7,7 +7,7 @@
         {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
 
         <div class="product-gallery__carousel-wrapper">
-          {% if product.template_suffix == 'custom-template' and product.metafields.custom.product_details_banner != blank %}
+          {% if product.metafields.custom.product_details_banner != blank %}
             <div class="product-gallery-banner">
               <img
                 src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
