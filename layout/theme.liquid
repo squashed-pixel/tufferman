@@ -73,10 +73,25 @@
     {%- endcapture -%}
 
 
-    <script>
-      console.log('testing');
-      window.igSettings = { hideBody: true };
-    </script>
+    {% if template.suffix == 'custom-template' %}
+      <style id="ig-anti-flicker">
+        html { opacity: 0 !important; }
+      </style>
+
+      <script>
+        setTimeout(function() {
+          var antiFlickerStyle = document.getElementById('ig-anti-flicker');
+          if (antiFlickerStyle) {
+            antiFlickerStyle.remove();
+            console.warn('Intelligems timeout reached: Anti-flicker failsafe triggered.');
+          }
+        }, 2500); 
+      </script>
+
+      <script>
+        window.igSettings = { hideBody: true };
+      </script>
+    {% endif %}
 
     <title>{{- seo_page_title -}}</title>
 
