@@ -72,6 +72,12 @@
       {%- endif -%}
     {%- endcapture -%}
 
+    {% if template.suffix == 'custom-template' %}
+      <script>
+        window.igSettings = { hideBody: true };
+      </script>
+    {% endif %}
+
     <title>{{- seo_page_title -}}</title>
 
     {% render 'datalayer' %}
