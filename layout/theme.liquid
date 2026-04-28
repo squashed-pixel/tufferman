@@ -72,11 +72,9 @@
       {%- endif -%}
     {%- endcapture -%}
 
-    {% if template.suffix == 'custom-template' %}
-      <script>
-        window.igSettings = { hideBody: true };
-      </script>
-    {% endif %}
+    <script>
+      window.igSettings = { hideBody: true };
+    </script>
 
     <title>{{- seo_page_title -}}</title>
 
