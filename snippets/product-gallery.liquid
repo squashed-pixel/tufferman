@@ -235,8 +235,26 @@
               {% endif %}
 
               
-              {% if product.template_suffix == 'custom-template' %}
+              {% if template.suffix == 'custom-template' %}
                 <div class="desktop-logo-only">
+                  <div class="included-items ">
+                    <span class=" "> Why Buy From Us </span>
+              
+                      <div class="product-details-section">
+                          <img src="//www.tufferman.co.uk/cdn/shop/files/images_b4bff3ae-0b25-4fbe-a04b-9f4b0faaf0bb.jpg?v=1770731653" alt="" width="15px" height="15px">  
+                          <p>Price Promise*</p>
+                      </div>
+                      <div class="product-details-section">
+                          <img src="//www.tufferman.co.uk/cdn/shop/files/images_b4bff3ae-0b25-4fbe-a04b-9f4b0faaf0bb.jpg?v=1770731653" alt="" width="15px" height="15px">
+                          <p>Next Day Delivery Available*</p>
+                      </div>
+                      <div class="product-details-section">
+                          <img src="//www.tufferman.co.uk/cdn/shop/files/images_b4bff3ae-0b25-4fbe-a04b-9f4b0faaf0bb.jpg?v=1770731653" alt="" width="15px" height="15px">
+                          <p>Over 15k Trustpilot Reviews</p>
+                      </div>
+                 
+                  </div>
+                  {%  comment %}
                   <div class="included-items {{ settings.main_text_type }}">
                     <span class=" {{ settings.main_text_type }}">{% if product.metafields.custom.what_s_included_text != blank %} {{ product.metafields.custom.what_s_included_text.value }} {% else %}{{settings.included_text }} {% endif %}</span>
                     <ul class="included-items-list {{ settings.sub_text_type }}">
@@ -256,6 +274,8 @@
                       {% endif %}
                     </ul>
                   </div>
+                  {% endcomment %}
+
                 </div>
               {% else %}
                 <div class="{% if product.template_suffix == 'custom-template' %} mobile-logo-only {% endif %}">
