@@ -73,7 +73,7 @@
     {%- endcapture -%}
 
 
-    {% comment %} {% if template.suffix == 'custom-template' %}
+    {% if template.suffix == 'custom-template' %}
       <style id="ig-anti-flicker">
         html { opacity: 0 !important; }
       </style>
@@ -91,7 +91,7 @@
       <script>
         window.igSettings = { hideBody: true };
       </script>
-    {% endif %} {% endcomment %}
+    {% endif %}
 
     <title>{{- seo_page_title -}}</title>
 
