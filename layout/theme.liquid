@@ -3,62 +3,6 @@
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
     <script type="module" async blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/c816891bf1e8/bundle.js"></script>
-
-      <!-- Google tag (gtag.js) -->
-    {% comment %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-993295948"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-993295948');
-    </script>
-{% endcomment %}
-      
-    {% comment %}
-      <!-- Google Tag Manager -->
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-PPXL8TB');</script>
-      <!-- End Google Tag Manager -->
-      <script src="https://www.googleoptimize.com/optimize.js?id=OPT-TZRSFJD"></script>
-   
-    
-    <script type="text/javascript">
-      (function(clientId) {
-        if(window["__adal_disable_" + clientId]) { return; }
-        (function(windowAlias, documentAlias, trackerName) {
-          if (!windowAlias[trackerName]) {
-            windowAlias.GlobalAdalyserNamespace = windowAlias.GlobalAdalyserNamespace
-                || [];
-            windowAlias.GlobalAdalyserNamespace.push(trackerName);
-            windowAlias[trackerName] = function() {
-              (windowAlias[trackerName].q = windowAlias[trackerName].q || []).push(arguments)
-            };
-            windowAlias[trackerName].q = windowAlias[trackerName].q || [];
-            var nel = documentAlias.createElement("script"),
-              fel = documentAlias.getElementsByTagName("script")[0];
-            nel.async = 1;
-            nel.src = "//c5.adalyser.com/adalyser.js?cid=" + clientId;
-            fel.parentNode.insertBefore(nel, fel)
-          }
-        }(window, document, "adalyserTracker"));
-        window.adalyserTracker("create", {
-          campaignCookieTimeout: 15552000,
-          conversionCookieTimeout: 604800,
-          clientId: clientId,
-          trafficSourceInternalReferrers: [
-            "^(.*\\.)?tufferman\\.co\\.uk$"
-          ]
-        });
-        window.adalyserTracker("trackSession", "lce1");
-      })("tufferman");
-    </script>
-
-     {% endcomment %}
-      
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="theme-color" content="{{ settings.accent_color }}">
@@ -73,28 +17,6 @@
           &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
       {%- endif -%}
     {%- endcapture -%}
-
-{%  comment %}
-    {% if template.suffix == 'custom-template' %}
-      <style id="ig-anti-flicker">
-        html { opacity: 0 !important; }
-      </style>
-
-      <script>
-        setTimeout(function() {
-          var antiFlickerStyle = document.getElementById('ig-anti-flicker');
-          if (antiFlickerStyle) {
-            antiFlickerStyle.remove();
-            console.warn('Intelligems timeout reached: Anti-flicker failsafe triggered.');
-          }
-        }, 2500); 
-      </script>
-
-      <script>
-        window.igSettings = { hideBody: true };
-      </script>
-    {% endif %}
-     {%  endcomment %}
 
     <title>{{- seo_page_title -}}</title>
 
