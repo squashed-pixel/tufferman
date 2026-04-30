@@ -208,12 +208,6 @@
         {% endif %}
   {% endif %}
   <body class="warehouse--v1 suffix-{{ template.suffix }} {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %} {% if request.page_type == 'product' %}template-{{ request.page_type | split: '/' | last | handle }}--{{ selected_view }}{% endif %}" data-instant-intensity="viewport">
-  {% comment %}
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPXL8TB"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) --> 
-  {% endcomment %}
   {%- comment -%}Common SVG definitions that we are re-using in several places{%- endcomment -%}
     <svg class="visually-hidden">
       <linearGradient id="rating-star-gradient-half">
@@ -224,34 +218,24 @@
           stop-opacity="0.4" />
       </linearGradient>
     </svg>
-
     <a href="#main" class="visually-hidden skip-to-content">{{ 'general.accessibility.skip_to_content' | t }}</a>
     <span class="loading-bar"></span>
-
     {% section 'announcement-bar' %}
-
     {%- unless request.page_type == 'cart' -%}
-      {%- comment -%}As required by Shopify rules, popup must be removed on cart page to remove distraction{%- endcomment -%}
       {% section 'popups' %}
     {%- endunless -%}
-
     {% section 'header' %}
-
     {% section 'announcement-bar-2' %}
     {% section 'announcement-bar-3' %}
-
     {%- if request.page_type == 'product' or request.page_type == 'cart' -%}
       {% section 'countdown-timer' %}
     {%- endif -%}
-
     <main id="main" role="main">
       {{ content_for_layout }}
     </main>
-
     {% section 'static-text-with-icons' %}
     {% section 'newsletter' %}
     {% section 'footer' %}
-
     <ul hidden>
       <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
     </ul>
@@ -279,19 +263,6 @@
         </div>
       </div>
     </div>
-
-    {% comment %}
-      <!-- Google Tag Manager (noscript) -->
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-TVW8Z6X"
-          height="0"
-          width="0"
-          style="display:none;visibility:hidden"></iframe>
-      </noscript>
-      <!-- End Google Tag Manager (noscript) -->
-    {% endcomment %}
-
     <script>
       window.addEventListener('DCART:config.initialized', function() {
         if (window.DCART && window.DCART.discountbox) {
@@ -311,9 +282,8 @@
         }
       };
     </script>
-
     <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
-    
+    {% render 'vg-pd-common' %}
   </body>
 </html>
-{% render 'vg-pd-common' %}
+
