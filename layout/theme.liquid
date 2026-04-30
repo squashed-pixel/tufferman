@@ -2,7 +2,7 @@
 
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-
+{%  comment %}
      <script>
     window.igSettings = {
         hideBody: true
@@ -44,6 +44,8 @@
       return data;
     })();
   </script>
+
+  {%  endcomment %}
 
       <!-- Google tag (gtag.js) -->
     {% comment %}
