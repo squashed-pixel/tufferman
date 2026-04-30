@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "heading_color": "#2c2c2c",
@@ -50,7 +59,7 @@
     "show_inventory_quantity": false,
     "low_inventory_threshold": 0,
     "cart_type": "message",
-    "cart_empty_button_link": "shopify:\/\/collections\/all-shelving",
+    "cart_empty_button_link": "shopify://collections/all-shelving",
     "cart_show_checkout_button": true,
     "cart_show_free_shipping_threshold": false,
     "cart_free_shipping_threshold": "",
@@ -60,19 +69,19 @@
     "non_uk_mainland_postcode_prices": "5000[1799], 10000[4499], 20000[6499], 40000[6499], 100000[7499], up[9499]",
     "cutoff": 15,
     "bank_holidays": "2026-01-01, 2026-01-02, 2026-04-03, 2026-04-06, 2026-04-07, 2026-05-04, 2026-05-25, 2026-08-31, 2026-12-25, 2026-12-28",
-    "social_facebook": "https:\/\/www.facebook.com\/tuffermanltd\/",
-    "social_twitter": "https:\/\/x.com\/tufferman?lang=en-GB",
+    "social_facebook": "https://www.facebook.com/tuffermanltd/",
+    "social_twitter": "https://x.com/tufferman?lang=en-GB",
     "social_pinterest": "",
     "social_instagram": "",
     "social_vimeo": "",
     "social_tumblr": "",
-    "social_youtube": "https:\/\/www.youtube.com\/c\/tuffermancouk",
+    "social_youtube": "https://www.youtube.com/c/tuffermancouk",
     "social_linkedin": "",
     "social_snapchat": "",
     "social_fancy": "",
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "favicon": "shopify://shop_images/favicon.png",
     "checkout_header_image": "",
-    "checkout_logo_image": "shopify:\/\/shop_images\/Tufferman_Logo_1.png",
+    "checkout_logo_image": "shopify://shop_images/Tufferman_Logo_1.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",
     "checkout_body_background_image": "",
@@ -85,8 +94,8 @@
     "checkout_accent_color": "#fbb900",
     "checkout_button_color": "#3ab44b",
     "checkout_error_color": "#ff0000",
-    "date_picker_invalid": "23\/02\/2023, 27\/03\/2023, 28\/03\/2023, 29\/03\/2023",
-    "delivery_date_picker": "26\/01\/2023, 27\/01\/2023",
+    "date_picker_invalid": "23/02/2023, 27/03/2023, 28/03/2023, 29/03/2023",
+    "delivery_date_picker": "26/01/2023, 27/01/2023",
     "options": "Newsletter | Times , Newsletter | Forbes, Google, Social Media | Facebook, Social Media | Twitter",
     "share_image": "",
     "sections": {
@@ -98,7 +107,7 @@
             "disabled": true,
             "settings": {
               "menu_item": "Workbenches & Workstations",
-              "image_1": "shopify:\/\/shop_images\/Collection_Workbenches.jpg",
+              "image_1": "shopify://shop_images/Collection_Workbenches.jpg",
               "image_1_heading": "Your image",
               "image_1_text": "Tell your story",
               "image_1_link": "",
@@ -112,7 +121,7 @@
             "disabled": true,
             "settings": {
               "menu_item": "Mats & Flooring",
-              "image_1": "shopify:\/\/shop_images\/Collection_Interlocking_Floor_Tiles.jpg",
+              "image_1": "shopify://shop_images/Collection_Interlocking_Floor_Tiles.jpg",
               "image_1_heading": "Your image",
               "image_1_text": "Tell your story",
               "image_1_link": "",
@@ -126,7 +135,7 @@
             "disabled": true,
             "settings": {
               "menu_item": "Ladders, Steps & Platforms",
-              "image_1": "shopify:\/\/shop_images\/Collection_Step_Ladders.jpg",
+              "image_1": "shopify://shop_images/Collection_Step_Ladders.jpg",
               "image_1_heading": "Your image",
               "image_1_text": "Tell your story",
               "image_1_link": "",
@@ -140,7 +149,7 @@
             "disabled": true,
             "settings": {
               "menu_item": "Sack Trucks, Trolleys & Handling",
-              "image_1": "shopify:\/\/shop_images\/Collection_Sack_Trucks.jpg",
+              "image_1": "shopify://shop_images/Collection_Sack_Trucks.jpg",
               "image_1_heading": "Your image",
               "image_1_text": "Tell your story",
               "image_1_link": "",
@@ -168,10 +177,10 @@
               "menu_item": "Shelving & Racking",
               "image_1_heading": "Garage Shelving",
               "image_1_text": "From only £99.99",
-              "image_1_link": "shopify:\/\/products\/3x-vrs-heavy-duty-shelving-1800mm-high-200-280kg-grey",
+              "image_1_link": "shopify://products/3x-vrs-heavy-duty-shelving-1800mm-high-200-280kg-grey",
               "image_2_heading": "",
               "image_2_text": "From only £153.99",
-              "image_2_link": "shopify:\/\/products\/1x-sx400-industrial-shelving-1677mm-high-400kg-chipboard"
+              "image_2_link": "shopify://products/1x-sx400-industrial-shelving-1677mm-high-400kg-chipboard"
             }
           },
           "978d195c-ee97-4d06-8e01-dde7f1d4832b": {
@@ -179,11 +188,11 @@
             "disabled": true,
             "settings": {
               "menu_item": "Spelving & RAcking",
-              "image_1": "shopify:\/\/shop_images\/INDUSTRIAL_SQUARE_ed9e9408-98e2-4780-a065-06ce910c9638.jpg",
+              "image_1": "shopify://shop_images/INDUSTRIAL_SQUARE_ed9e9408-98e2-4780-a065-06ce910c9638.jpg",
               "image_1_heading": "Your image",
               "image_1_text": "Tell your story",
               "image_1_link": "",
-              "image_2": "shopify:\/\/shop_images\/STORAGE_SQUARE_689318df-93a4-484e-91f1-0324821f284b.jpg",
+              "image_2": "shopify://shop_images/STORAGE_SQUARE_689318df-93a4-484e-91f1-0324821f284b.jpg",
               "image_2_heading": "Your image",
               "image_2_text": "Tell your story",
               "image_2_link": ""
@@ -201,16 +210,16 @@
         ],
         "settings": {
           "enable_sticky_header": true,
-          "logo": "shopify:\/\/shop_images\/Tufferman_Logo_1_a5911cb9-12f4-4598-8cb4-f1572056a40e.png",
+          "logo": "shopify://shop_images/Tufferman_Logo_1_a5911cb9-12f4-4598-8cb4-f1572056a40e.png",
           "logo_max_width": 200,
           "mobile_logo_max_width": 100,
           "show_locale_selector": true,
           "show_trustpilot": true,
-          "trustpilot_image": "shopify:\/\/shop_images\/Trust_Pilot_Logo_3.png",
-          "trustpilot_link": "https:\/\/tufferman-shelving.myshopify.com\/pages\/trustpilot-reviews",
+          "trustpilot_image": "shopify://shop_images/Trust_Pilot_Logo_3.png",
+          "trustpilot_link": "https://tufferman-shelving.myshopify.com/pages/trustpilot-reviews",
           "show_telephone": true,
           "telephone_number": "0203 764 9380",
-          "quote": "shopify:\/\/pages\/design-quote-install",
+          "quote": "shopify://pages/design-quote-install",
           "show_country_selector": true,
           "navigation_menu": "main-menu",
           "navigation_mobile_menu": "",
@@ -232,13 +241,13 @@
             "type": "details",
             "settings": {
               "title": "Contact Us",
-              "image_1": "shopify:\/\/shop_images\/Telephone_Icon_White.png",
+              "image_1": "shopify://shop_images/Telephone_Icon_White.png",
               "content_1": "0203 764 9380",
-              "image_2": "shopify:\/\/shop_images\/Email_Icon_White.png",
+              "image_2": "shopify://shop_images/Email_Icon_White.png",
               "content_2": "sales@tufferman.co.uk",
-              "image_3": "shopify:\/\/shop_images\/Location_Icon_White.png",
+              "image_3": "shopify://shop_images/Location_Icon_White.png",
               "content_3": "Tufferman Ltd, Unit 2A Boyton Hall Farm, Boyton Cross, Roxwell, Chelmsford, CM1 4LN.",
-              "image_4": "shopify:\/\/shop_images\/Opneing_hours_Icon_White.png",
+              "image_4": "shopify://shop_images/Opneing_hours_Icon_White.png",
               "content_4": "Monday - Thursday 8:00am - 5:30pm,      Friday 8:00 - 4.30pm"
             }
           },
@@ -247,7 +256,7 @@
             "disabled": true,
             "settings": {
               "title": "Get in touch or visit Us",
-              "content": "<p><strong>Telephone: <\/strong>0203 764 938<\/p><p><strong>Email: <\/strong>sales@tufferman.co.uk<\/p><p><strong>Opening Hours:<\/strong> Monday - Friday 8:30am - 5:30pm<\/p><p><strong>Address: <\/strong>Tufferman Ltd, Unit 2A Boyton Hall Farm, Boyton Cross, Roxwell, Chelmsford, CM1 4LN.<\/p>"
+              "content": "<p><strong>Telephone: </strong>0203 764 938</p><p><strong>Email: </strong>sales@tufferman.co.uk</p><p><strong>Opening Hours:</strong> Monday - Friday 8:30am - 5:30pm</p><p><strong>Address: </strong>Tufferman Ltd, Unit 2A Boyton Hall Farm, Boyton Cross, Roxwell, Chelmsford, CM1 4LN.</p>"
             }
           },
           "ae9e6019-e0ff-4fdd-8114-b056c4c3060f": {
@@ -278,12 +287,12 @@
         ],
         "settings": {
           "show_social_media": false,
-          "footer_logo": "shopify:\/\/shop_images\/Logo-Footer.png",
+          "footer_logo": "shopify://shop_images/Logo-Footer.png",
           "show_payment_icons": true,
           "show_locale_selector": true,
           "show_country_selector": true,
           "show_cookie_bar": false,
-          "text": "<p>Use this bar to show information about your cookie policy.<\/p>"
+          "text": "<p>Use this bar to show information about your cookie policy.</p>"
         }
       },
       "announcement-bar": {
@@ -293,13 +302,13 @@
           "enable_sticky_announcement": true,
           "background": "#2c2c2c",
           "text_color": "#fafafa",
-          "text": "<p>NEXT DAY DELIVERY AVAILABLE<\/p>",
+          "text": "<p>NEXT DAY DELIVERY AVAILABLE</p>",
           "text_position": "center",
           "link": "",
           "show_newsletter": false,
           "newsletter_button": "Subscribe & Save",
           "newsletter_title": "Newsletter",
-          "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+          "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing</p>"
         }
       },
       "popups": {
@@ -314,7 +323,7 @@
             "settings": {
               "icon": "bi-delivery",
               "title": "Free delivery worldwide",
-              "content": "<p>Short content about your store<\/p>"
+              "content": "<p>Short content about your store</p>"
             }
           },
           "static-text-with-icons-1": {
@@ -322,7 +331,7 @@
             "settings": {
               "icon": "bi-returns",
               "title": "Satisfied or refunded",
-              "content": "<p>Short content about your store<\/p>"
+              "content": "<p>Short content about your store</p>"
             }
           },
           "static-text-with-icons-2": {
@@ -330,7 +339,7 @@
             "settings": {
               "icon": "bi-customer-support",
               "title": "Top-notch support",
-              "content": "<p>Short content about your store<\/p>"
+              "content": "<p>Short content about your store</p>"
             }
           },
           "static-text-with-icons-3": {
@@ -338,7 +347,7 @@
             "settings": {
               "icon": "bi-secure-payment",
               "title": "Secure payments",
-              "content": "<p>Short content about your store<\/p>"
+              "content": "<p>Short content about your store</p>"
             }
           }
         },
@@ -368,7 +377,7 @@
           "9dffac74-a6fe-40f1-9f58-42584dde44eb": {
             "type": "announcement",
             "settings": {
-              "text": "<p>20% Off All SX Shelving Ranges<\/p>",
+              "text": "<p>20% Off All SX Shelving Ranges</p>",
               "text_position": "center",
               "link": ""
             }
@@ -376,7 +385,7 @@
           "a1a8b056-5dbd-4fba-9373-dcd6058b0972": {
             "type": "announcement",
             "settings": {
-              "text": "<p>Selected Delivery Day Available <\/p>",
+              "text": "<p>Selected Delivery Day Available </p>",
               "text_position": "center",
               "link": ""
             }
@@ -384,7 +393,7 @@
           "23e99d08-fbda-4a8e-bb21-c0e020953baf": {
             "type": "announcement",
             "settings": {
-              "text": "<p>Price Promise Guarantee*<\/p>",
+              "text": "<p>Price Promise Guarantee*</p>",
               "text_position": "center",
               "link": ""
             }
@@ -407,14 +416,14 @@
           "show_countdown": true,
           "background": "#ffffff",
           "text_color": "#2c2c2c",
-          "text": "<p>NEXT DAY DELIVERY AVAILABLE - order in <\/p>",
+          "text": "<p>NEXT DAY DELIVERY AVAILABLE - order in </p>",
           "text_position": "center"
         }
       },
       "gift-card-template": {
         "type": "gift-card-template",
         "settings": {
-          "logo": "shopify:\/\/shop_images\/logo-static_1.png",
+          "logo": "shopify://shop_images/logo-static_1.png",
           "logo_max_width": 300,
           "mobile_logo_max_width": 170
         }
@@ -425,7 +434,7 @@
           "show_announcement": false,
           "background": "#ffffff",
           "text_color": "#000000",
-          "text": "<p>Announce something here<\/p>",
+          "text": "<p>Announce something here</p>",
           "text_position": "left",
           "link": ""
         }
@@ -434,22 +443,22 @@
     "content_for_index": [],
     "blocks": {
       "60823401804303970": {
-        "type": "shopify:\/\/apps\/dcart\/blocks\/app-embed\/731e2611-8bdf-4514-b5e4-f64f1cae3fb7",
+        "type": "shopify://apps/dcart/blocks/app-embed/731e2611-8bdf-4514-b5e4-f64f1cae3fb7",
         "disabled": false,
         "settings": {}
       },
       "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       },
       "1309651709796516356": {
-        "type": "shopify:\/\/apps\/ordersify-restocked-alerts\/blocks\/app-embed\/903b5cdc-6e3f-4b2d-a8ea-d1ade7f41610",
+        "type": "shopify://apps/ordersify-restocked-alerts/blocks/app-embed/903b5cdc-6e3f-4b2d-a8ea-d1ade7f41610",
         "disabled": false,
         "settings": {}
       },
       "15683396631634586217": {
-        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": true,
         "settings": {
           "button_color": "#6c6c6c",
@@ -463,33 +472,33 @@
         }
       },
       "14060646107696862457": {
-        "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       },
       "11945366711752539959": {
-        "type": "shopify:\/\/apps\/zendesk\/blocks\/zendesk_web_widget\/c0b417b1-b90b-4754-baaf-f55627e6acd4",
+        "type": "shopify://apps/zendesk/blocks/zendesk_web_widget/c0b417b1-b90b-4754-baaf-f55627e6acd4",
         "disabled": true,
         "settings": {}
       },
       "9246707248847178381": {
-        "type": "shopify:\/\/apps\/livechat-live-chat-app\/blocks\/chat_widget\/edc4358c-5386-40b3-a5a3-34aa308c6d45",
+        "type": "shopify://apps/livechat-live-chat-app/blocks/chat_widget/edc4358c-5386-40b3-a5a3-34aa308c6d45",
         "disabled": false,
         "settings": {}
       },
       "10012068959737676665": {
-        "type": "shopify:\/\/apps\/gropulse-wishlist\/blocks\/gropulse-wishlist\/d606b448-832c-4b0a-adbb-21c7fa132df1",
+        "type": "shopify://apps/gropulse-wishlist/blocks/gropulse-wishlist/d606b448-832c-4b0a-adbb-21c7fa132df1",
         "disabled": true,
         "settings": {}
       },
-      "1877152918344802950": {
-        "type": "shopify:\/\/apps\/intelligems-a-b-testing\/blocks\/intelligems-script\/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
+      "6279071938380501511": {
+        "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
         "disabled": false,
         "settings": {}
       },
-      "6279071938380501511": {
-        "type": "shopify:\/\/apps\/powerful-form-builder\/blocks\/app-embed\/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
-        "disabled": false,
+      "1877152918344802950": {
+        "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
+        "disabled": true,
         "settings": {}
       }
     }
@@ -541,7 +550,7 @@
       "low_inventory_threshold": 0,
       "show_reviews_badge": false,
       "cart_type": "drawer",
-      "cart_empty_button_link": "shopify:\/\/collections\/all",
+      "cart_empty_button_link": "shopify://collections/all",
       "cart_show_checkout_button": true,
       "cart_show_free_shipping_threshold": false,
       "cart_free_shipping_threshold": "50",
@@ -593,7 +602,7 @@
               "type": "text",
               "settings": {
                 "title": "About the shop",
-                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>"
+                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.</p>"
               }
             },
             "footer-1": {
@@ -606,7 +615,7 @@
               "type": "newsletter",
               "settings": {
                 "title": "Newsletter",
-                "subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+                "subheading": "<p>A short sentence describing what someone will receive by subscribing</p>"
               }
             }
           },
@@ -625,11 +634,11 @@
           "settings": {
             "background": "#1e2d7d",
             "text_color": "#ffffff",
-            "text": "<p>Announce something here<\/p>",
+            "text": "<p>Announce something here</p>",
             "link": "",
             "newsletter_button": "Subscribe & Save",
             "newsletter_title": "Newsletter",
-            "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+            "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing</p>"
           }
         }
       }
@@ -680,7 +689,7 @@
       "low_inventory_threshold": 1,
       "show_reviews_badge": false,
       "cart_type": "drawer",
-      "cart_empty_button_link": "shopify:\/\/collections\/all",
+      "cart_empty_button_link": "shopify://collections/all",
       "cart_show_checkout_button": true,
       "cart_show_free_shipping_threshold": true,
       "cart_free_shipping_threshold": "50",
@@ -718,7 +727,7 @@
               "type": "text",
               "settings": {
                 "title": "About the shop",
-                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>"
+                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.</p>"
               }
             },
             "footer-1": {
@@ -731,7 +740,7 @@
               "type": "newsletter",
               "settings": {
                 "title": "Newsletter",
-                "subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+                "subheading": "<p>A short sentence describing what someone will receive by subscribing</p>"
               }
             }
           },
@@ -750,11 +759,11 @@
           "settings": {
             "background": "#3a2a2f",
             "text_color": "#ffffff",
-            "text": "<p>Announce something here<\/p>",
+            "text": "<p>Announce something here</p>",
             "link": "",
             "newsletter_button": "Subscribe & Save",
             "newsletter_title": "Newsletter",
-            "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+            "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing</p>"
           }
         }
       }
@@ -805,7 +814,7 @@
       "low_inventory_threshold": 2,
       "show_reviews_badge": true,
       "cart_type": "drawer",
-      "cart_empty_button_link": "shopify:\/\/collections\/all",
+      "cart_empty_button_link": "shopify://collections/all",
       "cart_show_checkout_button": true,
       "cart_show_free_shipping_threshold": true,
       "cart_free_shipping_threshold": "49",
@@ -856,7 +865,7 @@
               "type": "text",
               "settings": {
                 "title": "About the shop",
-                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>"
+                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.</p>"
               }
             },
             "footer-1": {
@@ -869,7 +878,7 @@
               "type": "newsletter",
               "settings": {
                 "title": "Newsletter",
-                "subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+                "subheading": "<p>A short sentence describing what someone will receive by subscribing</p>"
               }
             }
           },
@@ -888,11 +897,11 @@
           "settings": {
             "background": "#222021",
             "text_color": "#ffffff",
-            "text": "<p>Announce something here<\/p>",
+            "text": "<p>Announce something here</p>",
             "link": "",
             "newsletter_button": "Subscribe & Save",
             "newsletter_title": "Newsletter",
-            "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+            "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing</p>"
           }
         }
       }
@@ -902,9 +911,9 @@
     "custom_css": [
       ".product-form__payment-container .product-form__add-button:disabled {cursor: progress;}",
       ".shopify-pc__banner__btns {display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); grid-column-gap: 0px; grid-row-gap: 0px;}",
-      ".shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline {border: none !important; opacity: 0.6 !important; padding: 0 !important; grid-area: 2 \/ 1 \/ 3 \/ 3;}",
-      ".shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept {grid-area: 1 \/ 2 \/ 2 \/ 3;}",
-      ".shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {grid-area: 1 \/ 1 \/ 2 \/ 2;}"
+      ".shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline {border: none !important; opacity: 0.6 !important; padding: 0 !important; grid-area: 2 / 1 / 3 / 3;}",
+      ".shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept {grid-area: 1 / 2 / 2 / 3;}",
+      ".shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {grid-area: 1 / 1 / 2 / 2;}"
     ]
   }
 }
