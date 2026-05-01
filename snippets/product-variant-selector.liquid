@@ -22,7 +22,7 @@
         {% for option in product.metafields.custom.additional_variant_products_1.value %}
           {% if product.metafields.custom.additional_variant_data_1.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_1.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -63,7 +63,7 @@
         {% for option in product.metafields.custom.additional_variant_products_2.value %}
           {% if product.metafields.custom.additional_variant_data_2.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_2.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -104,7 +104,7 @@
         {% for option in product.metafields.custom.additional_variant_products_3.value %}
           {% if product.metafields.custom.additional_variant_data_3.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_3.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -145,7 +145,7 @@
         {% for option in product.metafields.custom.additional_variant_products_4.value %}
           {% if product.metafields.custom.additional_variant_data_4.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_4.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -186,7 +186,7 @@
         {% for option in product.metafields.custom.additional_variant_products_5.value %}
           {% if product.metafields.custom.additional_variant_data_5.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_5.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -226,7 +226,7 @@
         {% for option in product.metafields.custom.additional_variant_products_6.value %}
           {% if product.metafields.custom.additional_variant_data_6.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_6.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -267,7 +267,7 @@
         {% for option in product.metafields.custom.additional_variant_products_7.value %}
           {% if product.metafields.custom.additional_variant_data_7.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_7.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -308,7 +308,7 @@
         {% for option in product.metafields.custom.additional_variant_products_8.value %}
           {% if product.metafields.custom.additional_variant_data_8.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_8.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -349,7 +349,7 @@
         {% for option in product.metafields.custom.additional_variant_products_9.value %}
           {% if product.metafields.custom.additional_variant_data_9.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_9.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
@@ -390,7 +390,7 @@
         {% for option in product.metafields.custom.additional_variant_products_10.value %}
           {% if product.metafields.custom.additional_variant_data_10.value[forloop.index0] != blank %}
             {%- unless currentVariant contains product.metafields.custom.additional_variant_data_10.value[forloop.index0] %}
-              <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+              <a href="{{ option.url }}">
             {% endunless %}
             {% if is_color %}
               <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
