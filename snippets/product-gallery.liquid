@@ -239,7 +239,7 @@
                 <div class="desktop-logo-only">
                   <div class="included-items {{ settings.main_text_type }}">
                     <span class=" {{ settings.main_text_type }}">{% if product.metafields.custom.what_s_included_text != blank %} {{ product.metafields.custom.what_s_included_text.value }} {% else %}{{settings.included_text }} {% endif %}</span>
-                      {% if product.metafields.custom.select_product_benefits_option != blank %}
+                      {% if product.metafields.custom.select_product_include_option != blank %}
                           {% for benefit in product.metafields.custom.select_product_include_option.value %}
                             
                             <div class="product-details-section">
