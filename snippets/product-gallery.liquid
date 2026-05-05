@@ -240,19 +240,8 @@
                       {% endif %}
                   </div>
                 </div>
-              {% else %}
-                <div class="{% if product.template_suffix == 'custom-template' %} mobile-logo-only {% endif %}">
-                  <div class="product-indicators">
-                    <div class="stock-available-indicator">
-                      <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_1 }}</span>
-                    </div>
-                    <div class="delivery-available-indicator">
-                      <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_2 }}</span>
-                    </div>
-                  </div>
-                </div>
               {% endif %}
-              
+
     {%- if product.metafields.custom.product_gallery_banner -%}
       
         {%- if product.template_suffix != 'contact' -%}
@@ -267,6 +256,40 @@
                 {% assign product_gallery_text_2 = product.metafields.custom.product_gallery_banner_text_2 %}
               {% else %}
                 {% assign product_gallery_text_2 = 'product.form.24_del' | t %}
+              {% endif %}
+
+              
+              {% if template.suffix == 'custom-template' %}
+                {%- comment -%}<div class="desktop-logo-only">
+                  <div class="included-items {{ settings.main_text_type }}">
+                    <span class=" {{ settings.main_text_type }}">{% if product.metafields.custom.what_s_included_text != blank %} {{ product.metafields.custom.what_s_included_text.value }} {% else %}{{settings.included_text }} {% endif %}</span>
+                      {% if product.metafields.custom.select_product_include_option != blank %}
+                          {% for benefit in product.metafields.custom.select_product_include_option.value %}
+                            
+                            <div class="product-details-section">
+                              {% if benefit.icon != blank %}
+                                <img src="{{ benefit.icon | image_url }}" alt="{{ benefit.title }}" width="15px" height="15px">
+                              {% endif %}
+                              {% if benefit.text != blank %}
+                                <p>{{ benefit.text }}</p>
+                              {% endif %}
+                            </div>
+
+                          {% endfor %}
+                      {% endif %}
+                  </div>
+                </div> {%- endcomment -%}
+              {% else %}
+                <div class="{% if product.template_suffix == 'custom-template' %} mobile-logo-only {% endif %}">
+                  <div class="product-indicators">
+                    <div class="stock-available-indicator">
+                      <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_1 }}</span>
+                    </div>
+                    <div class="delivery-available-indicator">
+                      <span>{% render 'icon', icon: 'green-tick' %} {{ product_gallery_text_2 }}</span>
+                    </div>
+                  </div>
+                </div>
               {% endif %}
             {%- endunless -%}
           {%- endif -%}
