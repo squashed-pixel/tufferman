@@ -218,24 +218,9 @@
       </div>
     </div>
 
-    {%- if product.metafields.custom.product_gallery_banner -%}
-      <div class="product-gallery__footer">
-        {%- if product.template_suffix != 'contact' -%}
-          {%- if product.selected_or_first_available_variant.available -%}
-            {%- unless product.template_suffix == 'pre-order' -%}
-              {% if product.metafields.custom.product_gallery_banner_text_1 != blank %}
-                {% assign product_gallery_text_1 = product.metafields.custom.product_gallery_banner_text_1 %}
-              {% else %}
-                {% assign product_gallery_text_1 = 'product.form.in_stock' | t %}
-              {% endif %}
-              {% if product.metafields.custom.product_gallery_banner_text_2 != blank %}
-                {% assign product_gallery_text_2 = product.metafields.custom.product_gallery_banner_text_2 %}
-              {% else %}
-                {% assign product_gallery_text_2 = 'product.form.24_del' | t %}
-              {% endif %}
+    <div class="product-gallery__footer">
 
-              
-              {% if template.suffix == 'custom-template' %}
+      {% if template.suffix == 'custom-template' %}
                 <div class="desktop-logo-only">
                   <div class="included-items {{ settings.main_text_type }}">
                     <span class=" {{ settings.main_text_type }}">{% if product.metafields.custom.what_s_included_text != blank %} {{ product.metafields.custom.what_s_included_text.value }} {% else %}{{settings.included_text }} {% endif %}</span>
@@ -267,6 +252,22 @@
                   </div>
                 </div>
               {% endif %}
+              
+    {%- if product.metafields.custom.product_gallery_banner -%}
+      
+        {%- if product.template_suffix != 'contact' -%}
+          {%- if product.selected_or_first_available_variant.available -%}
+            {%- unless product.template_suffix == 'pre-order' -%}
+              {% if product.metafields.custom.product_gallery_banner_text_1 != blank %}
+                {% assign product_gallery_text_1 = product.metafields.custom.product_gallery_banner_text_1 %}
+              {% else %}
+                {% assign product_gallery_text_1 = 'product.form.in_stock' | t %}
+              {% endif %}
+              {% if product.metafields.custom.product_gallery_banner_text_2 != blank %}
+                {% assign product_gallery_text_2 = product.metafields.custom.product_gallery_banner_text_2 %}
+              {% else %}
+                {% assign product_gallery_text_2 = 'product.form.24_del' | t %}
+              {% endif %}
             {%- endunless -%}
           {%- endif -%}
         {%- endif -%}
@@ -295,6 +296,9 @@
               }
             }
           </style>
-      </div>
+
+
+      
     {%- endif -%}
+    </div>
   </div>
