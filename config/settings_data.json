@@ -365,7 +365,7 @@
       "newsletter": {
         "type": "newsletter",
         "settings": {
-          "title": "Subscribe to our newsletter to revieve the latest offers, savings and advice",
+          "title": "Subscribe to our newsletter to recieve the latest offers, savings and advice",
           "content": "",
           "background": "#e7b321",
           "text": "#2c2c2c"
