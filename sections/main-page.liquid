@@ -21,14 +21,24 @@
         </div>
       {%- endif -%}
 
-      {%- if page.content != blank and page.template_suffix == 'contact' or page.template_suffix == 'team' -%}
+      {%- liquid
+        assign show_page_description_in_header = false
+        if page.template_suffix == 'team'
+          assign show_page_description_in_header = true
+        elsif page.template_suffix == 'contact' or page.template_suffix == 'contact-wb'
+          if page.content != blank
+            assign show_page_description_in_header = true
+          endif
+        endif
+      -%}
+      {%- if show_page_description_in_header -%}
         <div class="page__description rte">
           {{ page.content }}
         </div>
       {%- endif -%}
     </header>
 
-    {%- if page.content != blank and page.template_suffix != 'contact' and page.template_suffix != 'team' and page.template_suffix != 'sitemap' -%}
+    {%- if page.content != blank and page.template_suffix != 'contact' and page.template_suffix != 'contact-wb' and page.template_suffix != 'team' and page.template_suffix != 'sitemap' -%}
       <div class="page__content rte">
         {{ page.content }}
       </div>
