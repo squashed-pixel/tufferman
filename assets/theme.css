@@ -16390,7 +16390,7 @@ ul.tabs li.current{
 
 .product-form__upgrade-sale {
   text-transform: uppercase;
-  color: var(--product-on-sale-accent);
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
@@ -17831,8 +17831,6 @@ body.page-template-wb .page-wb-panel {
     padding-bottom: 56px;
   }
 }
-<<<<<<< Updated upstream
-=======
 
 /* 1. THE MAIN CONTAINER */
 .suffix-custom-template-two .inner-label {
@@ -17844,6 +17842,7 @@ body.page-template-wb .page-wb-panel {
     z-index: 1; 
     /* Add a tiny bit of padding to protect the shadow from being clipped by the theme */
     padding: 2px 0; 
+        align-items: center;
 }
 
 /* 2. THE SERRATED SHAPE & HUGGING BORDER */
@@ -17859,7 +17858,7 @@ body.page-template-wb .page-wb-panel {
     bottom: 2px;
     
     z-index: -1; 
-    background: #f4e5e7;
+    background: #ee0000;
     
     /* Shape Configuration */
     --tooth-size: 3px; 
@@ -17889,15 +17888,18 @@ body.page-template-wb .page-wb-panel {
 
     /* THE HUGGING BORDER: Traces the jagged mask shape perfectly */
     filter: 
-        drop-shadow(1px 0 0 var(--product-on-sale-accent, #cc0000)) 
-        drop-shadow(-1px 0 0 var(--product-on-sale-accent, #cc0000)) 
-        drop-shadow(0 1px 0 var(--product-on-sale-accent, #cc0000)) 
-        drop-shadow(0 -1px 0 var(--product-on-sale-accent, #cc0000));
+        drop-shadow(1px 0 0 var(--product-on-sale-accent, #fff)) 
+        drop-shadow(-1px 0 0 var(--product-on-sale-accent, #fff)) 
+        drop-shadow(0 1px 0 var(--product-on-sale-accent, #fff)) 
+        drop-shadow(0 -1px 0 var(--product-on-sale-accent, #fff));
 }
 
 .suffix-custom-template-two .inner-label .inner-label-icon {
-  padding: 5px 10px;
-  border-right: 1px dashed #efb8b8;
+  padding: 5px 8px 5px 12px;
+  border-right: 1px dashed #fff;
+  display: flex;
+    align-content: center;
+    height: 100%;
 }
 
 .suffix-custom-template-two .inner-label .inner-label-text {
@@ -17905,6 +17907,7 @@ body.page-template-wb .page-wb-panel {
   font-size: 12px;
   width: 100%;
   line-height: normal;
+  text-decoration: none;
 }
 
 /* .suffix-custom-template-two .product-details__right__content {
@@ -18052,4 +18055,3 @@ body.page-template-wb .page-wb-panel {
       min-height: 24px;
   }
 }
->>>>>>> Stashed changes
