@@ -17901,6 +17901,9 @@ body.page-template-wb .page-wb-panel {
     align-content: center;
     height: 100%;
 }
+.suffix-custom-template-two .inner-label .inner-label-icon svg {
+    width: 16px;
+}
 
 .suffix-custom-template-two .inner-label .inner-label-text {
   padding: 5px 10px;
