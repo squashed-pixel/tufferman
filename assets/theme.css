@@ -16390,7 +16390,7 @@ ul.tabs li.current{
 
 .product-form__upgrade-sale {
   text-transform: uppercase;
-  color: #fff;
+  color: var(--product-on-sale-accent);
 }
 
 @media screen and (max-width: 767px) {
