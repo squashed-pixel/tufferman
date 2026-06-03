@@ -17894,6 +17894,10 @@ body.page-template-wb .page-wb-panel {
         drop-shadow(0 -1px 0 var(--product-on-sale-accent, #fff));
 }
 
+.suffix-custom-template-two .product-form__upgrade-sale {
+  color: #fff;
+}
+
 .suffix-custom-template-two .inner-label .inner-label-icon {
   padding: 5px 8px 5px 12px;
   border-right: 1px dashed #fff;
