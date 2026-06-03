@@ -3457,8 +3457,12 @@ function _showAlert(message, type, afterElement) {
           return; // Nothing to do if discount label is configured to be hidden
         }
 
-        var discountLabel = this.element.querySelector('.product-meta__label-list .product-label--on-sale'); // Some merchants have removed it from the code so we have to act defensive
+        var discountLabel = this.element.querySelector('.product-meta__label-list .product-label--on-sale');
         var discountPortion = document.querySelector('.product-form__upgrade-sale');
+        if(this.element.querySelector('.inner-label')) {
+          console.log('found');
+          discountPortion = this.element.querySelector('.inner-label-text');
+        }
 
         if (!discountLabel) {
           return;

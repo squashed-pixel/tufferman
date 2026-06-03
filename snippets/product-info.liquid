@@ -427,13 +427,20 @@
     {% else %}
       product-form__upgrade-sale-pounds
     {% endif %}">
-
-    {% if product.metafields.custom.discount_display == 'Percentage' %}
-      {{ 'collection.product.discount_block_html' | t: savings: savings }}
-    {% else %}
-      {{ 'collection.product.discount_html' | t: savings: savings }}
-    {% endif %}
-
+    <span class="inner-label">
+      {% if template.suffix contains 'custom-template-two' %}
+        <span class="inner-label-icon">
+          {% render 'icon', icon: 'sale' %}
+        </span>
+      {% endif %}
+      <span class="inner-label-text">
+        {% if product.metafields.custom.discount_display == 'Percentage' %}
+          {{ 'collection.product.discount_block_html' | t: savings: savings }}
+        {% else %}
+          {{ 'collection.product.discount_html' | t: savings: savings }}
+        {% endif %}
+      </span>
+    </span>
   </span>
 
 {% endif %}
@@ -503,8 +510,34 @@
           
           <p class="back-in-stock-message {% if product.selected_or_first_available_variant.available %}hidden{% endif %}">{{ product.metafields.custom.back_in_stock }}</p>
         </div>
-
         
+
+        {% if template.suffix contains 'custom-template-two' %}
+          <div class="final-content-container">
+
+            <div class="product-indicators">
+              <div class="stock-available-indicator">
+                <span>{% render 'icon', icon: 'green-tick' %} {{ 'product.form.in_stock_2' | t }}</span>
+              </div>
+              <div class="delivery-available-indicator">
+                <span>{% render 'icon', icon: 'green-tick' %} {{ 'product.form.24_del_2' | t }}</span>
+              </div>
+            </div>
+
+            {% if product.metafields.custom.select_product_benefits_option != blank %}
+              {% for benefit in product.metafields.custom.select_product_benefits_option.value %}
+                  <div class="product-benefits">
+                      {% if benefit.icon != blank %}
+                      <img src="{{ benefit.icon | image_url }}" alt="{{ benefit.title }}" width="15px" height="15px">
+                      {% endif %}
+                      {% if benefit.text != blank %}
+                      <p>{{ benefit.text }}</p>
+                      {% endif %}
+                  </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        {% endif %}
         
           </div>
           
@@ -512,6 +545,34 @@
       </div>
     {%- endform -%}
   </div>
+
+  {% if template.suffix contains 'custom-template-two' %}
+    <div class="final-content-container-mobile">
+
+      <div class="product-indicators">
+        <div class="stock-available-indicator">
+          <span><img src="{{ 'green-tick.svg' | asset_url }}" width="24" height="24" style="width: 24px !important; height: 24px !important; min-width: 24px !important; flex-shrink: 0 !important; display: block !important;" alt="In Stock">{{ 'product.form.in_stock_2' | t }}</span>
+        </div>
+        <div class="delivery-available-indicator">
+          <span><img src="{{ 'green-tick.svg' | asset_url }}" width="24" height="24" style="width: 24px !important; height: 24px !important; min-width: 24px !important; flex-shrink: 0 !important; display: block !important;" alt="In Stock"> {{ 'product.form.24_del_2' | t }}</span>
+        </div>
+      </div>
+
+      {% if product.metafields.custom.select_product_benefits_option != blank %}
+        {% for benefit in product.metafields.custom.select_product_benefits_option.value %}
+            <div class="product-benefits">
+                {% if benefit.icon != blank %}
+                <img src="{{ benefit.icon | image_url }}" alt="{{ benefit.title }}" width="15px" height="15px">
+                {% endif %}
+                {% if benefit.text != blank %}
+                <p>{{ benefit.text }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  {% endif %}
+
 
   {%- if product.metafields.custom.product_gallery_banner_2 -%}
   <div class="product-form__footer">
