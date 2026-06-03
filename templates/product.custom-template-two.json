@@ -1,10 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
         "b0f1b5f6-0f3e-4a16-b326-2249e329528b": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "disabled": true,
           "settings": {}
         },
@@ -27,8 +36,8 @@
             "show_inventory_quantity": false,
             "low_inventory_threshold": 0,
             "show_badges": true,
-            "badge_1": "shopify:\/\/shop_images\/Storalex_Logo.png",
-            "badge_2": "shopify:\/\/shop_images\/image_21.png"
+            "badge_1": "shopify://shop_images/Storalex_Logo.png",
+            "badge_2": "shopify://shop_images/image_21.png"
           }
         },
         "buy_buttons": {
@@ -38,7 +47,7 @@
           }
         },
         "gropulse_wishlist_gropulse_wishlist_button_BCHdyf": {
-          "type": "shopify:\/\/apps\/gropulse-wishlist\/blocks\/gropulse-wishlist-button\/d606b448-832c-4b0a-adbb-21c7fa132df1",
+          "type": "shopify://apps/gropulse-wishlist/blocks/gropulse-wishlist-button/d606b448-832c-4b0a-adbb-21c7fa132df1",
           "settings": {}
         },
         "description": {
@@ -53,12 +62,12 @@
           "settings": {
             "tag": "",
             "show_promo_block": true,
-            "promo_image": "shopify:\/\/shop_images\/image-29.png",
-            "promo_link": "shopify:\/\/collections\/garage-shelving"
+            "promo_image": "shopify://shop_images/image-29.png",
+            "promo_link": "shopify://collections/garage-shelving"
           }
         },
         "gropulse_wishlist_gropulse_wishlist_button_YKiwni": {
-          "type": "shopify:\/\/apps\/gropulse-wishlist\/blocks\/gropulse-wishlist-button\/d606b448-832c-4b0a-adbb-21c7fa132df1",
+          "type": "shopify://apps/gropulse-wishlist/blocks/gropulse-wishlist-button/d606b448-832c-4b0a-adbb-21c7fa132df1",
           "settings": {}
         }
       },
@@ -111,7 +120,7 @@
         "16547833469d889686-0": {
           "type": "item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/test_logo_b.jpg",
+            "logo": "shopify://shop_images/test_logo_b.jpg",
             "circular_logo": false,
             "show_overlay": false,
             "overlay_opacity": 50,
@@ -119,7 +128,7 @@
             "background": "#ffffff",
             "text_color": "#2c2c2c",
             "title": "",
-            "content": "<p>Heavy-duty industrial shelving that's built to last for extra piece of mind, these sturdy industrial shelving units are covered by the Storalex 5 Year Guarantee. <br\/>A British brand that's synonymous with quality.<\/p>",
+            "content": "<p>Heavy-duty industrial shelving that's built to last for extra piece of mind, these sturdy industrial shelving units are covered by the Storalex 5 Year Guarantee. <br/>A British brand that's synonymous with quality.</p>",
             "content_position": "middle_left",
             "button_background": "#ffffff",
             "button_text_color": "#6f42ef",
@@ -130,7 +139,7 @@
         "16547833469d889686-1": {
           "type": "item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/trustpilot-logo-snijpunt_4.png",
+            "logo": "shopify://shop_images/trustpilot-logo-snijpunt_4.png",
             "circular_logo": false,
             "show_overlay": false,
             "overlay_opacity": 50,
@@ -138,7 +147,7 @@
             "background": "#ffffff",
             "text_color": "#2c2c2c",
             "title": "",
-            "content": "<p>We’re genuinely focussed on great customer service, as our Trustpilot reviews demonstrate. We are a small and friendly business based in Essex, delivering traditional help and advice as if you’d walked into your local hardware store<\/p>",
+            "content": "<p>We’re genuinely focussed on great customer service, as our Trustpilot reviews demonstrate. We are a small and friendly business based in Essex, delivering traditional help and advice as if you’d walked into your local hardware store</p>",
             "content_position": "top_left",
             "button_background": "#ffffff",
             "button_text_color": "#fc2a68",
@@ -149,7 +158,7 @@
         "16547833469d889686-2": {
           "type": "item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/TS-App-logo-large-color-png-1_2.png",
+            "logo": "shopify://shop_images/TS-App-logo-large-color-png-1_2.png",
             "circular_logo": false,
             "show_overlay": false,
             "overlay_opacity": 50,
@@ -157,7 +166,7 @@
             "background": "#ffffff",
             "text_color": "#2c2c2c",
             "title": "",
-            "content": "<p><strong>Trading Standards Approved<\/strong><\/p><p>We have been vetted and approved by Trading Standards as part of the national Buy with Confidence scheme. You can be sure that when you buy industrial shelving units from Tufferman, you’re dealing with a trustworthy and customer orientated company.<\/p>",
+            "content": "<p><strong>Trading Standards Approved</strong></p><p>We have been vetted and approved by Trading Standards as part of the national Buy with Confidence scheme. You can be sure that when you buy industrial shelving units from Tufferman, you’re dealing with a trustworthy and customer orientated company.</p>",
             "content_position": "top_left",
             "button_background": "#ffffff",
             "button_text_color": "#26c1ce",
@@ -168,7 +177,7 @@
         "6690ae36-5c62-4062-be64-0c727ef31136": {
           "type": "item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/OP_Product_Group_Listing_Page_-_FSB_2.png",
+            "logo": "shopify://shop_images/OP_Product_Group_Listing_Page_-_FSB_2.png",
             "circular_logo": false,
             "show_overlay": false,
             "overlay_opacity": 50,
@@ -176,7 +185,7 @@
             "background": "#ffffff",
             "text_color": "#2c2c2c",
             "title": "",
-            "content": "<p>We know from running our own business that we need value for money and great service from all our suppliers. We’re passionate at what we do and always on hand to help. If you need advice choosing the right industrial shelving units for your needs, simply call our support team on <strong>0203 764 938<\/strong><\/p>",
+            "content": "<p>We know from running our own business that we need value for money and great service from all our suppliers. We’re passionate at what we do and always on hand to help. If you need advice choosing the right industrial shelving units for your needs, simply call our support team on <strong>0203 764 938</strong></p>",
             "content_position": "top_left",
             "button_background": "#ffffff",
             "button_text_color": "#000000",
@@ -187,7 +196,7 @@
         "b38b3bb1-2d83-4399-afde-1b8f535f99aa": {
           "type": "item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/Millets_Logo_Col_1.png",
+            "logo": "shopify://shop_images/Millets_Logo_Col_1.png",
             "circular_logo": false,
             "show_overlay": false,
             "overlay_opacity": 50,
@@ -195,7 +204,7 @@
             "background": "#ffffff",
             "text_color": "#2c2c2c",
             "title": "",
-            "content": "<p>\"We’ve purchased Storalex shelving from Tufferman for a number of years now, specifically for stockrooms within our Millets and Ultimate Outdoors stores. As well as receiving excellent service, we find the shelving units strong and sturdy as well as being great value for money.”<br\/><strong>Lynne, JD Outdoors, part of JD Sports Fashion PLC<\/strong><\/p>",
+            "content": "<p>\"We’ve purchased Storalex shelving from Tufferman for a number of years now, specifically for stockrooms within our Millets and Ultimate Outdoors stores. As well as receiving excellent service, we find the shelving units strong and sturdy as well as being great value for money.”<br/><strong>Lynne, JD Outdoors, part of JD Sports Fashion PLC</strong></p>",
             "content_position": "top_left",
             "button_background": "#ffffff",
             "button_text_color": "#000000",
@@ -235,56 +244,56 @@
         "16589231100591c8fe-0": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/71w9FVctqpL.jpg",
+            "image": "shopify://shop_images/71w9FVctqpL.jpg",
             "link": ""
           }
         },
         "16589231100591c8fe-1": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Sony_Logo.png",
+            "image": "shopify://shop_images/Sony_Logo.png",
             "link": ""
           }
         },
         "16589231100591c8fe-2": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/WB_Logo.png",
+            "image": "shopify://shop_images/WB_Logo.png",
             "link": ""
           }
         },
         "16589231100591c8fe-3": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Millets_Logo.png",
+            "image": "shopify://shop_images/Millets_Logo.png",
             "link": ""
           }
         },
         "16589231100591c8fe-4": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/sports_Direct_Logo.png",
+            "image": "shopify://shop_images/sports_Direct_Logo.png",
             "link": ""
           }
         },
         "16589231100591c8fe-5": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Waterstones-logo.png",
+            "image": "shopify://shop_images/Waterstones-logo.png",
             "link": ""
           }
         },
         "5769e7c0-c12a-4ca5-b70d-9f35e1f30a75": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rolls_Royce_logo.png",
+            "image": "shopify://shop_images/Rolls_Royce_logo.png",
             "link": ""
           }
         },
         "e1695b6c-3aa0-4a60-93b5-3b1f279160b7": {
           "type": "logo",
           "settings": {
-            "image": "shopify:\/\/shop_images\/JD_Sports_logo.png",
+            "image": "shopify://shop_images/JD_Sports_logo.png",
             "link": ""
           }
         }
@@ -355,7 +364,7 @@
       "type": "apps",
       "blocks": {
         "144d5060-da3a-43fe-8bff-6ee0d7901f09": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         }
       },
