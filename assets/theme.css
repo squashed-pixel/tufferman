@@ -16390,7 +16390,7 @@ ul.tabs li.current{
 
 .product-form__upgrade-sale {
   text-transform: uppercase;
-  color: var(--product-on-sale-accent);
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
@@ -17829,5 +17829,232 @@ body.page-template-wb .page-wb-panel {
   body.page-template-wb .page-wb-panel {
     padding-top: 40px;
     padding-bottom: 56px;
+  }
+}
+
+/* 1. THE MAIN CONTAINER */
+.suffix-custom-template-two .inner-label {
+    position: relative;
+    width: 100%;
+    display: flex;
+    background: transparent !important; 
+    border: none !important; /* We must remove the straight rectangle border */
+    z-index: 1; 
+    /* Add a tiny bit of padding to protect the shadow from being clipped by the theme */
+    padding: 2px 0; 
+        align-items: center;
+}
+
+/* 2. THE SERRATED SHAPE & HUGGING BORDER */
+.suffix-custom-template-two .inner-label::before {
+    content: "";
+    position: absolute;
+    
+    /* THE BUFFER: We pull the shape in by 2px on all sides. 
+       This gives the 1px shadow space to exist without getting clipped! */
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    
+    z-index: -1; 
+    background: #ee0000;
+    
+    /* Shape Configuration */
+    --tooth-size: 3px; 
+    
+    /* Create the Jagged Edges */
+    -webkit-mask-image: 
+        linear-gradient(black, black), 
+        conic-gradient(from 225deg at right, transparent 90deg, black 0), 
+        conic-gradient(from 45deg at left, transparent 90deg, black 0);   
+    -webkit-mask-size: 
+        calc(100% - var(--tooth-size)) 100%, 
+        var(--tooth-size) calc(var(--tooth-size) * 2), 
+        var(--tooth-size) calc(var(--tooth-size) * 2);
+    -webkit-mask-position: center, left top, right top;
+    -webkit-mask-repeat: no-repeat, repeat-y, repeat-y;
+
+    mask-image: 
+        linear-gradient(black, black),
+        conic-gradient(from 225deg at right, transparent 90deg, black 0),
+        conic-gradient(from 45deg at left, transparent 90deg, black 0);
+    mask-size: 
+        calc(100% - var(--tooth-size)) 100%, 
+        var(--tooth-size) calc(var(--tooth-size) * 2), 
+        var(--tooth-size) calc(var(--tooth-size) * 2);
+    mask-position: center, left top, right top;
+    mask-repeat: no-repeat, repeat-y, repeat-y;
+
+    /* THE HUGGING BORDER: Traces the jagged mask shape perfectly */
+    filter: 
+        drop-shadow(1px 0 0 var(--product-on-sale-accent, #fff)) 
+        drop-shadow(-1px 0 0 var(--product-on-sale-accent, #fff)) 
+        drop-shadow(0 1px 0 var(--product-on-sale-accent, #fff)) 
+        drop-shadow(0 -1px 0 var(--product-on-sale-accent, #fff));
+}
+
+.suffix-custom-template-two .inner-label .inner-label-icon {
+  padding: 5px 8px 5px 12px;
+  border-right: 1px dashed #fff;
+  display: flex;
+    align-content: center;
+    height: 100%;
+}
+.suffix-custom-template-two .inner-label .inner-label-icon svg {
+    width: 16px;
+}
+
+.suffix-custom-template-two .inner-label .inner-label-text {
+  padding: 5px 10px;
+  font-size: 12px;
+  width: 100%;
+  line-height: normal;
+  text-decoration: none;
+}
+
+/* .suffix-custom-template-two .product-details__right__content {
+  position: static;
+} */
+
+.suffix-custom-template-two .product-details__right .product-indicators div {
+  padding: 0;
+  border: none;
+  font-size: 11px;
+  line-height: 12px;
+  margin-top: 10px;
+}
+
+.suffix-custom-template-two .final-content-container {
+  background: #fff;
+  padding-bottom: 10px;
+}
+
+.suffix-custom-template-two .final-content-container .product-indicators {
+  padding: 10px 5px;
+  border-top: 1px solid #c5c5c5;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.suffix-custom-template-two .product-details__right__content {
+  padding: 0;
+}
+
+.suffix-custom-template-two .product-details__right__content .product-form__info-list {
+  padding-top: 30px;
+}
+
+.suffix-custom-template-two .product-details__right__content .product-form__upgrade-sale {
+  padding: 15px 0px;
+  margin: 0 20px 10px;
+}
+
+.suffix-custom-template-two .product-details__right__content .product-form__buttons {
+  padding: 0 20px 30px;
+}
+
+.suffix-custom-template-two .product-benefits {
+  font-size: 11px;
+  padding: 0px 5px;
+  gap: 5px;
+}
+
+.suffix-custom-template-two .final-content-container-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .suffix-custom-template-two .final-content-container {
+    display: none;
+  }
+  .suffix-custom-template-two .product-details__right__content {
+    padding: 10px 10px 10px 10px;
+  }
+  .suffix-custom-template-two .product-details__right__content .product-form__info-list,
+  .suffix-custom-template-two .product-details__right__content .product-form__buttons,
+  .suffix-custom-template-two .product-details__right__content .product-form__upgrade-sale {
+    padding: 0;
+  }
+  .suffix-custom-template-two .product-details__right__content .product-form__upgrade-sale {
+    top: -45px;
+    left: -5px;
+  }
+  .suffix-custom-template-two .final-content-container-mobile {
+    display: block;
+    padding-bottom: 15px;
+    border: 1px solid #c5c5c5;
+    margin: 0 10px 30px;
+    padding: 0;
+  }
+  .suffix-custom-template-two .final-content-container-mobile .product-benefits {
+    padding: 0 15px 5px;
+  }
+
+  .final-content-container-mobile,
+    .product-indicators {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* 2. Ensure the rows containing the SVG and text align side-by-side */
+    .final-content-container-mobile > *,
+    .product-indicators > * {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important; /* Creates a neat space between the SVG and the text */
+    }
+
+    /* 3. The Magic Fix: Lock the SVGs so they cannot be hidden or crushed */
+    .final-content-container-mobile svg,
+    .product-indicators svg,
+    /* Added img tags just in case any of them load as standard images */
+    .final-content-container-mobile img,
+    .product-indicators img {
+        display: block !important;
+        visibility: visible !important;
+        flex-shrink: 0 !important; /* Completely prevents flexbox from squishing the icon */
+        width: 24px !important; 
+        height: 24px !important;
+        min-width: 24px !important; /* Enforces a hard minimum size */
+        min-height: 24px !important;
+    }
+    .final-content-container-mobile .product-indicators {
+      border-top: 1px solid #c5c5c5;
+      border-bottom: 1px solid #c5c5c5;
+    }
+    .suffix-custom-template-two .final-content-container-mobile .product-indicators div  {
+      justify-content: center;
+      margin-bottom: 0;
+      padding: 10px 0;
+      font-size: 14px;
+      border: none;
+    }
+    .final-content-container-mobile {
+      padding: 30px 20px;
+    }
+    .suffix-custom-template-two .product-benefits {
+      font-size: 14px;
+    }
+    .suffix-custom-template-two .card__section {
+      padding-bottom: 15px;
+    }
+    .suffix-custom-template-two .product-gallery__footer {
+      display: none;
+    }
+    .suffix-custom-template-two .product-details__right__content .product-form__upgrade-sale {
+      margin: 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+  /* Prevent flexbox from crushing the SVGs in the desktop container */
+  .final-content-container .product-indicators svg,
+  .final-content-container .product-indicators img {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      min-height: 24px;
   }
 }
