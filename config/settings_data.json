@@ -300,9 +300,9 @@
         "settings": {
           "show_announcement": true,
           "enable_sticky_announcement": true,
-          "background": "#2c2c2c",
+          "background": "#d20909",
           "text_color": "#fafafa",
-          "text": "<p>NEXT DAY DELIVERY AVAILABLE</p>",
+          "text": "<p>20% OFF ALL STORALEX SHELVING</p>",
           "text_position": "center",
           "link": "",
           "show_newsletter": false,
