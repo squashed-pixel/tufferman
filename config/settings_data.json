@@ -407,8 +407,8 @@
         ],
         "settings": {
           "show_announcement": true,
-          "background": "#6e6e6e",
-          "text_color": "#ffffff"
+          "background": "#ffffff",
+          "text_color": "#2c2c2c"
         }
       },
       "countdown-timer": {
