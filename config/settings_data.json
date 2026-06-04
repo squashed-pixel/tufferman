@@ -376,6 +376,7 @@
         "blocks": {
           "9dffac74-a6fe-40f1-9f58-42584dde44eb": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "text": "<p>20% Off All SX Shelving Ranges</p>",
               "text_position": "center",
@@ -385,7 +386,7 @@
           "a1a8b056-5dbd-4fba-9373-dcd6058b0972": {
             "type": "announcement",
             "settings": {
-              "text": "<p>Selected Delivery Day Available </p>",
+              "text": "<p>Next Day Delivery Available </p>",
               "text_position": "center",
               "link": ""
             }
@@ -406,7 +407,7 @@
         ],
         "settings": {
           "show_announcement": true,
-          "background": "#d20909",
+          "background": "#6e6e6e",
           "text_color": "#ffffff"
         }
       },
