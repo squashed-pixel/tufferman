@@ -615,7 +615,7 @@
           {% assign split_products = variant.metafields.custom.upgrade_products_1.value | split: ',' %}
           {%- for options in variant.metafields.custom.upgrade_products_1.value -%}
             <a {% if upgrade_text_options_1[forloop.index0] contains "(no-link)" %}class="non-linkable-options"{% endif %} {% unless upgrade_text_options_1[forloop.index0] contains "(no-link)" %}href="{{ options.url }}"{% endunless %}>
-              <div class="block-swatch__item" 1 style="background-color: {{ variant.metafields.custom.upgrade_product_background_colour_1 }};">
+              <div class="block-swatch__item" 1 style="background-color: {{ variant.metafields.custom.upgrade_product_background_colour_1 }}; border-color: {{ variant.metafields.custom.upgrade_product_background_colour_1 }};">
                 <span class="metafield_variant" id="upgrade_{{ variant.id }}" style="color: {{ variant.metafields.custom.upgrade_product_text_colour_1 }};">
                   {{ upgrade_text_options_1[forloop.index0] | replace: '"', '' | replace: '[', '' | replace: ']', '' | replace: '(no-link)', '' | strip_html }}
                 </span>
@@ -636,7 +636,7 @@
           {% assign split_products = variant.metafields.custom.upgrade_products_2.value | split: ',' %}
           {%- for options in variant.metafields.custom.upgrade_products_2.value -%}
             <a {% if upgrade_text_options_2[forloop.index0] contains "(no-link)" %}class="non-linkable-options"{% endif %} {% unless upgrade_text_options_2[forloop.index0] contains "(no-link)" %}href="{{ options.url }}"{% endunless %}>
-              <div class="block-swatch__item" style="background-color: {{ variant.metafields.custom.upgrade_product_background_colour_2 }};">
+              <div class="block-swatch__item" style="background-color: {{ variant.metafields.custom.upgrade_product_background_colour_2 }}; border-color: {{ variant.metafields.custom.upgrade_product_background_colour_2 }};">
                 <span class="metafield_variant" id="upgrade_{{ variant.id }}" style="color: {{ variant.metafields.custom.upgrade_product_text_colour_2 }};">
                 {{ upgrade_text_options_2[forloop.index0] | replace: '"', '' | replace: '[', '' | replace: ']', '' | replace: '(no-link)', '' | strip_html }}
                 </span>
@@ -657,7 +657,7 @@
           {% assign split_products = variant.metafields.custom.upgrade_products_3.value | split: ',' %}
           {%- for options in variant.metafields.custom.upgrade_products_3.value -%}
             <a {% if upgrade_text_options_3[forloop.index0] contains "(no-link)" %}class="non-linkable-options"{% endif %} {% unless upgrade_text_options_3[forloop.index0] contains "(no-link)" %}href="{{ options.url }}"{% endunless %}>
-              <div class="block-swatch__item" style="background-color: {{ variant.metafields.custom.upgrade_product_background_colour_3 }};">
+              <div class="block-swatch__item" style="background-color: {{ variant.metafields.custom.upgrade_product_background_colour_3 }}; border-color: {{ variant.metafields.custom.upgrade_product_background_colour_3 }};">
                 <span class="metafield_variant"  id="upgrade_{{ variant.id }}" style="color: {{ variant.metafields.custom.upgrade_product_text_colour_3 }};">
                 {{ upgrade_text_options_3[forloop.index0] | replace: '"', '' | replace: '[', '' | replace: ']', '' | replace: '(no-link)', '' | strip_html }}
                 </span>
