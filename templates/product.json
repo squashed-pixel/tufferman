@@ -44,7 +44,7 @@
           "type": "buy_buttons",
           "settings": {
             "show_payment_button": false,
-            "selected_variant_color": "#fc2a68"
+            "selected_variant_color": ""
           }
         },
         "gropulse_wishlist_gropulse_wishlist_button_BCHdyf": {

@@ -652,6 +652,14 @@ if (variantsContainer) {
 
 </script>
 
+{% if section.settings.selected_variant_color != blank %}
+  <style>
+    .block-swatch__item.block-swatch__item--selected {
+      background: {{ section.settings.selected_variant_color }} !important;
+    }
+  </style>
+{% endif %}
+
 {% schema %}
 {
   "name": "Product",
@@ -801,7 +809,7 @@ if (variantsContainer) {
           "default": true
         },
         {
-          "type": "checkbox",
+          "type": "color",
           "id": "selected_variant_color",
           "label": "Selected variant background color"
         }

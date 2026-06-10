@@ -1,14 +1,6 @@
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
 {%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
 
-{% if section.settings.selected_variant_color != blank %}
-  <style>
-    .block-swatch__item.block-swatch__item--selected {
-      background: {{ section.settings.selected_variant_color }} !important;
-    }
-  </style>
-{% endif %}
-
 {% assign currentVariant = product.metafields.custom.additional_variants_current_product_data.value %}
 
 {% if product.metafields.custom.additional_variant_data_1 != blank and product.metafields.custom.additional_variant_products_1 != blank %}
