@@ -16223,6 +16223,8 @@ ul.tabs li.current{
 @media screen and (min-width: 1000px) {
   .product-block-list__item--gallery {
     max-width: 700px;
+    position: sticky;
+    top: 0;
   }
   .template-product main {
     max-width: 1480px;
