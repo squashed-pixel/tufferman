@@ -666,6 +666,15 @@ if (variantsContainer) {
   </style>
 {% endif %}
 
+<style>
+    .inner-label:before {
+      background: {{ section.settings.coupon_bg }};
+    }
+    .inner-label .inner-label-text {
+      color: {{ section.settings.coupon_text }};
+    }
+</style>
+
 {% schema %}
 {
   "name": "Product",
