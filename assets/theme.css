@@ -17066,6 +17066,7 @@ ul.tabs li.current{
   .price-lists-vat.reverse {
     flex-direction: row-reverse;
     justify-content: flex-end;
+    align-items: flex-end;
   }
   .product-form__info-content .price-list {
     gap: 25px !important
@@ -17084,6 +17085,7 @@ ul.tabs li.current{
   .price-lists-vat {
     flex-direction: row;
     justify-content: flex-start;
+    align-items: flex-end;
   }
   .price-lists-vat {
     gap: 0;
