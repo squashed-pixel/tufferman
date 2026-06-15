@@ -17065,6 +17065,7 @@ ul.tabs li.current{
 @media screen and (max-width: 767px) {
   .price-lists-vat.reverse {
     flex-direction: row-reverse;
+    justify-content: flex-end;
   }
   .product-form__info-content .price-list {
     gap: 25px !important
