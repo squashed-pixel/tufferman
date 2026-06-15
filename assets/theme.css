@@ -18022,7 +18022,7 @@ body.page-template-wb .page-wb-panel {
         min-height: 24px !important;
     }
     .final-content-container-mobile .product-indicators {
-      border-top: 1px solid #c5c5c5;
+      border-top: none;
       border-bottom: 1px solid #c5c5c5;
     }
     .final-content-container-mobile .product-indicators div  {
