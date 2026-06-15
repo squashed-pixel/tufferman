@@ -428,11 +428,11 @@
       product-form__upgrade-sale-pounds
     {% endif %}">
     <span class="inner-label">
-      {% if template.suffix contains 'custom-template-two' %}
+      
         <span class="inner-label-icon">
           {% render 'icon', icon: 'sale' %}
         </span>
-      {% endif %}
+      
       <span class="inner-label-text">
         {% if product.metafields.custom.discount_display == 'Percentage' %}
           {{ 'collection.product.discount_block_html' | t: savings: savings }}
@@ -512,7 +512,7 @@
         </div>
         
 
-        {% if template.suffix contains 'custom-template-two' %}
+        
           <div class="final-content-container">
 
             <div class="product-indicators">
@@ -537,7 +537,6 @@
               {% endfor %}
             {% endif %}
           </div>
-        {% endif %}
         
           </div>
           
@@ -546,7 +545,7 @@
     {%- endform -%}
   </div>
 
-  {% if template.suffix contains 'custom-template-two' %}
+  
     <div class="final-content-container-mobile">
 
       <div class="product-indicators">
@@ -571,7 +570,6 @@
         {% endfor %}
       {% endif %}
     </div>
-  {% endif %}
 
 
   {%- if product.metafields.custom.product_gallery_banner_2 -%}
