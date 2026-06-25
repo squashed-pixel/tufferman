@@ -85,7 +85,7 @@
         "upsell_popup": true,
         "enable_sticky": false,
         "selected_variant_color": "#413A3A",
-        "coupon_text": "",
+        "coupon_text": "#FAFAFA",
         "coupon_bg": "#E83737",
         "upsell_heading": "Items You May Need",
         "upsell_format": "manual",
