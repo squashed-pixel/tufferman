@@ -84,9 +84,9 @@
       "settings": {
         "upsell_popup": true,
         "enable_sticky": false,
-        "selected_variant_color": "#413A3A",
-        "coupon_text": "#FAFAFA",
-        "coupon_bg": "#E83737",
+        "selected_variant_color": "",
+        "coupon_text": "",
+        "coupon_bg": "",
         "upsell_heading": "Items You May Need",
         "upsell_format": "manual",
         "upsell_manual_collection": "mats-flooring",
