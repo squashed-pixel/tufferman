@@ -16162,13 +16162,17 @@ ul.tabs li.current{
 }
 
 .product-details__right__banner {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
+  position: absolute;
+    width: 80px;
+    right: 10px;
+    top:10px;
+    @media (min-width:640px) {
+      width: 150px;
+    }
 }
 
 .product-details__right__banner img {
-  max-width: 150px;
+  width:100%;
 }
 
 .product-meta__vendor {
@@ -16177,9 +16181,6 @@ ul.tabs li.current{
 }
 
 @media screen and (max-width: 767px) {
-  .product-details__right__banner img {
-    display: none;
-  }
   .product-meta__vendor {
     display: block;
   }

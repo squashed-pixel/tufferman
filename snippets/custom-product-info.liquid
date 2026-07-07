@@ -279,16 +279,7 @@
       </div>
 
       <div class="product-details__right">
-        {% comment %} {%- if product.metafields.custom.product_details_banner -%}
-          <div class="product-details__right__banner">
-            <img
-              src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
-              alt="{{ product.metafields.custom.product_details_banner.alt }}"
-              width="{{ product.metafields.custom.product_details_banner.width }}"
-              height="{{ product.metafields.custom.product_details_banner.height }}"
-              loading="lazy">
-          </div>
-        {%- endif -%} {% endcomment %}
+      
         <div id="buyblock" class="product-details__right__content" style="background-color: {{ settings.product_detail_background }}">
           {%- assign product_meta_block = section.blocks | where: 'type', 'product_meta' | first -%}
 
