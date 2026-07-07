@@ -1,7 +1,7 @@
 {%- if section.settings.show_countdown -%}
   <section data-section-id="{{ section.id }}" data-section-type="announcement-bar second-announcement-bar">
     <countdown-timer>
-      <div class="container">
+      <div class="{% unless section.settings.full_width %}container{% endunless %}">
         <div class="announcement-bar countdown-timer">
           <div class="announcement-bar__inner">
             <p class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">
@@ -31,6 +31,13 @@
       "id": "show_countdown",
       "label": "Show countdown",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width",
+      "default": false,
+      "info": "Toggles the page width container on/off."
     },
     {
       "type": "color",

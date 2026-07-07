@@ -1,0 +1,276 @@
+{%- capture section_settings -%}
+{
+}
+{%- endcapture -%}
+
+{%- if section.settings.show_section -%}
+<section data-section-id="{{ section.id }}" data-section-type="call-to-action-bar" data-section-settings='{{ section_settings }}' style="background-color: {{ section.settings.background_color }}; margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px; border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color }}; border-bottom: {{ section.settings.border_bottom_width }}px solid {{ section.settings.border_bottom_color }};">
+  <div class="{% unless section.settings.full_width %}container{% endunless %}">
+    <div class="cta-bar__blocks cta-bar__blocks--count-{{ section.blocks.size }}" {% if section.blocks.size > 1 %}data-flickity='{ "watchCSS": true, "cellAlign": "center", "prevNextButtons": false, "pageDots": false, "autoPlay": 2000, "wrapAround": true, "adaptiveHeight": false }'{% endif %}>
+      {%- for block in section.blocks -%}
+        <div class="cta-bar__block {% if block.settings.link != blank %}cta-bar__block--has-link{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="cta-bar__link"></a>
+          {%- endif -%}
+          
+          <div class="cta-bar__content" style="padding: {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px;">
+            {%- if block.settings.rich_text != blank -%}
+              <div class="cta-bar__text rte">
+                {{ block.settings.rich_text }}
+              </div>
+            {%- endif -%}
+            
+            {%- if block.settings.raw_liquid != blank -%}
+              <div class="cta-bar__liquid">
+                {{ block.settings.raw_liquid }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-bar__blocks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .cta-bar__blocks .trustpilot-widget iframe{
+    margin:0!important;
+  }
+  
+  .cta-bar__block {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .cta-bar__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  
+  .cta-bar__content {
+    width: 100%;
+    z-index: 1;
+    position: relative;
+  }
+
+  .cta-bar__text p {
+    margin: 0 !important;
+    min-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    line-height: 1.2;
+    padding: 0 !important;
+    align-items: center;
+    font-size:{{ section.settings.font_size }}px;
+}
+  
+  .cta-bar__text p + p {
+    margin-top: 10px;
+  }
+
+  /* Mobile only slideshow */
+  @media screen and (max-width: 767px) {
+    /* enable Flickity on mobile */
+    .cta-bar__blocks:after {
+      content: 'flickity';
+      display: none;
+    }
+    
+    .cta-bar__blocks {
+      display: block; 
+    }
+    
+    .cta-bar__block {
+      width: 100%; 
+      flex: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    /* disable Flickity on desktop */
+    .cta-bar__blocks:after {
+      content: '';
+    }
+
+    .cta-bar__blocks--count-1 .cta-bar__block { width: 100%; }
+    .cta-bar__blocks--count-2 .cta-bar__block { width: 50%; }
+    .cta-bar__blocks--count-3 .cta-bar__block { width: 33.3333%; }
+  }
+</style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Call to Action Bar",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width",
+      "default": false,
+      "info": "Toggles the page width container on/off."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Borders"
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Top Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_top_color",
+      "label": "Border Top Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_bottom_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Bottom Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_bottom_color",
+      "label": "Border Bottom Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Block Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top/Bottom Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Left/Right Padding",
+      "default": 20
+    },
+     {
+      "type": "range",
+      "id": "font_size",
+      "min": 0,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cta_block",
+      "name": "CTA Block",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Makes the whole block clickable."
+        },
+        {
+          "type": "richtext",
+          "id": "rich_text",
+          "label": "Rich Text",
+          "default": "<p>Call to action text here</p>"
+        },
+        {
+          "type": "liquid",
+          "id": "raw_liquid",
+          "label": "Raw Liquid / Embeds",
+          "info": "Use this for JavaScript or embeds like Trustpilot."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action Bar",
+      "blocks": [
+        {
+          "type": "cta_block"
+        },
+        {
+          "type": "cta_block"
+        },
+        {
+          "type": "cta_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
