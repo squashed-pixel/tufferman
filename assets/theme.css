@@ -9256,11 +9256,11 @@ h1.product-meta__title.heading.h1 {
     @media(max-width:767px){
       background: #f5f5f5;
       margin: 10px 0 0 0;
-      padding: 5px 5px 10px 5px;
+      padding: 15px 5px 10px 5px;
       border-radius: 4px;
     }
     @media (min-width:768px){
-      width: 233px;
+      min-width: 80%;
     }
 }
 
@@ -9874,6 +9874,7 @@ shopify-payment-terms {
 .product-label--on-sale {
   background: var(--product-on-sale-accent);
   color: var(--product-on-sale-color);
+  text-wrap: nowrap;
 }
 
 .product-label--custom1 {
