@@ -16894,7 +16894,6 @@ ul.tabs li.current{
 
 .trustpilot-widget iframe {
   margin: 0 auto;
-  transform: translateY(-3px);
   /* margin-bottom: 100px; */
 }
 
