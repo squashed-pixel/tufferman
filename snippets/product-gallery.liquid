@@ -118,6 +118,8 @@
           {%- endif -%}
         </div>
 
+        {%  if template contains 'trustpilot' %}
+
          {%- comment -%}Manufacturer logo{%- endcomment -%}
          {%- if product.metafields.custom.product_details_banner -%}
           <div class="product-details__right__banner">
@@ -173,6 +175,8 @@
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
+
+      {%  endif %}
 
 
         {%- if show_thumbnails_if_one_media and product.media.size > 1 -%}
