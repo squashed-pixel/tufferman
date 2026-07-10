@@ -108,9 +108,18 @@
 
     {%- if product_labels != blank -%}
       <div class="product-meta__label-list">
-        {{- product_labels -}}
+        {{- product_labels -}} 
+        {%  if template contains 'trustpilot' %}
+          <!-- TrustBox widget - Micro Combo -->
+            <div class="trustpilot-widget pdp-title-row-tpw" data-locale="en-GB" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="52494ffc000064000576db22" data-style-height="20px" data-style-width="100%" data-token="b97c0024-5c58-4e1a-b2f3-52b3ec3453a2">
+              <a href="https://uk.trustpilot.com/review/www.tufferman.co.uk" target="_blank" rel="noopener">Trustpilot</a>
+            </div>
+          <!-- End TrustBox widget -->
+        {% endif %}
       </div>
     {%- endif -%}
+
+    
 
     <div class="product__options-wrapper product-details">
       <div class="product-details__left">
@@ -200,16 +209,19 @@
       </div>
 
       <div class="product-details__right">
-        {%- if product.metafields.custom.product_details_banner -%}
-          <div class="product-details__right__banner">
-            <img
-              src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
-              alt="{{ product.metafields.custom.product_details_banner.alt }}"
-              width="{{ product.metafields.custom.product_details_banner.width }}"
-              height="{{ product.metafields.custom.product_details_banner.height }}"
-              loading="lazy">
-          </div>
-        {%- endif -%}
+        {%  if template contains 'trustpilot' %}{% else %}
+          {%- if product.metafields.custom.product_details_banner -%}
+            <div class="product-details__right__banner">
+              <img
+                src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
+                alt="{{ product.metafields.custom.product_details_banner.alt }}"
+                width="{{ product.metafields.custom.product_details_banner.width }}"
+                height="{{ product.metafields.custom.product_details_banner.height }}"
+                loading="lazy">
+            </div>
+          {%- endif -%}
+        {%  endif %}
+        
         <div id="buyblock" class="product-details__right__content" style="background-color: {{ settings.product_detail_background }}">
           {%- assign product_meta_block = section.blocks | where: 'type', 'product_meta' | first -%}
 
@@ -334,7 +346,7 @@
                   {%- endif -%}
                 </div>
                 </div>
-{% assign variant = product.selected_or_first_available_variant %}
+                {% assign variant = product.selected_or_first_available_variant %}
 
 {%- comment -%} ---------------- UPGRADE LOGIC ---------------- {%- endcomment -%}
 
@@ -571,6 +583,13 @@
       {% endif %}
     </div>
 
+    {%  if template contains 'trustpilot' %}
+   <!-- TrustBox widget - Slider -->
+<div class="pdp-footer-row-tpw trustpilot-widget" data-locale="en-GB" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="52494ffc000064000576db22" data-style-height="240px" data-style-width="100%" data-token="070970e1-194d-4dcf-9f4c-f627311b4dab" data-stars="4,5" data-review-languages="en">
+  <a href="https://uk.trustpilot.com/review/www.tufferman.co.uk" target="_blank" rel="noopener">Trustpilot</a>
+</div>
+<!-- End TrustBox widget -->
+{% endif %}
 
   {%- if product.metafields.custom.product_gallery_banner_2 -%}
   <div class="product-form__footer">

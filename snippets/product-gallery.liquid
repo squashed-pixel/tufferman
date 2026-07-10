@@ -117,6 +117,68 @@
             </button>
           {%- endif -%}
         </div>
+
+        {%  if template contains 'trustpilot' %}
+
+         {%- comment -%}Manufacturer logo{%- endcomment -%}
+         {%- if product.metafields.custom.product_details_banner -%}
+          <div class="product-details__right__banner">
+            <img
+              src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
+              alt="{{ product.metafields.custom.product_details_banner.alt }}"
+              width="{{ product.metafields.custom.product_details_banner.width }}"
+              height="{{ product.metafields.custom.product_details_banner.height }}"
+              loading="lazy">
+          </div>
+        {%- endif -%}
+        
+         {%- comment -%}Replicating Colour sweatches on top of image{%- endcomment -%}
+        {% assign currentVariant = product.metafields.custom.additional_variants_current_product_data.value %}
+        {%- assign color_swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
+        
+        {%- for i in (1..10) -%}
+          {%- capture data_key -%}additional_variant_data_{{ i }}{%- endcapture -%}
+          {%- capture products_key -%}additional_variant_products_{{ i }}{%- endcapture -%}
+          {%- capture title_key -%}additional_variant_title_{{ i }}{%- endcapture -%}
+          
+          {%- assign variant_data = product.metafields.custom[data_key] -%}
+          {%- assign variant_products = product.metafields.custom[products_key] -%}
+          {%- assign variant_title = product.metafields.custom[title_key] -%}
+          
+          {%- if variant_data != blank and variant_products != blank -%}
+            {%- assign cleanTitle = variant_title | downcase -%}
+            {%- if cleanTitle contains "colour" -%}
+              <div class="metafield_variant_items image_version">
+                {%- for option in variant_products.value -%}
+                  {%- if variant_data.value[forloop.index0] != blank -%}
+                    {%- unless currentVariant contains variant_data.value[forloop.index0] -%}
+                      <a href="{{ option.url }}{% if template.suffix == 'custom-template' %}?view=custom-template{%endif %}">
+                    {%- endunless -%}
+                    
+                    {%- assign downcased_value = variant_data.value[forloop.index0] | downcase -%}
+                    <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                      {%- if currentVariant contains variant_data.value[forloop.index0] -%}
+                        <input class="color-swatch__radio product-form__single-selector" type="radio" name="gallery_color_swatch_{{ i }}" id="gallery_color_{{ i }}_{{ forloop.index }}" value="{{ variant_data.value[forloop.index0] | escape }}" {% if currentVariant contains variant_data.value[forloop.index0] %}checked{% endif %}>
+                      {%-  endif -%}
+                      <label class="color-swatch__item" for="gallery_color_{{ i }}_{{ forloop.index }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: variant_data.value[forloop.index0] %}" title="{{ variant_data.value[forloop.index0] | escape }}">
+                        <span class="visually-hidden">{{ variant_data.value[forloop.index0] }}</span>
+                        {%- render 'icon', icon: 'cross-sold-out' -%}
+                      </label>
+                    </div>
+                    
+                    {%- unless currentVariant contains variant_data.value[forloop.index0] -%}
+                      </a>
+                    {%- endunless -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+      {%  endif %}
+
+
         {%- if show_thumbnails_if_one_media and product.media.size > 1 -%}
           <div class="scroller gallery-scroll">
             <div class="scroller__inner">

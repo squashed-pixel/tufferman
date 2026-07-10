@@ -406,7 +406,7 @@
           "23e99d08-fbda-4a8e-bb21-c0e020953baf"
         ],
         "settings": {
-          "show_announcement": true,
+          "show_announcement": false,
           "background": "#6e6e6e",
           "text_color": "#ffffff"
         }
@@ -415,6 +415,7 @@
         "type": "countdown-timer",
         "settings": {
           "show_countdown": true,
+          "full_width": true,
           "background": "#ffffff",
           "text_color": "#2c2c2c",
           "text": "<p>NEXT DAY DELIVERY AVAILABLE - order in </p>",
@@ -439,6 +440,54 @@
           "text_position": "left",
           "link": ""
         }
+      },
+      "call-to-action-bar": {
+        "type": "call-to-action-bar",
+        "blocks": {
+          "cta_block_Aiaixx": {
+            "type": "cta_block",
+            "settings": {
+              "link": "",
+              "rich_text": "",
+              "raw_liquid": "<!-- TrustBox widget - Micro TrustScore -->\n<div class=\"trustpilot-widget\" data-locale=\"en-GB\" data-template-id=\"5419b637fa0340045cd0c936\" data-businessunit-id=\"52494ffc000064000576db22\" data-style-height=\"20px\" data-style-width=\"100%\" data-token=\"dc71a2be-33fe-4565-a6cc-61589d5c1830\">\n  <a href=\"https://uk.trustpilot.com/review/www.tufferman.co.uk\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->"
+            }
+          },
+          "cta_block_G8jPVG": {
+            "type": "cta_block",
+            "settings": {
+              "link": "",
+              "rich_text": "<p><strong>Backed by 10 year Guarantee</strong> | Peace of mind</p>",
+              "raw_liquid": ""
+            }
+          },
+          "cta_block_prDeTm": {
+            "type": "cta_block",
+            "settings": {
+              "link": "",
+              "rich_text": "<p><strong>Trusted for 30 years</strong> | 100,00 happy customers</p>",
+              "raw_liquid": ""
+            }
+          }
+        },
+        "block_order": [
+          "cta_block_Aiaixx",
+          "cta_block_G8jPVG",
+          "cta_block_prDeTm"
+        ],
+        "settings": {
+          "show_section": true,
+          "full_width": false,
+          "background_color": "#f5f5f5",
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "border_top_width": 0,
+          "border_top_color": "#000000",
+          "border_bottom_width": 0,
+          "border_bottom_color": "#000000",
+          "padding_vertical": 10,
+          "padding_horizontal": 10,
+          "font_size": 14
+        }
       }
     },
     "content_for_index": [],
@@ -462,14 +511,14 @@
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": true,
         "settings": {
+          "greeting_message": "👋 Hi, message us with any questions. We're happy to help!",
           "button_color": "#6c6c6c",
           "secondary_color": "#ffffff",
           "ternary_color": "#6a6a6a",
           "button_icon": "chat_bubble",
           "button_text": "no_text",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "👋 Hi, message us with any questions. We're happy to help!"
+          "button_vertical_position": "lowest"
         }
       },
       "14060646107696862457": {
