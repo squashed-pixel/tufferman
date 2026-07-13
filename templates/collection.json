@@ -26,7 +26,7 @@
       "settings": {
         "show_collection_promo": true,
         "banner_hidden_mobile": true,
-        "banner_hide_mobile": false,
+        "banner_hide_mobile": true,
         "promo_image": "shopify://shop_images/DESKTOP_30_OFF_13.07.2026.png",
         "promo_image_mobile": "shopify://shop_images/MOBILE_30_OFF_13.07.2026.png",
         "promo_link": "",
