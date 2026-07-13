@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "16547852858c6d82c3": {
@@ -7,7 +16,7 @@
         "text_width": "narrow",
         "text_align": "center",
         "title": "Your title",
-        "content": "<p>Use this text to share information about your brand with your customers.<br\/>Describe a product, share announcements, or welcome customers to your store.<\/p>",
+        "content": "<p>Use this text to share information about your brand with your customers.<br/>Describe a product, share announcements, or welcome customers to your store.</p>",
         "button_text": "",
         "button_link": ""
       }
@@ -15,10 +24,11 @@
     "main": {
       "type": "main-collection",
       "settings": {
-        "show_collection_promo": false,
+        "show_collection_promo": true,
         "banner_hidden_mobile": false,
-        "banner_hide_mobile": false,
-        "promo_image": "shopify:\/\/shop_images\/SM1378_CATEGORY_HEADER_BANNERS_BLACK_FRIDAY.jpg",
+        "banner_hide_mobile": true,
+        "promo_image": "shopify://shop_images/DESKTOP_30_OFF_13.07.2026.png",
+        "promo_image_mobile": "shopify://shop_images/MOBILE_30_OFF_13.07.2026.png",
         "promo_link": "",
         "collapse_collection_description": false,
         "collection_image_size": "small",
@@ -34,7 +44,7 @@
         "show_filter_color_swatch": true,
         "show_lower_block": false,
         "lower_block_color": "#fbb900",
-        "lower_block_link": "shopify:\/\/collections\/storage-boxes-containers",
+        "lower_block_link": "shopify://collections/storage-boxes-containers",
         "lower_block_text": "Looking For Storage Boxes?",
         "lower_block_button_text": "Click Here to view the range",
         "open_group_filters_mode": "first_open",
