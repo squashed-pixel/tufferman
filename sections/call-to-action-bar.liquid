@@ -14,6 +14,68 @@
           {%- endif -%}
           
           <div class="cta-bar__content" style="padding: {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px;">
+            {% if block.type == 'trustpilot_block' %}
+              <div class="tp-badge-wrapper" {{ block.shopify_attributes }}>
+                {%- comment -%}
+                  Accessibility First: We wrap the entire block in a single readable label for screen readers. 
+                  Visual elements inside will be hidden from screen readers to prevent confusing, repetitive readouts.
+                {%- endcomment -%}
+                <div class="tp-badge" aria-label="Rated {{ block.settings.rating_score }} out of 5 stars based on {{ block.settings.review_count }} reviews on Trustpilot.">
+                  
+                  {%- if block.settings.trustpilot_url != blank -%}
+                    <a href="{{ block.settings.trustpilot_url }}" target="_blank" rel="noopener noreferrer" class="tp-badge__link">
+                  {%- else -%}
+                    <div class="tp-badge__link">
+                  {%- endif -%}
+
+                    <!-- 1. Text Label (e.g., "Excellent") -->
+                    <span class="tp-badge__label" aria-hidden="true">{{ block.settings.rating_label }}</span>
+
+                    <div class="tp-badge__stars" aria-hidden="true">
+                      {%- assign current_score = block.settings.rating_score | plus: 0.0 -%}
+                      
+                      {%- for i in (1..5) -%}
+                        {%- assign half_threshold = i | minus: 0.5 -%}
+
+                        {%- if current_score >= i -%}
+                          <svg viewBox="0 0 30 30" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="30" height="30" fill="#00B67A"/>
+                            <path fill="#FFF" d="M15 22.5l-8.8 6.1 3.3-10L.2 12l10.8-1 4-10 4 10 10.8 1-9.3 6.6 3.3 10z"/>
+                          </svg>
+                        {%- elsif current_score >= half_threshold -%}
+                          <svg viewBox="0 0 30 30" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="15" height="30" fill="#00B67A"/>
+                            <rect x="15" width="15" height="30" fill="#DCDCE6"/>
+                            <path fill="#FFF" d="M15 22.5l-8.8 6.1 3.3-10L.2 12l10.8-1 4-10 4 10 10.8 1-9.3 6.6 3.3 10z"/>
+                          </svg>
+                        {%- else -%}
+                          <svg viewBox="0 0 30 30" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="30" height="30" fill="#DCDCE6"/>
+                            <path fill="#FFF" d="M15 22.5l-8.8 6.1 3.3-10L.2 12l10.8-1 4-10 4 10 10.8 1-9.3 6.6 3.3 10z"/>
+                          </svg>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+
+                    <span class="tp-badge__count" aria-hidden="true">
+                      {{ block.settings.review_count }} {{ block.settings.review_suffix_text }}
+                    </span>
+
+                    <span class="tp-badge__logo" aria-hidden="true">
+                      <svg viewBox="0 0 30 30" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#00B67A" d="M15 22.5l-8.8 6.1 3.3-10L.2 12l10.8-1 4-10 4 10 10.8 1-9.3 6.6 3.3 10z"/>
+                      </svg>
+                      <strong>Trustpilot</strong>
+                    </span>
+
+                  {%- if block.settings.trustpilot_url != blank -%}
+                    </a>
+                  {%- else -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {% else %}
             {%- if block.settings.rich_text != blank -%}
               <div class="cta-bar__text rte">
                 {{ block.settings.rich_text }}
@@ -25,6 +87,7 @@
                 {{ block.settings.raw_liquid }}
               </div>
             {%- endif -%}
+            {% endif %}
           </div>
         </div>
       {%- endfor -%}
@@ -87,7 +150,7 @@
   }
 
   /* Mobile only slideshow */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 999px) {
     /* enable Flickity on mobile */
     .cta-bar__blocks:after {
       content: 'flickity';
@@ -104,7 +167,7 @@
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 999px) {
     /* disable Flickity on desktop */
     .cta-bar__blocks:after {
       content: '';
@@ -114,6 +177,56 @@
     .cta-bar__blocks--count-2 .cta-bar__block { width: 50%; }
     .cta-bar__blocks--count-3 .cta-bar__block { width: 33.3333%; }
   }
+
+.tp-badge-wrapper {
+  display: inline-block;
+  font-family: inherit; 
+}
+
+.tp-badge__link {
+  display: flex;
+  align-items: center;
+  /* Forces the layout to stay on a single line */
+  flex-wrap: nowrap; 
+  white-space: nowrap;
+  /* Tighter gap between the main elements */
+  gap: 8px; 
+  text-decoration: none;
+  color: inherit;
+}
+
+.tp-badge__link:hover {
+  text-decoration: none;
+}
+
+.tp-badge__label {
+  font-size: 0.9rem; /* Scaled down */
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.tp-badge__stars {
+  display: flex;
+  gap: 1px; /* Tighter spacing between stars */
+  align-items: center;
+}
+
+.tp-badge__count {
+  font-size: 0.8rem; /* Scaled down */
+  color: #1a1a1a;
+}
+
+.tp-badge__logo {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.85rem; /* Scaled down */
+  color: #1a1a1a;
+}
+
+.tp-badge__logo strong {
+  font-weight: 600;
+}
 </style>
 {%- endif -%}
 
@@ -255,6 +368,45 @@
           "label": "Raw Liquid / Embeds",
           "info": "Use this for JavaScript or embeds like Trustpilot."
         }
+      ]
+    },
+    {
+      "type": "trustpilot_block",
+      "name": "Trustpilot",
+      "settings": [
+        {
+      "type": "text",
+      "id": "rating_label",
+      "label": "Rating Label",
+      "default": "Excellent"
+    },
+    {
+      "type": "range",
+      "id": "rating_score",
+      "label": "Rating Score",
+      "min": 1,
+      "max": 5,
+      "step": 0.5,
+      "default": 4.5
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review Count",
+      "default": "16,356"
+    },
+    {
+      "type": "text",
+      "id": "review_suffix_text",
+      "label": "Text after count",
+      "default": "reviews on"
+    },
+    {
+      "type": "url",
+      "id": "trustpilot_url",
+      "label": "Trustpilot Link",
+      "info": "Optional link to your Trustpilot profile."
+    }
       ]
     }
   ],
