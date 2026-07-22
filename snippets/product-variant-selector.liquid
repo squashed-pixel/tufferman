@@ -3,6 +3,68 @@
 
 {% assign currentVariant = product.metafields.custom.additional_variants_current_product_data.value %}
 
+
+{%  liquid 
+  
+  assign variant_text = product.metafields.custom.variant_text_colour | default: '#000000'
+  assign variant_box = product.metafields.custom.variant_box_colour  | default: '#ffffff'
+  assign variant_box_border = product.metafields.custom.variant_box_border | default: '#000000'
+  assign variant_selected_text = product.metafields.custom.selected_variant_text_colour | default: '#ffffff'
+  assign variant_selected_box = product.metafields.custom.selected_variant_box_colour | default: '#000000'
+  assign variant_selected_box_border = product.metafields.custom.selected_variant_box_border | default: '#000000'
+
+ %}
+
+
+
+{% style %}
+
+.block-swatch__item {
+  display: block;
+  padding: 0px 16px;
+  text-align: center;
+  border: 1px solid {{ variant_box_border }};
+  background:{{ variant_box }};
+  color: {{ variant_text }};
+  border-radius: 2px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: transform .2s ease-in-out, border .3s;
+  font-size: 14px;
+}
+.block-swatch__item span{
+  display: block;
+}
+.block-swatch__item:hover,
+.block-swatch__item:focus-visible,
+.block-swatch__item:focus,
+.block-swatch__item:active{
+  border-color: {{ variant_box_border }};
+}
+@media (min-width:1000px){
+  .block-swatch__item:hover,
+  .block-swatch__item:focus-visible,
+  .block-swatch__item:focus,
+.block-swatch__item:active{
+    transform: scale(103%);
+    border-color: {{ variant_box_border }};
+  } 
+}
+
+.block-swatch__item.block-swatch__item--selected{
+  background: {{ variant_selected_box }};
+  color: {{ variant_selected_text }};
+}
+
+.block-swatch__radio:checked + .block-swatch__item,
+.block-swatch__item.selected {
+  border: 1px solid {{ variant_selected_box_border }};
+  background: {{ variant_selected_box }};;
+  color: {{ variant_selected_text }};
+}
+
+{% endstyle %}
+
 {% if product.metafields.custom.additional_variant_data_1 != blank and product.metafields.custom.additional_variant_products_1 != blank %}
   <div class="metafield-variants__container">
 {% endif %}
