@@ -10300,10 +10300,6 @@ shopify-payment-terms {
   } 
 }
 
-.block-swatch__item.block-swatch__item--selected{
-  background: var(--accent-color);
-  color: #fff;
-}
 
 .block-swatch--disabled .block-swatch__item-text {
   /* position: relative; */
