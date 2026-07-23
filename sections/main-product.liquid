@@ -652,20 +652,22 @@ if (variantsContainer) {
 
 </script>
 
+{%  comment %}
+
 {% if section.settings.selected_variant_color != blank %}
   <style>
     .block-swatch__item.block-swatch__item--selected,
-    .block-swatch__radio:checked+.block-swatch__item, .block-swatch__item.selected {
+    .block-swatch__radio:checked+.block-swatch__item,
+    .block-swatch__item.selected,
+    .upgrade_products.primary .block-swatch__item, 
+    .upgrade_products .block-swatch__item {
       background: {{ section.settings.selected_variant_color }} !important;
       border-color: {{ section.settings.selected_variant_color }} !important;
-    }
-    .upgrade_products .block-swatch__item {
-      background: {{ section.settings.selected_variant_color }};
-      border-color: {{ section.settings.selected_variant_color }};
+      
     }
   </style>
 {% endif %}
-
+{%  endcomment %}
 <style>
     .inner-label:before {
       background: {{ section.settings.coupon_bg }};

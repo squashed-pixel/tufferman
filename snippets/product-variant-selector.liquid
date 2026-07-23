@@ -19,6 +19,7 @@
 
 {% style %}
 
+
 .block-swatch__item {
   display: block;
   padding: 0px 16px;
@@ -51,13 +52,16 @@
   } 
 }
 
-.block-swatch__item.block-swatch__item--selected{
-  background: {{ variant_selected_box }};
-  color: {{ variant_selected_text }};
-}
 
 .block-swatch__radio:checked + .block-swatch__item,
-.block-swatch__item.selected {
+.block-swatch__item.selected, 
+.block-swatch__item.block-swatch__item--selected,
+    .block-swatch__radio:checked+.block-swatch__item,
+    .block-swatch__item.selected,
+    .upgrade_products.primary .block-swatch__item, 
+    .upgrade_products .block-swatch__item,
+    .block-swatch__item.block-swatch__item--selected
+{
   border: 1px solid {{ variant_selected_box_border }};
   background: {{ variant_selected_box }};;
   color: {{ variant_selected_text }};
