@@ -10300,6 +10300,10 @@ shopify-payment-terms {
   } 
 }
 
+.block-swatch__item.block-swatch__item--selected{
+  background: var(--accent-color);
+  color: #fff;
+}
 
 .block-swatch--disabled .block-swatch__item-text {
   /* position: relative; */
@@ -16511,6 +16515,7 @@ ul.tabs li.current{
   pointer-events: none;
 }
 
+/*
 .upgrade_products .non-linkable-options span{
   color: #fff;
 }
@@ -16519,7 +16524,7 @@ ul.tabs li.current{
   border: 2px solid #000;
   border-radius: 2px;
 }
-
+*/
 .product__description-content-holder p {
   line-height: 1.87;
 }
