@@ -198,9 +198,21 @@
             }
         }
 
+        .product-meta-title-area .pdp-title-row-tpw.trustpilot-widget {
+          display: none
+        }
+
         @media(max-width:767px){
           .product-meta-title-area {
+            display: flex;
             flex-direction: column;
+            gap: 0;
+          }
+          .product-meta-title-area .pdp-title-row-tpw.trustpilot-widget {
+            display: block;
+          }
+          .product-meta__label-list .pdp-title-row-tpw.trustpilot-widget {
+            display: none;
           }
         }
 
