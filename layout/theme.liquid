@@ -223,6 +223,29 @@
               padding: 24px 0 0 0!important;
             }
         }
+
+        /* Trustpilot Widget Mobile Fix */
+        @media screen and (max-width: 767px) {
+          .pdp-title-row-tpw {
+            /* Allow the container to grow taller than the default 20px if the content wraps */
+            height: auto !important; 
+            min-height: 40px; 
+            
+            /* Ensure the widget takes up the full available width to prevent unnecessary wrapping */
+            width: 100%; 
+            display: block; 
+            
+            /* Prevent the container from hiding overflowing content */
+            overflow: visible; 
+          }
+
+          /* Target the iframe Trustpilot injects to ensure it obeys the new height */
+          .pdp-title-row-tpw iframe {
+            height: auto !important;
+            min-height: 40px !important;
+          }
+        }
+
         .metafield_variant_items.image_version {
           position: absolute!important;
           right: 15px!important;
