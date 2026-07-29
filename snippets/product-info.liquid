@@ -37,7 +37,7 @@
         {%- endcapture -%}
       {%- endif -%}
 
-    <div class="product-meta product-meta--border product-meta-title-area">
+    <div class="product-meta product-meta--border {%  if template contains 'trustpilot' %}product-meta-title-area{% endif %}">
       {%- if template.name == 'product' and template != 'product.quick-view' -%}
         {% comment %}<p class="product-meta__vendor h1">{{ product.vendor }}</p>{% endcomment %}
         <h1 class="product-meta__title heading h1">{{ product.title }}</h1>
