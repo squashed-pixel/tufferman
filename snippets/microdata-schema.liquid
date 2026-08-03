@@ -122,12 +122,26 @@ or change the format of some info
     }
 
     {%- if request.page_type == 'product' -%}
+      {%- assign fallback_collection = product.metafields.custom.primary_collection.value -%}
+      
       {%- if collection -%}
         ,{
           "@type": "ListItem",
           "position": 2,
           "name": {{ collection.title | json }},
           "item": "{{ shop.url }}{{ collection.url }}"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+      {%- elsif fallback_collection -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ fallback_collection.title | json }},
+          "item": "{{ shop.url }}{{ fallback_collection.url }}"
         }, {
           "@type": "ListItem",
           "position": 3,

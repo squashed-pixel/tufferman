@@ -383,9 +383,22 @@
     <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
     {% render 'vg-pd-common' %}
 
+    {%- if template.name == 'collection' -%}
+      <script>
+        sessionStorage.setItem('shopify_last_collection_url', '{{ collection.url }}');
+        sessionStorage.setItem('shopify_last_collection_title', {{ collection.title | json }});
+      </script>
+    {%- endif -%}
 
-
-
+    <script>
+      document.addEventListener('mousedown', (e) => {
+        // If the clicked element is inside a search form or predictive search container
+        if (e.target.closest('form[action="/search"], .predictive-search, .searchanise, .snize')) {
+          sessionStorage.removeItem('shopify_last_collection_url');
+          sessionStorage.removeItem('shopify_last_collection_title');
+        }
+      });
+    </script>
   </body>
 </html>
 

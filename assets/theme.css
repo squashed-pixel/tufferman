@@ -8476,7 +8476,7 @@ select option {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0 5px 0;
+  padding: 5px 0 5px 0;
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 13px));
 }
 
@@ -13574,20 +13574,73 @@ div.section {
  */
 
 .breadcrumb__list {
-  display: none;
   align-items: center;
   list-style: none;
 }
 
 .breadcrumb__list .breadcrumb__item {
   white-space: nowrap;
+  color: #2c2c2c;
+  font-weight: 600;
 }
 
 .breadcrumb__list svg {
-  margin: 0 2px;
+  margin: 0 7px;
   width: 6px;
   height: 8px;
   vertical-align: inherit;
+}
+
+.breadcrumb__item--final {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  /* 1. Constrain the parent wrapper so it physically cannot exceed the screen */
+  .breadcrumb {
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 2. Protect the Home and Collection items from shrinking */
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; 
+    white-space: nowrap;
+  }
+
+  /* 3. Aggressively crush the product item */
+  .breadcrumb__item:last-child {
+    /* flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
+    flex: 1 1 0%; 
+    min-width: 0; 
+  }
+
+  /* 4. Apply the '...' to the text inside the crushed item */
+  .breadcrumb__item:last-child .breadcrumb__link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  /* Protect your arrow icons */
+  .breadcrumb__item svg {
+    flex-shrink: 0;
+  }
 }
 
 @media screen and (min-width: 769px) {

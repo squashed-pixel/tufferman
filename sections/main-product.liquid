@@ -38,25 +38,101 @@
   {%- if template != 'product.quick-view' -%}
     <div class="container-padding">
       <div class="page__sub-header">
+        {%- comment -%} Assign your metafield collection here {%- endcomment -%}
+        {%- assign fallback_collection = product.metafields.custom.primary_collection.value -%}
+
         <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
           <ol class="breadcrumb__list" role="list">
             <li class="breadcrumb__item">
-              <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
+              <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> 
+              {%- render 'icon', icon: 'arrow-right' -%}
             </li>
 
-            <li class="breadcrumb__item">
+            <li class="breadcrumb__item" id="BreadcrumbMiddleItem" {% unless collection or fallback_collection %}style="display: none;" aria-hidden="true"{% endunless %}>
+              
               {%- if collection -%}
-                <a class="breadcrumb__link link" href="{{ collection.url }}">{{ collection.title }}</a> {%- render 'icon', icon: 'arrow-right' -%}
+                <a class="breadcrumb__link link" id="BreadcrumbMiddleLink" href="{{ collection.url }}">{{ collection.title }}</a> 
+              {%- elsif fallback_collection -%}
+                <a class="breadcrumb__link link" id="BreadcrumbMiddleLink" href="{{ fallback_collection.url }}">{{ fallback_collection.title }}</a> 
               {%- else -%}
-                <a class="breadcrumb__link link" href="{{ routes.all_products_collection_url }}">{{- 'collection.general.all_products' | t -}}</a> {%- render 'icon', icon: 'arrow-right' -%}
+                <a class="breadcrumb__link link" id="BreadcrumbMiddleLink" href=""></a> 
               {%- endif -%}
+              
+              {% comment %} {%- render 'icon', icon: 'arrow-right' -%} {% endcomment %}
             </li>
 
-            <li class="breadcrumb__item">
-              <span class="breadcrumb__link" aria-current="page">{{ product.title | truncate: 40 }}</span>
+            <li class="breadcrumb__item breadcrumb__item--final" style="display: none !important;">
+              <span class="breadcrumb__link" aria-current="page">{{ product.title | truncate: 100 }}</span>
             </li>
           </ol>
         </nav>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const middleItem = document.getElementById('BreadcrumbMiddleItem');
+            const middleLink = document.getElementById('BreadcrumbMiddleLink');
+
+            if (!middleItem || !middleLink) return;
+
+            // If Liquid natively found the context via URL routing, we don't need JS.
+            {% if collection %}
+              return;
+            {% endif %}
+
+            const referrer = document.referrer;
+            const isInternal = referrer.includes(window.location.hostname);
+            
+            // 1. Define Standard Contexts
+            const isFromHomepage = referrer === window.location.origin + '/' || referrer === window.location.origin;
+            const isFromProduct = referrer.includes('/products/');
+            
+            // 2. NEW: Aggressive Search Detection
+            const currentUrlParams = window.location.search.toLowerCase();
+            const isFromSearchPage = referrer.includes('/search') || referrer.includes('q=');
+            // Checks if the predictive search app appended tracking data to the product URL
+            const hasSearchTracking = currentUrlParams.includes('_pos=') || currentUrlParams.includes('?q=') || currentUrlParams.includes('&q=') || currentUrlParams.includes('snize');
+            const isFromSearch = isFromSearchPage || hasSearchTracking;
+            
+            // Pass Liquid's knowledge to JS
+            const hasMetafield = {% if fallback_collection %}true{% else %}false{% endif %};
+
+            // Determine if we should pull from session storage
+            let useSessionMemory = false;
+
+            // 3. Logic Gate: Only use memory if they DID NOT use search
+            if (isInternal && !isFromHomepage && !isFromSearch) {
+              if (isFromProduct) {
+                // Variant swapping check
+                if (!hasMetafield) {
+                  useSessionMemory = true;
+                }
+              } else {
+                // Standard navigation from a Collection or Page
+                useSessionMemory = true;
+              }
+            }
+
+            // Apply the session memory if approved
+            if (useSessionMemory) {
+              const lastUrl = sessionStorage.getItem('shopify_last_collection_url');
+              const lastTitle = sessionStorage.getItem('shopify_last_collection_title');
+
+              if (lastUrl && lastTitle) {
+                middleLink.href = lastUrl;
+                middleLink.textContent = lastTitle;
+                middleItem.style.display = ''; 
+                middleItem.removeAttribute('aria-hidden');
+                return; 
+              }
+            }
+
+            // Fallback: If memory wasn't used, ensure it hides if there is no Liquid metafield.
+            {% unless fallback_collection %}
+              middleItem.style.display = 'none';
+              middleItem.setAttribute('aria-hidden', 'true');
+            {% endunless %}
+          });
+        </script>
 
         {% comment %}
           esthetic-ignore
