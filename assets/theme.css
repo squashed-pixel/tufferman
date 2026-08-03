@@ -18101,10 +18101,10 @@ body.page-template-wb .page-wb-panel {
 }
 
 /* Creates a positioning context for the overlay */
-.trustpilot-custom-wrapper {
+/* .trustpilot-custom-wrapper {
   position: relative;
   display: block;
-}
+} */
 
 /* The invisible link that catches the clicks */
 .trustpilot-overlay-link {
