@@ -18100,26 +18100,3 @@ body.page-template-wb .page-wb-panel {
   }
 }
 
-/* Creates a positioning context for the overlay */
-/* .trustpilot-custom-wrapper {
-  position: relative;
-  display: block;
-} */
-
-/* The invisible link that catches the clicks */
-.trustpilot-overlay-link {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10; /* Ensures it sits above the Trustpilot iframe */
-  background-color: transparent;
-  cursor: pointer;
-}
-
-/* Accessibility: Ensure keyboard navigators can see when they focus the link */
-.trustpilot-overlay-link:focus-visible {
-  outline: 2px solid #000; /* Adjust to match your theme's focus state */
-  outline-offset: 2px;
-}
