@@ -18124,3 +18124,9 @@ body.page-template-wb .page-wb-panel {
   outline: 2px solid #000; /* Adjust to match your theme's focus state */
   outline-offset: 2px;
 }
+
+@media screen and (max-width: 768px) {
+  .trustpilot-custom-wrapper.mobile-wrapper {
+    display: none;
+  }
+}
