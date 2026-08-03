@@ -18104,7 +18104,6 @@ body.page-template-wb .page-wb-panel {
 .trustpilot-custom-wrapper {
   position: relative;
   display: block;
-  width: fit-content; /* Ensures the wrapper only wraps tightly around the widget */
 }
 
 /* The invisible link that catches the clicks */
