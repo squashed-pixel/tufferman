@@ -37,11 +37,10 @@
         {%- endcapture -%}
       {%- endif -%}
 
-    <div class="product-meta product-meta--border {%  if template contains 'trustpilot' %}product-meta-title-area{% endif %}">
+    <div class="product-meta product-meta--border product-meta-title-area">
       {%- if template.name == 'product' and template != 'product.quick-view' -%}
         {% comment %}<p class="product-meta__vendor h1">{{ product.vendor }}</p>{% endcomment %}
         <h1 class="product-meta__title heading h1">{{ product.title }}</h1>
-        {% if template contains 'trustpilot' %}
           <div class="trustpilot-custom-wrapper mobile-wrapper">
             <!-- TrustBox widget - Micro Combo -->
             <div class="trustpilot-widget pdp-title-row-tpw" 
@@ -65,7 +64,6 @@
               aria-label="{{ 'products.product.read_reviews' | t | default: 'Read our customer reviews' }}">
             </a>
           </div>
-        {% endif %}
       {%- else -%}
         <h3 class="product-meta__title heading h2">
           <a href="{{ product.url }}">{{ product.title }}</a>
@@ -133,20 +131,18 @@
 
     {%- if product_labels != blank -%}
       <div class="product-meta__label-list">
-        {{- product_labels -}} 
-        {%  if template contains 'trustpilot' %}
-          <div class="trustpilot-custom-wrapper">
-            <!-- TrustBox widget - Micro Combo -->
-              <div class="trustpilot-widget pdp-title-row-tpw" data-locale="en-GB" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="52494ffc000064000576db22" data-style-height="20px" data-style-width="100%" data-token="b97c0024-5c58-4e1a-b2f3-52b3ec3453a2">
-                <a href="https://www.tufferman.co.uk/pages/trustpilot-reviews" target="_blank" rel="noopener">Trustpilot</a>
-              </div>
-            <!-- End TrustBox widget -->
-            <a href="https://www.tufferman.co.uk/pages/trustpilot-reviews" 
-                class="trustpilot-overlay-link" 
-                aria-label="{{ 'products.product.read_reviews' | t | default: 'Read our customer reviews' }}">
-            </a>
-          </div>
-        {% endif %}
+        {{- product_labels -}}
+        <div class="trustpilot-custom-wrapper">
+          <!-- TrustBox widget - Micro Combo -->
+            <div class="trustpilot-widget pdp-title-row-tpw" data-locale="en-GB" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="52494ffc000064000576db22" data-style-height="20px" data-style-width="100%" data-token="b97c0024-5c58-4e1a-b2f3-52b3ec3453a2">
+              <a href="https://www.tufferman.co.uk/pages/trustpilot-reviews" target="_blank" rel="noopener">Trustpilot</a>
+            </div>
+          <!-- End TrustBox widget -->
+          <a href="https://www.tufferman.co.uk/pages/trustpilot-reviews" 
+              class="trustpilot-overlay-link" 
+              aria-label="{{ 'products.product.read_reviews' | t | default: 'Read our customer reviews' }}">
+          </a>
+        </div>
       </div>
     {%- endif -%}
 
@@ -240,8 +236,9 @@
       </div>
 
       <div class="product-details__right">
-        {%  if template contains 'trustpilot' %}{% else %}
-          {%- if product.metafields.custom.product_details_banner -%}
+        {%  if template contains 'trustpilot' %}
+        {% else %}
+          {% comment %} {%- if product.metafields.custom.product_details_banner -%}
             <div class="product-details__right__banner">
               <img
                 src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
@@ -250,7 +247,7 @@
                 height="{{ product.metafields.custom.product_details_banner.height }}"
                 loading="lazy">
             </div>
-          {%- endif -%}
+          {%- endif -%} {% endcomment %}
         {%  endif %}
         
         <div id="buyblock" class="product-details__right__content" style="background-color: {{ settings.product_detail_background }}">
@@ -614,20 +611,18 @@
       {% endif %}
     </div>
 
-    {%  if template contains 'trustpilot' %}
-      <div class="trustpilot-custom-wrapper">
-        <!-- TrustBox widget - Slider -->
-        <div class="pdp-footer-row-tpw trustpilot-widget" data-locale="en-GB" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="52494ffc000064000576db22" data-style-height="240px" data-style-width="100%" data-token="070970e1-194d-4dcf-9f4c-f627311b4dab" data-stars="4,5" data-review-languages="en">
-          <a href="https://uk.trustpilot.com/review/www.tufferman.co.uk" target="_blank" rel="noopener">Trustpilot</a>
-        </div>
-        <!-- End TrustBox widget -->
-
-        <a href="https://www.tufferman.co.uk/pages/trustpilot-reviews" 
-          class="trustpilot-overlay-link" 
-          aria-label="{{ 'products.product.read_reviews' | t | default: 'Read our customer reviews' }}">
-        </a>
+    <div class="trustpilot-custom-wrapper">
+      <!-- TrustBox widget - Slider -->
+      <div class="pdp-footer-row-tpw trustpilot-widget" data-locale="en-GB" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="52494ffc000064000576db22" data-style-height="240px" data-style-width="100%" data-token="070970e1-194d-4dcf-9f4c-f627311b4dab" data-stars="4,5" data-review-languages="en">
+        <a href="https://uk.trustpilot.com/review/www.tufferman.co.uk" target="_blank" rel="noopener">Trustpilot</a>
       </div>
-    {% endif %}
+      <!-- End TrustBox widget -->
+
+      <a href="https://www.tufferman.co.uk/pages/trustpilot-reviews" 
+        class="trustpilot-overlay-link" 
+        aria-label="{{ 'products.product.read_reviews' | t | default: 'Read our customer reviews' }}">
+      </a>
+    </div>
 
   {%- if product.metafields.custom.product_gallery_banner_2 -%}
   <div class="product-form__footer">

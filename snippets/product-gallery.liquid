@@ -118,19 +118,16 @@
           {%- endif -%}
         </div>
 
-        {%  if template contains 'trustpilot' %}
-
-         {%- comment -%}Manufacturer logo{%- endcomment -%}
-         {%- if product.metafields.custom.product_details_banner -%}
-          <div class="product-details__right__banner">
-            <img
-              src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
-              alt="{{ product.metafields.custom.product_details_banner.alt }}"
-              width="{{ product.metafields.custom.product_details_banner.width }}"
-              height="{{ product.metafields.custom.product_details_banner.height }}"
-              loading="lazy">
-          </div>
-        {%- endif -%}
+        {%- comment -%}Manufacturer logo{%- endcomment -%}
+        {%- if product.metafields.custom.product_details_banner -%}
+        <div class="product-details__right__banner">
+          <img
+            src="{{ product.metafields.custom.product_details_banner | img_url: 'master' }}"
+            alt="{{ product.metafields.custom.product_details_banner.alt }}"
+            width="{{ product.metafields.custom.product_details_banner.width }}"
+            height="{{ product.metafields.custom.product_details_banner.height }}"
+            loading="lazy">
+        </div>
         
          {%- comment -%}Replicating Colour sweatches on top of image{%- endcomment -%}
         {% assign currentVariant = product.metafields.custom.additional_variants_current_product_data.value %}
