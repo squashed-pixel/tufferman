@@ -81,26 +81,15 @@
             <div class="card">
               <div class="card__section card__section--tight collection-heading-card">
                 <h1 class="card__title--small heading h3 collection-heading">{{ collection.title }}</h1>
-                {% assign collection_description_words = collection.description | strip_html | split: ' ' %}
-                {% assign collection_description_word_count = collection.description | strip_html | split: ' ' | size %}
-                {% if collection_description_word_count > 18 %}
-                  {% for word in collection_description_words %}
-                    {% if forloop.index <= 18 %}
-                      {{ word }}
-                    {% endif %}
-                  {% endfor %}
-                  <a href="#" data-toggle="read-more" data-toggle-format="inline" class="inline">Read More</a>
-                  <span id="read-more" style="display: none;">
-                    {% for word in collection_description_words %}
-                      {% if forloop.index > 18 %}
-                        {{ word }}
-                      {% endif %}
-                    {% endfor %}
-                    <a href="#" id="read-less" data-toggle-format="inline" class="inline">Read Less</a>
-                  </span>
-                {% else %}
-                  {{ collection.description }}
-                {% endif %}
+                {%- if collection.description != blank -%}
+                  {%- assign collection_description_word_count = collection.description | strip_html | split: ' ' | size -%}
+                  <div id="collection-description" class="collection-description rte{% if collection_description_word_count > 18 %} collection-description--collapsible{% endif %}">
+                    {{ collection.description }}
+                  </div>
+                  {%- if collection_description_word_count > 18 -%}
+                    <button type="button" class="collection-description__toggle" data-toggle="collection-description" aria-controls="collection-description" aria-expanded="false" data-label-more="{{ 'collection.general.read_more' | t | escape }}" data-label-less="{{ 'collection.general.read_less' | t | escape }}">{{ 'collection.general.read_more' | t }}</button>
+                  {%- endif -%}
+                {%- endif -%}
               </div>
             </div>
             <div class="card  hidden-pocket">

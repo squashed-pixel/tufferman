@@ -364,43 +364,15 @@ for (let i = 0; i < swatches.length; i++) {
   });
 }
 
-const toggle_buttons = document.querySelectorAll("[data-toggle]");
-for (const toggle_button of toggle_buttons) {
-  toggle_button.addEventListener("click", function (event) {
-    event.preventDefault();
-    const this_toggle = toggle_button.getAttribute("data-toggle");
-    const this_toggle_format = toggle_button.getAttribute("data-toggle-format");
-    const toggle_element = document.getElementById(this_toggle);
-    if (this_toggle_format == "inline") {
-      if (toggle_element.style.display == "inline") {
-        toggle_element.style.display = "none";
-        toggle_button.textContent = "Read More";
-      } else {
-        toggle_element.style.display = "inline";
-        toggle_button.textContent = "Read Less";
-        toggle_button.style.display = "none";
-      }
-    } else {
-      if (toggle_element.style.display == "block") {
-        toggle_element.style.display = "none";
-        toggle_button.textContent = "Read More";
-      } else {
-        toggle_element.style.display = "block";
-        toggle_button.textContent = "Read Less";
-        toggle_button.style.display = "none";
-      }
-    }
-    document.getElementById("read-less").addEventListener("click", function () {
-      if (this_toggle_format == "inline") {
-        toggle_button.style.display = "inline";
-      } else {
-        toggle_button.style.display = "block";
-      }
-      toggle_element.style.display = "none";
-      toggle_button.textContent = "Read More";
-    });
+document.querySelectorAll("[data-toggle]").forEach(function (toggleButton) {
+  var target = document.getElementById(toggleButton.getAttribute("data-toggle"));
+  if (!target) return;
+  toggleButton.addEventListener("click", function () {
+    var expanded = target.classList.toggle("is-expanded");
+    toggleButton.setAttribute("aria-expanded", expanded ? "true" : "false");
+    toggleButton.textContent = toggleButton.getAttribute(expanded ? "data-label-less" : "data-label-more");
   });
-}
+});
 
 function matchHeight(elementClass, byRow) {
   if (byRow) {
