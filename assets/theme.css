@@ -2742,10 +2742,42 @@ img.lazyload[data-sizes=auto] {
 .card__title--small.collection-heading {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 24px));
 }
-.collection-heading-card a{
+.collection-heading-card [data-toggle] {
   display: block;
   margin-top: 10px;
   color: #fab901;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.collection-description--collapsible {
+  position: relative;
+  max-height: calc(3 * 1.87em); /* fallback: 3 lines at the html line-height */
+  max-height: 3lh;
+  overflow: hidden;
+}
+
+.collection-description--collapsible::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.87em; /* fallback: one line */
+  height: 1lh;
+  background: linear-gradient(rgba(var(--secondary-background-rgb), 0), var(--secondary-background));
+  pointer-events: none;
+}
+
+.collection-description--collapsible.is-expanded {
+  max-height: none;
+}
+
+.collection-description--collapsible.is-expanded::after {
+  content: none;
 }
 
 .card__section a.inline {
@@ -16096,8 +16128,7 @@ ul.tabs li.current{
   margin-right: 23px;
 }
 
-[data-toggle],
-#read-less {
+[data-toggle] {
   font-weight: var(--heading-font-weight);
   text-decoration: underline;
 }
