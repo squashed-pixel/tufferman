@@ -2,7 +2,13 @@
   <div class="pagination">
     <div class="pagination__inner">
       {%- if paginate.previous -%}
-        <a class="pagination__prev link" rel="prev" title="{{ 'general.pagination.previous_page' | t }}" data-page="{{ paginate.current_page | minus: 1 }}" href="{{ paginate.previous.url }}{{ hash }}">
+        {%- comment -%} Strip ?page=1 from the Previous link when it points to page 1 {%- endcomment -%}
+        {%- assign prev_url = paginate.previous.url -%}
+        {%- if paginate.current_page == 2 -%}
+          {%- assign prev_url = prev_url | replace: '?page=1&', '?' | replace: '&page=1', '' | replace: '?page=1', '' -%}
+        {%- endif -%}
+
+        <a class="pagination__prev link" rel="prev" title="{{ 'general.pagination.previous_page' | t }}" data-page="{{ paginate.current_page | minus: 1 }}" href="{{ prev_url }}{{ hash }}">
           {%- render 'icon', icon: 'arrow-left' -%} {{- 'general.pagination.previous_page' | t -}}
         </a>
       {%- endif -%}
@@ -10,7 +16,14 @@
       <div class="pagination__nav">
         {%- for part in paginate.parts -%}
           {%- if part.is_link -%}
-            <a href="{{ part.url }}{{ hash }}" data-page="{{ part.title }}" class="pagination__nav-item link" title="{{ 'general.pagination.go_to_page' | t: page: part.title }}">{{ part.title }}</a>
+            {%- comment -%} Strip ?page=1 from the "1" link {%- endcomment -%}
+            {%- assign part_url = part.url -%}
+            {%- assign part_page = part.title | plus: 0 -%}
+            {%- if part_page == 1 -%}
+              {%- assign part_url = part_url | replace: '?page=1&', '?' | replace: '&page=1', '' | replace: '?page=1', '' -%}
+            {%- endif -%}
+
+            <a href="{{ part_url }}{{ hash }}" data-page="{{ part.title }}" class="pagination__nav-item link" title="{{ 'general.pagination.go_to_page' | t: page: part.title }}">{{ part.title }}</a>
           {%- else -%}
             <span class="pagination__nav-item {% if part.title == paginate.current_page %}is-active{% endif %}">{{ part.title }}</span>
           {%- endif -%}
