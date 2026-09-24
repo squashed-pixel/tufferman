@@ -14174,7 +14174,14 @@ function _showAlert(message, type, afterElement) {
       key: "_paginationPageChanged",
       value: function _paginationPageChanged(event, target) {
         event.preventDefault();
-        this.currentUrl.searchParams.set('page', parseInt(target.getAttribute('data-page')));
+        var page = parseInt(target.getAttribute('data-page'));
+
+        if (page === 1) {
+          this.currentUrl.searchParams["delete"]('page');
+        } else {
+          this.currentUrl.searchParams.set('page', page);
+        }
+
         this._reload(true);
       }
     }, {
