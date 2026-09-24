@@ -281,6 +281,9 @@
         }
         .trustpilot-widget iframe {margin-bottom:unset!important;}
       </style>
+      {%- if request.page_type == 'index' -%}
+  {%- render 'organization-schema' -%}
+{%- endif -%}
   </head>
 
   {% if template.suffix contains 'grid-ab' %}
