@@ -350,7 +350,7 @@
             "stretch_image": false,
             "background": "rgba(0,0,0,0)",
             "text_color": "#2c2c2c",
-            "title": "Excellent 15,213 reviews",
+            "title": "Excellent 17,154 reviews",
             "content": "<p>“Ordered one day, delivered the next. What a brilliant service.<br/>The shelving unit is of a rugged construction and was easy to assemble.<br/>I am very pleased with the product.” - Alan</p>",
             "content_position": "middle_center",
             "button_background": "#3ab44b",
@@ -472,53 +472,6 @@
         "link": ""
       }
     },
-    "1658754803f124b32b": {
-      "type": "text-with-icons",
-      "blocks": {
-        "1658754803e9a3e25e-0": {
-          "type": "item",
-          "settings": {
-            "icon": "bi-delivery",
-            "title": "Free delivery worldwide",
-            "content": ""
-          }
-        },
-        "1658754803e9a3e25e-1": {
-          "type": "item",
-          "settings": {
-            "icon": "bi-returns",
-            "title": "Satisfied or refunded",
-            "content": ""
-          }
-        },
-        "1658754803e9a3e25e-2": {
-          "type": "item",
-          "settings": {
-            "icon": "bi-customer-support",
-            "title": "Top-notch support",
-            "content": ""
-          }
-        },
-        "1658754803e9a3e25e-3": {
-          "type": "item",
-          "settings": {
-            "icon": "bi-secure-payment",
-            "title": "Secure payments",
-            "content": ""
-          }
-        }
-      },
-      "block_order": [
-        "1658754803e9a3e25e-0",
-        "1658754803e9a3e25e-1",
-        "1658754803e9a3e25e-2",
-        "1658754803e9a3e25e-3"
-      ],
-      "disabled": true,
-      "settings": {
-        "stack_mobile": false
-      }
-    },
     "1658744818c9d7b1e8": {
       "type": "rich-text",
       "settings": {
@@ -540,7 +493,6 @@
     "16547848488a578982",
     "1658750378a26bec7e",
     "16547014388ee14726",
-    "1658754803f124b32b",
     "1658744818c9d7b1e8"
   ]
 }
