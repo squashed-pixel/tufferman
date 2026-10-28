@@ -130,6 +130,18 @@
               "image_2_link": ""
             }
           },
+          "mega_menu_xmaiMw": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "",
+              "image_1_heading": "Your image",
+              "image_1_text": "Tell your story",
+              "image_1_link": "",
+              "image_2_heading": "Your image",
+              "image_2_text": "Tell your story",
+              "image_2_link": ""
+            }
+          },
           "44302a4a-be9d-494b-9744-d0bf15229a8c": {
             "type": "mega_menu",
             "disabled": true,
@@ -202,6 +214,7 @@
         "block_order": [
           "23d12aef-200d-4ce4-b5f7-8556ffde2fa2",
           "4783edb0-ed7a-45be-9a60-72c86f3cb823",
+          "mega_menu_xmaiMw",
           "44302a4a-be9d-494b-9744-d0bf15229a8c",
           "2d7a618e-846d-439f-a62c-56e9b8c379dc",
           "5ab31070-f711-4654-bed1-e853378d3399",
