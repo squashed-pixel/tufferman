@@ -54,11 +54,11 @@
       {%- endif -%}
       <div class="mobile-menu__section">
         <div class="mobile-menu__help-wrapper">
-          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" rel="nofollow" aria-label="{{ 'header.general.account' | t }}">
             <span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
           </a>
 
-          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link">
+          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" rel="nofollow" class="header__action-item-link">
             {{ 'header.general.account' | t }}
           </a>
         </div>
