@@ -301,12 +301,12 @@
             <div class="header__action-item header__action-item--account hidden-pocket">
 
               <div class="header__action-item-content">
-                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link header__account-icon icon-state hidden-desk" aria-label="{{ 'header.general.account' | t }}" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover" {% if customer %}data-follow-link="phone"{% endif %}>
+                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" rel="nofollow" class="header__action-item-link header__account-icon icon-state hidden-desk" aria-label="{{ 'header.general.account' | t }}" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover" {% if customer %}data-follow-link="phone"{% endif %}>
                   <span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
                   <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
                 </a>
 
-                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link hidden-pocket hidden-lap">
+                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" rel="nofollow" class="header__action-item-link hidden-pocket hidden-lap">
                   {{ 'header.general.account' | t }} {% render 'icon', icon: 'arrow-bottom' %}
                 </a>
 
@@ -346,8 +346,8 @@
                           {%- endform -%}
 
                           <div class="popover__secondary-action">
-                            <p>{{ 'customer.login.new_customer' | t }} <a href="{{ routes.account_register_url }}" class="link link--accented">{{ 'customer.login.create_your_account' | t }}</a></p>
-                            <p>{{ 'customer.login.lost_password' | t }} <a href="{{ routes.account_url }}#recover-password" aria-controls="header-recover-panel" class="link link--accented">{{ 'customer.login.recover_password' | t }}</a></p>
+                            <p>{{ 'customer.login.new_customer' | t }} <a href="{{ routes.account_register_url }}" rel="nofollow" class="link link--accented">{{ 'customer.login.create_your_account' | t }}</a></p>
+                            <p>{{ 'customer.login.lost_password' | t }} <a href="{{ routes.account_url }}#recover-password" rel="nofollow" aria-controls="header-recover-panel" class="link link--accented">{{ 'customer.login.recover_password' | t }}</a></p>
                           </div>
                         </div>
                       </div>
@@ -370,7 +370,7 @@
                           {%- endform -%}
 
                           <div class="popover__secondary-action">
-                            <p>{{ 'customer.recover_password.remembered_your_password' | t }} <button data-action="show-popover-panel" aria-controls="header-login-panel" class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button></p>
+                            <p>{{ 'customer.recover_password.remembered_your_password' | t }} <button data-action="show-popover-panel" aria-controls="header-recover-panel" class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button></p>
                           </div>
                         </div>
                       </div>
@@ -380,7 +380,7 @@
               </div>
             </div>
           {%- endif -%}
-
+          
           <div class="header__action-item header__action-item--cart">
             <a class="header__action-item-link header__cart-toggle" href="{{ routes.cart_url }}" {% if settings.cart_type == 'drawer' and template != 'cart' %}aria-controls="mini-cart" aria-expanded="false" data-action="toggle-mini-cart"{% endif %} data-no-instant>
               <div class="header__action-item-content">
