@@ -328,7 +328,7 @@
                         <div class="popover__inner">
                           {%- form 'customer_login', name: 'login', class: 'form', id: 'header_customer_login' -%}
                             <header class="popover__header">
-                              <h2 class="popover__title heading">{{ 'customer.login.login' | t }}</h2>
+                              <p class="popover__title heading">{{ 'customer.login.login' | t }}</p>
                               <p class="popover__legend">{{ 'customer.login.description' | t }}</p>
                             </header>
 
@@ -380,7 +380,7 @@
               </div>
             </div>
           {%- endif -%}
-          
+
           <div class="header__action-item header__action-item--cart">
             <a class="header__action-item-link header__cart-toggle" href="{{ routes.cart_url }}" {% if settings.cart_type == 'drawer' and template != 'cart' %}aria-controls="mini-cart" aria-expanded="false" data-action="toggle-mini-cart"{% endif %} data-no-instant>
               <div class="header__action-item-content">
