@@ -25,8 +25,9 @@
       "type": "main-collection",
       "settings": {
         "show_collection_promo": true,
-        "banner_hidden_mobile": true,
+        "banner_hidden_mobile": false,
         "promo_image": "shopify://shop_images/Black_Friday_Collection_page_desktop_2026.jpg",
+        "promo_image_mobile": "shopify://shop_images/Black_Friday_Collection_page_mobile_2026.jpg",
         "promo_link": "",
         "collapse_collection_description": false,
         "collection_image_size": "small",
