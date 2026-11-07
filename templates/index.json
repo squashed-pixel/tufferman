@@ -16,7 +16,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/New_2026_Black_Friday_Home_Page_Desktop.png",
-            "mobile_image": "shopify://shop_images/NEW_2026_NO_SNOW_MOBILE_HOMEPAGE_BANNER_MOBILE_750_x_1100_3.png",
+            "mobile_image": "shopify://shop_images/New_2026_Black_Friday_Home_Page_Mobile.png",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
