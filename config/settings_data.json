@@ -313,9 +313,9 @@
         "settings": {
           "show_announcement": true,
           "enable_sticky_announcement": true,
-          "background": "#d20909",
-          "text_color": "#fafafa",
-          "text": "<p>20% OFF ALL STORALEX SHELVING</p>",
+          "background": "#000000",
+          "text_color": "#F7B528",
+          "text": "<p>BLACK FRIDAY'S COME EARLY, &nbsp;20% OFF ALL STORALEX SHELVING</p>",
           "text_position": "center",
           "link": "",
           "show_newsletter": false,
