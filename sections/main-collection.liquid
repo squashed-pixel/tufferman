@@ -359,9 +359,9 @@
                   {% else %}
                   {% if section.settings.show_collection_promo %}
                       <a href="{{ section.settings.promo_link }}" class="collection-promo">
-                        <img src="{{ section.settings.promo_image | image_url: width: 1200 }}" loading="eager" fetchpriority="high" class="{% if section.settings.settings.promo_image_mobile %}hidden-phone{% endif %}" alt="">
+                        <img src="{{ section.settings.promo_image | image_url: width: 1200 }}" loading="eager" fetchpriority="high" class="{% if section.settings.promo_image_mobile %}hidden-phone{% endif %}" alt="">
                         {%- if section.settings.promo_image_mobile -%}
-                          <img class="hidden-tablet-and-up" src="{{ section.settings.settings.promo_image_mobile | image_url: width: 765 }}" loading="eager" fetchpriority="high" alt="{{ section.settings.settings.promo_image_mobile.alt }}">
+                          <img class="hidden-tablet-and-up" src="{{ section.settings.promo_image_mobile | image_url: width: 765 }}" loading="eager" fetchpriority="high" alt="{{ section.settings.promo_image_mobile.alt }}">
                         {%- endif -%}
                       </a>
                     {% endif %}
