@@ -544,11 +544,6 @@
         "disabled": true,
         "settings": {}
       },
-      "9246707248847178381": {
-        "type": "shopify://apps/livechat-live-chat-app/blocks/chat_widget/edc4358c-5386-40b3-a5a3-34aa308c6d45",
-        "disabled": false,
-        "settings": {}
-      },
       "10012068959737676665": {
         "type": "shopify://apps/gropulse-wishlist/blocks/gropulse-wishlist/d606b448-832c-4b0a-adbb-21c7fa132df1",
         "disabled": true,
@@ -562,6 +557,11 @@
       "1877152918344802950": {
         "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
         "disabled": true,
+        "settings": {}
+      },
+      "17780242343491337156": {
+        "type": "shopify://apps/text-ai-agent-live-chat/blocks/chat_widget/019ce17e-7a81-7b71-87f4-d167ad77e1b9",
+        "disabled": false,
         "settings": {}
       }
     }
